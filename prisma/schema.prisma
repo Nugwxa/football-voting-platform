@@ -1,0 +1,45 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Session{
+  id      String @id @default(uuid())
+  userId String
+  user User @relation(fields: [userId], references: [id])
+  startDate DateTime
+  expiryDate DateTime
+}
+
+model User {
+  id               String             @id @default(uuid())
+  name             String
+  email            String             @unique
+  isAdmin          Boolean            @default(false)
+  VoteRegigtration VoteRegigtration[]
+  Session Session[]
+}
+
+model Vote {
+  id               String             @id @default(uuid())
+  title            String
+  candidates       Json               @default("{\"data\": []}")
+  startDate        DateTime
+  expiryDate       DateTime
+  VoteRegigtration VoteRegigtration[]
+  isEnabled Boolean @default(true)
+}
+
+model VoteRegigtration {
+  id      String @id @default(uuid())
+  voteId  String
+  vote    Vote   @relation(fields: [voteId], references: [id])
+  voterId String
+  selectedCandidate String
+  user    User   @relation(fields: [voterId], references: [id])
+
+}
