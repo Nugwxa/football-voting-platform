@@ -7,11 +7,11 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Session{
-  id      String @id @default(uuid())
-  userId String
-  user User @relation(fields: [userId], references: [id])
-  startDate DateTime
+model Session {
+  id         String   @id @default(uuid())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id])
+  startDate  DateTime
   expiryDate DateTime
 }
 
@@ -20,8 +20,10 @@ model User {
   name             String
   email            String             @unique
   isAdmin          Boolean            @default(false)
+  auth             Json
   VoteRegigtration VoteRegigtration[]
-  Session Session[]
+  Session          Session[]
+  registrationDate DateTime
 }
 
 model Vote {
@@ -31,15 +33,14 @@ model Vote {
   startDate        DateTime
   expiryDate       DateTime
   VoteRegigtration VoteRegigtration[]
-  isEnabled Boolean @default(true)
+  isEnabled        Boolean            @default(true)
 }
 
 model VoteRegigtration {
-  id      String @id @default(uuid())
-  voteId  String
-  vote    Vote   @relation(fields: [voteId], references: [id])
-  voterId String
+  id                String @id @default(uuid())
+  voteId            String
+  vote              Vote   @relation(fields: [voteId], references: [id])
+  voterId           String
   selectedCandidate String
-  user    User   @relation(fields: [voterId], references: [id])
-
+  user              User   @relation(fields: [voterId], references: [id])
 }

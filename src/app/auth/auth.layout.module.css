@@ -1,0 +1,81 @@
+.main {
+  /* background-color: #191919; */
+  background-color: #101010;
+  min-height: 100vh;
+  height: 100%;
+  display: flex;
+  padding: 10px 40px;
+  justify-content: center;
+}
+
+.container {
+  background-color: black;
+  border: 1px solid rgb(255, 255, 255, 0.5);
+  margin-top: 60px;
+  padding: 40px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 500px;
+  height: fit-content;
+}
+
+.heading {
+  font-size: 36px;
+  margin-bottom: 40px;
+}
+
+.error {
+  color: #d46161;
+  font-weight: 700;
+}
+.success {
+  color: #05c99e;
+  font-weight: 700;
+}
+.inputWrapper {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.inputWrapper label {
+  font-weight: 500;
+}
+
+.inputWrapper input {
+  background-color: #101010;
+  border-radius: 5px;
+  border: 1.5px solid rgb(255, 255, 255, 0.5);
+  color: rgb(255, 255, 255, 0.5);
+  font-weight: 600;
+  font: inherit;
+  padding: 10px;
+}
+
+.button {
+  background-color: #12b692;
+  border-radius: 5px;
+  border: none;
+  box-sizing: border-box;
+  color: #000;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+  padding: 15px;
+  width: 100%;
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.redirectText {
+  text-align: center;
+}
+
+.singleAnchor {
+  color: #05c99e;
+  font-weight: 700;
+}

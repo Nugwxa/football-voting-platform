@@ -1,10 +1,16 @@
-type VoteCandidate = {
-id: String
-name: String
-imgURL: String // Imgur
+type UserAuthObject = {
+  passwordHash: String
+  passwordSalt: String
 }
 
 type ActionResponse = {
-    type: "error" | "success"
-    message: String
+  type: 'error' | 'errorArray' | 'success' | 'idle'
+  message: String
+  errors?: String[]
+}
+
+type VoteCandidate = {
+  id: String
+  name: String
+  imgURL: String // Imgur
 }
