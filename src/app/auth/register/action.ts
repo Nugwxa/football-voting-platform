@@ -1,6 +1,6 @@
 'use server'
-import prisma from '@lib/prisma'
 import crypto from 'crypto'
+import prisma from '@lib/prisma'
 
 export async function CreateUser(
   prevState: any,
@@ -11,10 +11,12 @@ export async function CreateUser(
   const password = formData.get('password')
   const confirmPassword = formData.get('confirm_password')
 
+  let errorsArray: String[] = []
+
   if (!name || !email || !password || !confirmPassword) {
     return {
       type: 'error',
-      message: 'Error creating account: Invalid submission',
+      message: 'Invalid submission',
     }
   }
 
@@ -25,24 +27,28 @@ export async function CreateUser(
   })
 
   if (usersWithSpecifiedEmail > 0) {
-    return {
-      type: 'error',
-      message: 'Error creating account: Email already in use',
-    }
+    errorsArray.push('Email already in use')
   }
 
   const isValidName = /^[a-zA-Z\s\.\-]+$/.test(name as string)
 
   if (!isValidName) {
-    return {
-      type: 'error',
-      message: 'Error creating account: Invalid name',
-    }
+    errorsArray.push(
+      'Invalid name. Please use only letters, spaces, periods, and hyphens.'
+    )
+  }
+  if (password.toString().length < 6) {
+    errorsArray.push('Password too short (Minimum is 6 characters)')
   }
   if (password !== confirmPassword) {
+    errorsArray.push("Passwords don't match")
+  }
+
+  if (errorsArray.length > 0) {
     return {
-      type: 'error',
-      message: 'Error creating account: Passwords do not match',
+      type: 'errorArray',
+      errors: errorsArray,
+      message: '',
     }
   }
 
@@ -81,6 +87,6 @@ export async function CreateUser(
 
   return {
     type: 'success',
-    message: 'Account created',
+    message: 'Account created, you will be redirected to the login page',
   }
 }

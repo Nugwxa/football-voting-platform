@@ -4,8 +4,9 @@ type UserAuthObject = {
 }
 
 type ActionResponse = {
-  type: 'error' | 'success' | 'idle'
+  type: 'error' | 'errorArray' | 'success' | 'idle'
   message: String
+  errors?: String[]
 }
 
 type VoteCandidate = {
