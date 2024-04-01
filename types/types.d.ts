@@ -4,7 +4,7 @@ type UserAuth = {
 }
 
 type ActionResponse = {
-  type: 'error' | 'success'
+  type: 'error' | 'success' | 'idle'
   message: String
 }
 
