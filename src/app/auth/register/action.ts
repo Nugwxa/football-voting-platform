@@ -68,13 +68,14 @@ export async function CreateUser(
     passwordHash: passwordHash,
     passwordSalt: passwordSalt.toString('hex'),
   }
-
+  const now = new Date()
   try {
     await prisma.user.create({
       data: {
         name: name as string,
         email: email as string,
         auth: JSON.stringify(authObject),
+        registrationDate: now,
       },
     })
   } catch (e: any) {

@@ -23,6 +23,7 @@ model User {
   auth             Json
   VoteRegigtration VoteRegigtration[]
   Session          Session[]
+  registrationDate DateTime
 }
 
 model Vote {
