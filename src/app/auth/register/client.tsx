@@ -1,7 +1,7 @@
 'use client'
+import { CreateUser } from './action'
 import { useFormState } from 'react-dom'
 import style from './register.module.css'
-import { CreateUser } from './action'
 
 export default function CreateUserForm() {
   const initialFormState: ActionResponse = {

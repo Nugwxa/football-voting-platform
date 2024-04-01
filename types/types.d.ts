@@ -1,4 +1,4 @@
-type UserAuth = {
+type UserAuthObject = {
   passwordHash: String
   passwordSalt: String
 }
