@@ -1,9 +1,8 @@
 'use client'
-import { CreateUser } from './action'
+import { createUser } from './action'
 import { useFormState } from 'react-dom'
 import { useRouter } from 'next/navigation'
 import authStyle from '../auth.layout.module.css'
-import style from './register.module.css'
 
 export default function CreateUserForm() {
   const initialFormState: ActionResponse = {
@@ -12,13 +11,12 @@ export default function CreateUserForm() {
     errors: [],
   }
 
-  const [formState, formAction] = useFormState(CreateUser, initialFormState)
+  const [formState, formAction] = useFormState(createUser, initialFormState)
 
   //   Redirect the user once the their account has been created
   const router = useRouter()
   if (formState.type === 'success') {
     setTimeout(() => {
-      console.log('yes')
       router.push('/auth/login')
     }, 5000)
   }
@@ -26,6 +24,7 @@ export default function CreateUserForm() {
   return (
     <>
       {/* Form Feedback */}
+      {/* Research more on autocomplete */}
       <div>
         {formState.errors &&
           formState.errors.map((error, index) => {
@@ -49,22 +48,39 @@ export default function CreateUserForm() {
       <form action={formAction}>
         <div className={authStyle.inputWrapper}>
           <label htmlFor="name">Name</label>
-          <input name="name" type="text" required />
+          <input
+            id="name"
+            autoComplete="off"
+            name="name"
+            type="text"
+            required
+          />
         </div>
 
         <div className={authStyle.inputWrapper}>
           <label htmlFor="email">Email</label>
-          <input name="email" type="email" required />
+          <input
+            id="email"
+            autoComplete="off"
+            name="email"
+            type="email"
+            required
+          />
         </div>
 
         <div className={authStyle.inputWrapper}>
           <label htmlFor="password">Password</label>
-          <input name="password" type="password" required />
+          <input id="password" name="password" type="password" required />
         </div>
 
         <div className={authStyle.inputWrapper}>
           <label htmlFor="confirm_password">Confirm Password</label>
-          <input name="confirm_password" type="password" required />
+          <input
+            id="confirm_password"
+            name="confirm_password"
+            type="password"
+            required
+          />
         </div>
 
         <button

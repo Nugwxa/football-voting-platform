@@ -2,7 +2,7 @@
 import crypto from 'crypto'
 import prisma from '@lib/prisma'
 
-export async function CreateUser(
+export async function createUser(
   prevState: any,
   formData: FormData
 ): Promise<ActionResponse> {
