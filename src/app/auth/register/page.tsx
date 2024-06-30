@@ -19,13 +19,6 @@ export default async function Page() {
           Login
         </Link>
       </p>
-
-      <p className={authStyle.redirectText}>
-        Forgot Password?{' '}
-        <Link className={authStyle.singleAnchor} href={'/auth/reset'}>
-          Reset
-        </Link>
-      </p>
     </div>
   )
 }
