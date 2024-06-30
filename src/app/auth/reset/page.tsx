@@ -13,7 +13,7 @@ export default async function Page() {
       <TextWithDivider>or</TextWithDivider>
 
       <p className={authStyle.redirectText}>
-        <Link className={authStyle.singleAnchor} href={'/auth/reset'}>
+        <Link className={authStyle.singleAnchor} href={'/auth/login'}>
           Back To Login
         </Link>
       </p>
