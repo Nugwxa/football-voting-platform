@@ -79,3 +79,9 @@
   color: #05c99e;
   font-weight: 700;
 }
+
+.contentContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
