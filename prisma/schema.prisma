@@ -24,6 +24,16 @@ model User {
   VoteRegigtration VoteRegigtration[]
   Session          Session[]
   registrationDate DateTime
+  ResetToken       ResetToken[]
+}
+
+model ResetToken {
+  id         String   @id @default(uuid())
+  userId     String
+  isUsed     Boolean  @default(false)
+  created    DateTime @default(now())
+  expiryDate DateTime
+  user       User     @relation(fields: [userId], references: [id])
 }
 
 model Vote {
