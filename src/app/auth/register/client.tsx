@@ -3,7 +3,6 @@ import { CreateUser } from './action'
 import { useFormState } from 'react-dom'
 import { useRouter } from 'next/navigation'
 import authStyle from '../auth.layout.module.css'
-import style from './register.module.css'
 
 export default function CreateUserForm() {
   const initialFormState: ActionResponse = {
@@ -18,7 +17,6 @@ export default function CreateUserForm() {
   const router = useRouter()
   if (formState.type === 'success') {
     setTimeout(() => {
-      console.log('yes')
       router.push('/auth/login')
     }, 5000)
   }
