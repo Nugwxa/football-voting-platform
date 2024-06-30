@@ -1,5 +1,5 @@
 'use client'
-import { CreateUser } from './action'
+import { createUser } from './action'
 import { useFormState } from 'react-dom'
 import { useRouter } from 'next/navigation'
 import authStyle from '../auth.layout.module.css'
@@ -11,7 +11,7 @@ export default function CreateUserForm() {
     errors: [],
   }
 
-  const [formState, formAction] = useFormState(CreateUser, initialFormState)
+  const [formState, formAction] = useFormState(createUser, initialFormState)
 
   //   Redirect the user once the their account has been created
   const router = useRouter()
