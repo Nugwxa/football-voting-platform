@@ -1,7 +1,9 @@
 import Image from 'next/image'
 import styles from './page.module.css'
+import readSession from '@/lib/session'
 
-export default function Home() {
+export default async function Home() {
+  const session = await readSession()
   return (
     <main className={styles.main}>
       <div className={styles.description}>
@@ -37,6 +39,11 @@ export default function Home() {
           height={37}
           priority
         />
+      </div>
+
+      <div className={styles.center}>
+        {session && session?.user.name + ' is '}{' '}
+        <h1> Logged {session ? 'In' : 'Out'}</h1>
       </div>
 
       <div className={styles.grid}>
