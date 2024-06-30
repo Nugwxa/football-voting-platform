@@ -26,6 +26,7 @@ export default function CreateUserForm() {
   return (
     <>
       {/* Form Feedback */}
+      {/* Research more on autocomplete */}
       <div>
         {formState.errors &&
           formState.errors.map((error, index) => {
@@ -49,22 +50,39 @@ export default function CreateUserForm() {
       <form action={formAction}>
         <div className={authStyle.inputWrapper}>
           <label htmlFor="name">Name</label>
-          <input name="name" type="text" required />
+          <input
+            id="name"
+            autoComplete="off"
+            name="name"
+            type="text"
+            required
+          />
         </div>
 
         <div className={authStyle.inputWrapper}>
           <label htmlFor="email">Email</label>
-          <input name="email" type="email" required />
+          <input
+            id="email"
+            autoComplete="off"
+            name="email"
+            type="email"
+            required
+          />
         </div>
 
         <div className={authStyle.inputWrapper}>
           <label htmlFor="password">Password</label>
-          <input name="password" type="password" required />
+          <input id="password" name="password" type="password" required />
         </div>
 
         <div className={authStyle.inputWrapper}>
           <label htmlFor="confirm_password">Confirm Password</label>
-          <input name="confirm_password" type="password" required />
+          <input
+            id="confirm_password"
+            name="confirm_password"
+            type="password"
+            required
+          />
         </div>
 
         <button
