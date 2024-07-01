@@ -1,11 +1,13 @@
 import Image from 'next/image'
 import styles from './page.module.css'
 import readSession from '@/lib/session'
+import HeaderMenu from '@/components/HeaderMenu'
 
 export default async function Home() {
   const session = await readSession()
   return (
-    <main className={styles.main}>
+    <main className={styles.mainn}>
+      <HeaderMenu />
       <div className={styles.description}>
         <p>
           Get started by editing&nbsp;
