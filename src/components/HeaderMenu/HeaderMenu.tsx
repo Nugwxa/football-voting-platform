@@ -3,6 +3,7 @@ import readSession from '@/lib/session'
 import styles from './HeaderMenu.module.css'
 import Image from 'next/image'
 import Link from 'next/link'
+import { Fragment } from 'react'
 type AnchorLink = {
   href: string
   label: string
@@ -44,10 +45,9 @@ export default async function HeaderMenu() {
                 {anchorLinks.map((anchorLink) => {
                   if (anchorLink.viewCondition)
                     return (
-                      <li>
+                      <li key={anchorLink.href}>
                         <Link
                           className={styles.headerAnchor}
-                          key={anchorLink.href}
                           href={anchorLink.href}
                         >
                           {anchorLink.label}
@@ -55,7 +55,7 @@ export default async function HeaderMenu() {
                       </li>
                     )
 
-                  return <></>
+                  return <Fragment key={anchorLink.href} />
                 })}
               </ul>
             </nav>
