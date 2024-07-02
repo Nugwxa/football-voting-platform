@@ -19,3 +19,16 @@ export function NavItem({ item }: { item: { href: string; label: string } }) {
     </Link>
   )
 }
+
+export function LoginButton() {
+  const pathname = usePathname()
+
+  return (
+    <Link
+      className={classNames(styles.actionAnchor)}
+      href={`/auth/login?redirect=${pathname}`}
+    >
+      Login
+    </Link>
+  )
+}
