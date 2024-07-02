@@ -64,7 +64,7 @@ export default async function HeaderMenu() {
         <div className={styles.headerRight}>
           {!session ? (
             <div className={styles.actionAnchorWrapper}>
-              <Link className={styles.actionAnchor} href={'/auth/login'}>
+              <Link className={styles.loginAnchor} href={'/auth/login'}>
                 Login
               </Link>
               <Link className={styles.actionAnchor} href={'/auth/register'}>
