@@ -3,10 +3,9 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  /* Change Colors Later */
   background-color: white;
   color: black;
-  border-bottom: 1.5px solid #f1f1f3;
+  border-bottom: 2px solid #f1f1f3;
 }
 .contentContainer {
   display: flex;
@@ -48,6 +47,7 @@
   list-style: none;
 }
 
+/* Nav Item */
 .headerAnchor {
   position: relative;
   color: #4e4e4e;
@@ -66,8 +66,8 @@
   transition: height 0.6s ease, background-color 0.3s ease;
 }
 
-.headerAnchor:hover::after {
-  width: 100%;
+.headerAnchor:hover::after,
+.activeAnchor::after {
   height: 1.5px;
   background-color: rgba(78, 78, 78, 1);
 }
