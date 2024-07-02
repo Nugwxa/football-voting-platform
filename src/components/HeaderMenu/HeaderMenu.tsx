@@ -1,9 +1,10 @@
-'use server'
-import readSession from '@/lib/session'
-import styles from './HeaderMenu.module.css'
+import { Fragment } from 'react'
+import { LoginButton, NavItem } from './client'
+import classNames from 'classnames'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Fragment } from 'react'
+import readSession from '@/lib/session'
+import styles from './HeaderMenu.module.css'
 type AnchorLink = {
   href: string
   label: string
@@ -20,11 +21,6 @@ export default async function HeaderMenu() {
       viewCondition: session?.user.isAdmin ?? false,
     },
     { href: '/polls', label: 'My Polls', viewCondition: sessionIsPresent },
-    {
-      href: '/polls/history',
-      label: 'Voting History',
-      viewCondition: session?.user.isAdmin ?? false,
-    },
   ]
   return (
     <div className={styles.contentWrapper}>
@@ -39,19 +35,14 @@ export default async function HeaderMenu() {
               priority
             />
           </div>
-          {!session && (
+          {session && (
             <nav className={styles.headerNav}>
               <ul>
                 {anchorLinks.map((anchorLink) => {
                   if (anchorLink.viewCondition)
                     return (
                       <li key={anchorLink.href}>
-                        <Link
-                          className={styles.headerAnchor}
-                          href={anchorLink.href}
-                        >
-                          {anchorLink.label}
-                        </Link>
+                        <NavItem item={anchorLink} />
                       </li>
                     )
 
@@ -64,15 +55,21 @@ export default async function HeaderMenu() {
         <div className={styles.headerRight}>
           {!session ? (
             <div className={styles.actionAnchorWrapper}>
-              <Link className={styles.loginAnchor} href={'/auth/login'}>
-                Login
-              </Link>
-              <Link className={styles.actionAnchor} href={'/auth/register'}>
+              <LoginButton />
+              <Link
+                className={classNames(
+                  styles.actionAnchor,
+                  styles.specialAnchor
+                )}
+                href={'/auth/register'}
+              >
                 Register
               </Link>
             </div>
           ) : (
-            <div></div>
+            <div>
+              <button>View Profile</button>
+            </div>
           )}
         </div>
       </div>
