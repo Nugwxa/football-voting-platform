@@ -4,7 +4,7 @@
   justify-content: center;
   width: 100%;
   background-color: white;
-  color: black;
+  color: #222222;
   border-bottom: 2px solid #f1f1f3;
 }
 .contentContainer {
@@ -50,7 +50,7 @@
 /* Nav Item */
 .headerAnchor {
   position: relative;
-  color: #4e4e4e;
+  color: #222222;
   font-weight: 500;
   text-decoration: none;
 }
@@ -80,10 +80,10 @@
 
 .actionAnchor {
   padding: 10px 20px;
-  border: 2px solid black;
+  border: 2px solid #222222;
   text-decoration: none;
   border-radius: 8px;
-  color: black;
+  color: #222222;
   background-color: transparent;
   font-weight: 600;
   text-decoration: none;
@@ -91,13 +91,12 @@
 }
 
 .specialAnchor {
-  background-color: black;
+  background-color: #222222;
   color: white;
 }
 
 .actionAnchor:hover {
-  border-color: black;
   background-color: transparent;
-  color: black;
+  color: #222222;
   border-radius: unset;
 }
