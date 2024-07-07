@@ -50,9 +50,11 @@ export function LoginButton() {
 export function MobileNavigationMenu({
   isAdmin,
   anchorLinks,
+  name,
 }: {
   isAdmin: boolean
   anchorLinks: AnchorLink[]
+  name: string
 }) {
   const [isShowing, setIsShowing] = useState<boolean>(false)
   const icon = isShowing ? <XIcon /> : <MenuIcon />
@@ -90,7 +92,7 @@ export function MobileNavigationMenu({
 
               <div className={styles.mobileNavBodyProfileInfo}>
                 <div className={styles.mobileNavBodyProfileInfoUser}>
-                  OJ Abba
+                  {name}
                 </div>
                 <div className={styles.mobileNavBodyProfileInfoRole}>
                   {isAdmin ? 'Admin' : 'Voter'}

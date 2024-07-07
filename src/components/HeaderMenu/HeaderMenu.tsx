@@ -15,6 +15,7 @@ type AnchorLink = {
 
 export default async function HeaderMenu() {
   const session = await readSession()
+  const name = session?.user.name ?? 'null'
   const sessionIsPresent = session !== null
   const isAdmin = session?.user.isAdmin ?? false
   const anchorLinks: AnchorLink[] = [
@@ -79,6 +80,7 @@ export default async function HeaderMenu() {
             <>
               <button className={styles.accountButton}>View Profile</button>
               <MobileNavigationMenu
+                name={name}
                 isAdmin={isAdmin}
                 anchorLinks={anchorLinks}
               />
