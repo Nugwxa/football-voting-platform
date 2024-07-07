@@ -1,5 +1,6 @@
 import { Fragment } from 'react'
-import { LoginButton, NavItem } from './client'
+import { LayoutDashboardIcon, VoteIcon } from 'lucide-react'
+import { LoginButton, MobileNavigationMenu, NavItem } from './client'
 import classNames from 'classnames'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -9,18 +10,26 @@ type AnchorLink = {
   href: string
   label: string
   viewCondition: boolean
+  icon: JSX.Element
 }
 
 export default async function HeaderMenu() {
   const session = await readSession()
   const sessionIsPresent = session !== null
+  const isAdmin = session?.user.isAdmin ?? false
   const anchorLinks: AnchorLink[] = [
     {
       href: '/dashboard',
       label: 'Dashboard',
-      viewCondition: session?.user.isAdmin ?? false,
+      viewCondition: isAdmin,
+      icon: <LayoutDashboardIcon />,
     },
-    { href: '/polls', label: 'My Polls', viewCondition: sessionIsPresent },
+    {
+      href: '/polls',
+      label: 'My Polls',
+      viewCondition: sessionIsPresent,
+      icon: <VoteIcon />,
+    },
   ]
   return (
     <div className={styles.contentWrapper}>
@@ -67,9 +76,13 @@ export default async function HeaderMenu() {
               </Link>
             </div>
           ) : (
-            <div>
-              <button>View Profile</button>
-            </div>
+            <>
+              <button className={styles.accountButton}>View Profile</button>
+              <MobileNavigationMenu
+                isAdmin={isAdmin}
+                anchorLinks={anchorLinks}
+              />
+            </>
           )}
         </div>
       </div>
