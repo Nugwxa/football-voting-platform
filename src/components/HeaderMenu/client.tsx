@@ -9,7 +9,7 @@ import {
 import { usePathname } from 'next/navigation'
 import classNames from 'classnames'
 import Link from 'next/link'
-import React, { useState } from 'react'
+import React, { Fragment, useState } from 'react'
 import styles from './HeaderMenu.module.css'
 
 type AnchorLink = {
@@ -106,7 +106,8 @@ export function MobileNavigationMenu({
 
         <div className={styles.mobileNavBodyNavigationSection}>
           {anchorLinks.map((link) => {
-            if (!link.viewCondition) return <></>
+            if (!link.viewCondition)
+              return <Fragment key={link.href}></Fragment>
             return (
               <Link
                 key={link.href}
