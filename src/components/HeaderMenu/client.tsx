@@ -137,18 +137,7 @@ export function MobileNavigationMenu({
             )
           })}
 
-          <button className={styles.mobileNavBodyNavigationWrapper}>
-            <div className={styles.mobileNavBodyNavigationContainer}>
-              <div className={styles.mobileNavBodyNavigationIcon}>
-                <LogOutIcon />
-              </div>
-              <div className={styles.mobileNavBodyNavigationText}>Logout</div>
-            </div>
-
-            <div>
-              <ChevronRightIcon />
-            </div>
-          </button>
+          <LogoutButton />
         </div>
       </div>
     </>
@@ -191,7 +180,7 @@ export function HeaderUserButton() {
                 </div>
               </Link>
             </Popover.Close>
-            <LogoutButton />
+            <LogoutButton className={userButtonStyle.link} />
           </div>
           <Popover.Arrow className={userButtonStyle.PopoverArrow} />
         </Popover.Content>
@@ -218,10 +207,9 @@ function LogoutButton({ className }: { className?: string }) {
       onClick={async () => {
         await logUserOut()
       }}
-      className={classNames(
-        styles.mobileNavBodyNavigationWrapper,
-        userButtonStyle.link
-      )}
+      className={classNames(styles.mobileNavBodyNavigationWrapper, {
+        [className ?? '']: className,
+      })}
     >
       <div className={styles.mobileNavBodyNavigationContainer}>
         <div className={styles.mobileNavBodyNavigationIcon}>
