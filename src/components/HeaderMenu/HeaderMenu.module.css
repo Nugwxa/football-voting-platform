@@ -1,0 +1,299 @@
+.contentWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background-color: white;
+  z-index: 100;
+  position: fixed;
+  color: #222222;
+  border-bottom: 2px solid #f1f1f3;
+}
+.contentContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  max-width: 1280px;
+  padding: 20px 40px;
+}
+.headerLeft {
+  display: flex;
+  gap: 60px;
+}
+
+.logoArea {
+  position: relative;
+  display: flex;
+  width: 80px;
+  height: 25px;
+  align-items: center;
+}
+.logo {
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
+}
+.headerNav {
+  display: flex;
+  align-items: center;
+}
+
+.headerNav ul {
+  display: flex;
+  gap: 20px;
+}
+
+.headerNav ul li {
+  list-style: none;
+}
+
+/* Nav Item */
+.headerAnchor {
+  position: relative;
+  color: #222222;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.headerAnchor::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  bottom: 0px;
+  margin-bottom: -10px;
+  left: 0;
+  background-color: rgba(78, 78, 78, 0);
+  transition: background-color 0.3s ease, margin-bottom 0.2s ease;
+}
+
+.headerAnchor:hover::after,
+.activeAnchor::after {
+  margin-bottom: -6px;
+  background-color: rgba(78, 78, 78, 1);
+}
+
+.actionAnchorWrapper {
+  display: flex;
+  gap: 20px;
+}
+
+.actionAnchor,
+.button {
+  padding: 10px 20px;
+  border: 2px solid #222222;
+  text-decoration: none;
+  border-radius: 8px;
+  color: #222222;
+  background-color: transparent;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.button {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1/1;
+  cursor: pointer;
+  z-index: 60;
+  position: relative;
+}
+
+.specialAnchor {
+  background-color: #222222;
+  color: white;
+}
+
+.actionAnchor:hover,
+.button:hover {
+  background-color: transparent;
+  color: #222222;
+  border-radius: unset;
+}
+
+.accountButton {
+  display: block;
+  border: none;
+  background-color: transparent;
+  color: #222222;
+  cursor: pointer;
+}
+
+/* Mobile Nav */
+.mobileButton {
+  display: none;
+}
+.mobileNavOverlay {
+  display: none;
+  background-color: transparent;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  transition: background-color 0.3s;
+  z-index: 344;
+}
+
+.mobileNavOverlay.mobileNavIsShowing {
+  height: 100vh;
+  width: 100vw;
+  z-index: 3;
+  background-color: rgba(34, 34, 34, 0.7);
+}
+
+.mobileNavOverlay button {
+  border: none;
+  /* cursor: unset; */
+  height: 100%;
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+}
+
+.mobileNavBody {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 260px;
+  padding: 20px;
+  padding-top: 100px;
+  border-left: 2px solid #f1f1f3;
+  background-color: white;
+  transition: 0.1s ease-out;
+  display: none;
+  flex-direction: column;
+  gap: 16px;
+  transform: translateX(260px);
+  z-index: 4;
+}
+
+.mobileNavBody.mobileNavIsShowing {
+  transform: translateX(0);
+}
+
+.mobileNavBodyProfileSection {
+  padding-bottom: 16px;
+  border-bottom: 1.5px solid #f1f1f3;
+}
+.mobileNavBodyProfileWrapper {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 8px;
+  justify-content: space-between;
+}
+
+.mobileNavBodyProfile {
+  display: flex;
+  gap: 16px;
+  color: #222222;
+}
+
+.mobileNavBodyProfileIcon {
+  width: 44px;
+  height: 44px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #222222;
+  background-color: #f7f7f8;
+}
+
+.mobileNavBodyProfileInfo {
+  display: flex;
+  width: 70%;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.mobileNavBodyProfileInfoUser {
+  font-size: 17px;
+  font-weight: 500;
+  display: -webkit-box;
+  word-break: break-all;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.mobileNavBodyProfileInfoRole {
+  color: #8e96a8;
+  font-size: 13px;
+}
+
+.mobileNavBodyIcon {
+  color: #8e96a8;
+}
+
+/* Nav Links (Mobile) */
+.mobileNavBodyNavigationSection {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.mobileNavBodyNavigationWrapper {
+  display: flex;
+  width: 100%;
+  padding: 8px;
+  border-radius: 5px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  justify-content: space-between;
+  align-items: center;
+  color: #222222;
+}
+
+.mobileNavBodyNavigationContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mobileNavBodyNavigationIcon {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobileNavBodyNavigationText {
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.mobileNavBodyNavigationWrapper:hover {
+  background-color: #222222;
+  color: white;
+}
+
+@media only screen and (max-width: 700px) {
+  .mobileButton {
+    display: flex;
+  }
+  .accountButton {
+    display: none;
+  }
+  .mobileNavOverlay {
+    display: block;
+  }
+
+  .mobileNavOverlay.mobileNavIsShowing {
+    display: block;
+  }
+  .mobileNavBody {
+    display: flex;
+  }
+  .headerNav {
+    display: none;
+  }
+}

@@ -17,6 +17,7 @@ export default async function readSession() {
         id: cookie.value,
       },
       select: {
+        id: true,
         expiryDate: true,
         user: {
           select: {
@@ -39,6 +40,7 @@ export default async function readSession() {
 
   //   Return session object
   return {
+    id: session.id,
     user: {
       id: session.user.id,
       name: session.user.name,
