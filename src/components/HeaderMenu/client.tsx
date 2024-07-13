@@ -4,13 +4,18 @@ import {
   LogOutIcon,
   MenuIcon,
   User,
+  UserCircleIcon,
+  UserPenIcon,
   XIcon,
 } from 'lucide-react'
 import { usePathname } from 'next/navigation'
+import * as Popover from '@radix-ui/react-popover'
 import classNames from 'classnames'
 import Link from 'next/link'
+import logoutUser from './action'
 import React, { Fragment, useState } from 'react'
 import styles from './HeaderMenu.module.css'
+import userButtonStyle from './HeaderUserButton.module.css'
 
 type AnchorLink = {
   href: string
@@ -147,5 +152,87 @@ export function MobileNavigationMenu({
         </div>
       </div>
     </>
+  )
+}
+
+export function HeaderUserButton() {
+  return (
+    <Popover.Root>
+      <Popover.Trigger asChild>
+        <button className={styles.accountButton}>
+          <UserCircleIcon size={40} strokeWidth={1.2} />
+        </button>
+      </Popover.Trigger>
+      <Popover.Portal>
+        <Popover.Content
+          className={userButtonStyle.PopoverContent}
+          sideOffset={5}
+        >
+          <div>
+            <Popover.Close className={userButtonStyle.PopoverClose}>
+              <Link
+                href={'/profile'}
+                className={classNames(
+                  styles.mobileNavBodyNavigationWrapper,
+                  userButtonStyle.link
+                )}
+              >
+                <div className={styles.mobileNavBodyNavigationContainer}>
+                  <div className={styles.mobileNavBodyNavigationIcon}>
+                    <UserPenIcon />
+                  </div>
+                  <div className={styles.mobileNavBodyNavigationText}>
+                    Profile
+                  </div>
+                </div>
+
+                <div>
+                  <ChevronRightIcon />
+                </div>
+              </Link>
+            </Popover.Close>
+            <LogoutButton />
+          </div>
+          <Popover.Arrow className={userButtonStyle.PopoverArrow} />
+        </Popover.Content>
+      </Popover.Portal>
+    </Popover.Root>
+  )
+}
+
+function LogoutButton({ className }: { className?: string }) {
+  const [isPending, setIsPending] = useState(false)
+  const pathname = usePathname()
+
+  async function logUserOut() {
+    setIsPending(true)
+
+    await logoutUser(pathname)
+
+    setIsPending(false) //Shouldn't be necessary
+  }
+
+  return (
+    <button
+      disabled={isPending}
+      onClick={async () => {
+        await logUserOut()
+      }}
+      className={classNames(
+        styles.mobileNavBodyNavigationWrapper,
+        userButtonStyle.link
+      )}
+    >
+      <div className={styles.mobileNavBodyNavigationContainer}>
+        <div className={styles.mobileNavBodyNavigationIcon}>
+          <LogOutIcon />
+        </div>
+        <div className={styles.mobileNavBodyNavigationText}>Logout</div>
+      </div>
+
+      <div>
+        <ChevronRightIcon />
+      </div>
+    </button>
   )
 }

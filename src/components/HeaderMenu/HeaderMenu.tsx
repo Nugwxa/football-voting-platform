@@ -1,6 +1,11 @@
 import { Fragment } from 'react'
+import {
+  HeaderUserButton,
+  LoginButton,
+  MobileNavigationMenu,
+  NavItem,
+} from './client'
 import { LayoutDashboardIcon, VoteIcon } from 'lucide-react'
-import { LoginButton, MobileNavigationMenu, NavItem } from './client'
 import classNames from 'classnames'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -78,7 +83,7 @@ export default async function HeaderMenu() {
             </div>
           ) : (
             <>
-              <button className={styles.accountButton}>View Profile</button>
+              <HeaderUserButton />
               <MobileNavigationMenu
                 name={name}
                 isAdmin={isAdmin}
