@@ -1,7 +1,7 @@
-import Image from 'next/image'
-import styles from './page.module.css'
-import readSession from '@/lib/session'
 import HeaderMenu from '@/components/HeaderMenu'
+import Image from 'next/image'
+import readSession from '@/lib/session'
+import styles from './page.module.css'
 
 export default async function Home() {
   const session = await readSession()
@@ -41,11 +41,6 @@ export default async function Home() {
           height={37}
           priority
         />
-      </div>
-
-      <div className={styles.center}>
-        {session && session?.user.name + ' is '}{' '}
-        <h1> Logged {session ? 'In' : 'Out'}</h1>
       </div>
 
       <div className={styles.grid}>
