@@ -1,4 +1,5 @@
 .PopoverContent {
+  z-index: 20000;
   border-radius: 5px;
   padding: 0px;
   width: 260px;
