@@ -1,0 +1,12 @@
+.bodyWrapper {
+  color: #222222;
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+  width: 100%;
+}
+.bodyContainer {
+  max-width: 1280px;
+  padding: 10px 40px;
+  width: 100%;
+}

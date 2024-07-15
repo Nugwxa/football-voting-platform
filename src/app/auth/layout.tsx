@@ -1,6 +1,6 @@
 import style from './auth.layout.module.css'
 
-export default function RootLayout({
+export default function AuthLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
