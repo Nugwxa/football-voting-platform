@@ -1,6 +1,6 @@
+import { notFound } from 'next/navigation'
 import readSession from '@/lib/session'
 import styles from './page.module.css'
-import { notFound } from 'next/navigation'
 
 export default async function Page() {
   const session = await readSession()
