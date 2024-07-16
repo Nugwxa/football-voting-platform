@@ -3,7 +3,7 @@ import { cookies } from 'next/headers'
 import prisma from '@lib/prisma'
 
 export default async function readSession() {
-  const cookieName = 'mvp-token'
+  const cookieName = 'tally-token'
   const cookie = cookies().get(cookieName)
 
   //   Check cookie presence

@@ -69,7 +69,7 @@ export async function loginUser(
         id: true,
       },
     })
-    cookies().set('mvp-token', userSession.id, { expires: expiryDate })
+    cookies().set('tally-token', userSession.id, { expires: expiryDate })
   } catch (e: any) {
     console.log('Error: ', e)
     return {
