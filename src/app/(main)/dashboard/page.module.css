@@ -6,3 +6,53 @@
   width: 100%;
   background-color: white;
 }
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.dashboardItemsWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.dashboardStatContainer {
+  width: 23%;
+  flex-grow: 1;
+  background-color: #f8f8fa;
+  border: 2px solid #f1f1f3;
+  border-radius: 5px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.dashboardStatInfoWrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dashboardStatIcon {
+  width: 40px;
+  height: 40px;
+  background-color: #ececec;
+  color: #222222;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 40px;
+}
+
+.dashboardStatCount {
+  font-weight: 600;
+  color: #222222;
+  font-size: 28px;
+}
+
+@media only screen and (max-width: 700px) {
+  .dashboardStatContainer {
+    width: 46%;
+  }
+}
