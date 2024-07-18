@@ -5,11 +5,10 @@ type DashboardStatContainerType = {
   text: string
   icon: JSX.Element
 }
-export function DashboardStatContainer({
-  count,
-  text,
-  icon,
-}: DashboardStatContainerType) {
+export function DashboardStatContainer(
+  props: Readonly<DashboardStatContainerType>
+) {
+  const { count, text, icon } = props
   return (
     <div className={styles.dashboardStatContainer}>
       <div className={styles.dashboardStatInfoWrapper}>
