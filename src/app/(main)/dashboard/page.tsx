@@ -1,11 +1,21 @@
 import { DashboardStatContainer } from './client'
 import { HandHelpingIcon, UsersIcon, VoteIcon } from 'lucide-react'
 import { notFound } from 'next/navigation'
+import Pagination from '@/components/Pagination/Pagination'
 import prisma from '@lib/prisma'
 import readSession from '@/lib/session'
 import styles from './page.module.css'
+type SearchParams = Readonly<{
+  page?: number
+}>
+type PageProps = Readonly<{
+  searchParams: SearchParams
+}>
 
-export default async function Page() {
+export default async function Page(props: PageProps) {
+  const { searchParams } = props
+  const page = searchParams.page ?? 1
+
   const session = await readSession()
   if (!session || !session.user.isAdmin) return notFound()
 
@@ -38,6 +48,11 @@ export default async function Page() {
               icon={<HandHelpingIcon size={iconSize} />}
             />
           </div>
+        </section>
+
+        <section className={styles.section}>
+          <h2>Users</h2>
+          <Pagination totalPages={Math.ceil(userCount / 10)} />
         </section>
       </div>
     </>
