@@ -21,8 +21,9 @@ export default function Pagination(props: Readonly<PaginationProps>) {
   // Sets the current page based on the URL query parameter
   React.useEffect(() => {
     const params = new URLSearchParams(window.location.search)
-    const page = parseInt(params.get('page') ?? '')
-    setCurrentPage(page)
+    const page = parseInt(params.get('page') ?? '1')
+
+    setCurrentPage(page > 0 ? page : 1)
   }, [router])
 
   // Handles button clicks and updates the URL query parameter
@@ -97,7 +98,9 @@ export default function Pagination(props: Readonly<PaginationProps>) {
       pages.push(
         <button
           key={i}
-          onClick={() => handleClick(i)}
+          onClick={() => {
+            if (currentPage !== i) handleClick(i)
+          }}
           className={classNames(styles.paginationButton, styles.middleButton, {
             [styles.activePage]: i === currentPage,
           })}
