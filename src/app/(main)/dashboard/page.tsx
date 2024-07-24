@@ -1,13 +1,13 @@
 import { DashboardStatContainer } from './client'
 import { HandHelpingIcon, UsersIcon, VoteIcon } from 'lucide-react'
 import { notFound } from 'next/navigation'
+import classNames from 'classnames'
+import Link from 'next/link'
 import Pagination from '@/components/Pagination/Pagination'
 import prisma from '@lib/prisma'
 import readSession from '@/lib/session'
 import styles from './page.module.css'
 import UsersTable from './server'
-import Link from 'next/link'
-import classNames from 'classnames'
 type SearchParams = Readonly<{
   page?: number
 }>
@@ -63,7 +63,7 @@ export default async function Page(props: PageProps) {
             </div>
           </div>
           <UsersTable page={page} />
-          <Pagination totalPages={Math.ceil(userCount / 10)} />
+          <Pagination totalPages={34} />
         </section>
       </div>
     </>
