@@ -5,6 +5,9 @@ import Pagination from '@/components/Pagination/Pagination'
 import prisma from '@lib/prisma'
 import readSession from '@/lib/session'
 import styles from './page.module.css'
+import UsersTable from './server'
+import Link from 'next/link'
+import classNames from 'classnames'
 type SearchParams = Readonly<{
   page?: number
 }>
@@ -50,8 +53,16 @@ export default async function Page(props: PageProps) {
           </div>
         </section>
 
-        <section className={styles.section}>
-          <h2>Users</h2>
+        <section className={classNames(styles.section, styles.tableSection)}>
+          <div className={styles.sectionHeader}>
+            <h2>Users</h2>
+            <div>
+              <Link className={styles.link} href={'/dashboard/polls'}>
+                View Polls
+              </Link>
+            </div>
+          </div>
+          <UsersTable page={page} />
           <Pagination totalPages={Math.ceil(userCount / 10)} />
         </section>
       </div>
