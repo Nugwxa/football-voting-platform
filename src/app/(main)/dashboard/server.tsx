@@ -25,9 +25,9 @@ export default async function UsersTable(
 ): Promise<JSX.Element> {
   const session = await readSession()
   const { className, page, perPage = 10, ...rest } = props
-
+  const validPage = page > 0 ? page : 1
   // Calculate the number of users to skip for pagination
-  const skip = (page - 1) * perPage
+  const skip = (validPage - 1) * perPage
 
   // Fetch users from the database excluding the current user
   const users = await prisma.user.findMany({
