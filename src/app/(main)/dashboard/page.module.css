@@ -57,6 +57,10 @@
   font-size: 28px;
   font-weight: 600;
 }
+.dashboardStatText {
+  font-style: italic;
+  font-size: 14px;
+}
 .sectionHeader {
   width: 100%;
   align-items: center;
