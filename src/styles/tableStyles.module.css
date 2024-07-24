@@ -1,5 +1,6 @@
 .container {
   overflow-x: auto; /* Makes the table horizontally scrollable */
+  width: 100%;
 }
 
 .container table {
