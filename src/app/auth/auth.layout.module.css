@@ -1,5 +1,4 @@
 .main {
-  /* background-color: #191919; */
   background-color: #101010;
   min-height: 100vh;
   height: 100%;
@@ -48,8 +47,8 @@
   border-radius: 5px;
   border: 1.5px solid rgb(255, 255, 255, 0.5);
   color: rgb(255, 255, 255, 0.5);
-  font-weight: 600;
   font: inherit;
+  font-weight: 600;
   padding: 10px;
 }
 
