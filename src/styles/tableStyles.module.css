@@ -1,0 +1,48 @@
+.container {
+  overflow-x: auto; /* Makes the table horizontally scrollable */
+  width: 100%;
+}
+
+.container table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.tableHead th,
+.tableBody td {
+  border-bottom: 1px solid #ddd; /* Faint border for top and bottom */
+  border-top: 1px solid #ddd;
+  min-width: 150px;
+  padding: 10px 20px;
+  word-break: break-all;
+}
+
+.tableHead th {
+  text-align: left;
+  background-color: #f4f4f4; /* Light grey background for header */
+}
+
+.tableBody td:not(:first-child):not(:last-child) {
+  /* Faint border for internal sides */
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+}
+
+.mainText {
+  font-weight: 600;
+}
+.subText {
+  color: #666; /* Slightly lighter color for text */
+  font-size: 0.9em;
+}
+.widerCol {
+  width: 35%;
+}
+
+.noResultWrapper {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  width: 100%;
+}

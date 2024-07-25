@@ -1,0 +1,41 @@
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.paginationButton {
+  align-items: center;
+  background-color: transparent;
+  border-radius: 5px;
+  border: 2px solid transparent;
+  box-sizing: border-box;
+  color: #222222;
+  cursor: pointer;
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+  padding: 5px;
+}
+.middleButton,
+.ellipsis {
+  aspect-ratio: 1/1;
+}
+
+.ellipsis {
+  cursor: unset;
+  height: fit-content;
+  padding: 0;
+}
+.paginationButton:not(:disabled):not(.ellipsis):hover {
+  background-color: #eeeeee;
+  border-color: 2px solid #f1f1f3;
+}
+
+.paginationButton:disabled {
+  cursor: unset;
+  opacity: 0.5;
+}
+
+.activePage {
+  background-color: #ebebeb;
+}
