@@ -2,6 +2,12 @@
 import { cookies } from 'next/headers'
 import prisma from '@lib/prisma'
 
+/**
+ * Retrieves the user's session data from the cookie.
+ *
+ * @returns {null} Returns null if the session cookie is missing, the session is expired, or an error occurs during the database query.
+ * @returns {Object} The session data
+ */
 export async function readSession() {
   const cookieName = 'tally-token'
   const cookie = cookies().get(cookieName)
