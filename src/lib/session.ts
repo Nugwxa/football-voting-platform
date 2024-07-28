@@ -6,8 +6,8 @@ export default async function readSession() {
   const cookieName = 'tally-token'
   const cookie = cookies().get(cookieName)
 
-  //   Check cookie presence
-  if (!cookie || cookie.value === '') return null
+  // Check if the cookie is present and has a valid value
+  if (!cookie?.value) return null
 
   //   Search for a session that matches the cookie value
   let session
@@ -29,16 +29,20 @@ export default async function readSession() {
         },
       },
     })
-  } catch (e: any) {
-    console.error(`Database error:`, e.message)
+  } catch (e) {
+    if (e instanceof Error) {
+      console.error(`Session database error: ${e.message}`)
+    } else {
+      console.error('Unknown session database error:', e)
+    }
     return null
   }
 
   const now = new Date()
-  // If no session is found or the session has expired, return null
+  // Check if session exists and is not expired
   if (!session || session.expiryDate < now) return null
 
-  //   Return session object
+  // Return session object
   return {
     id: session.id,
     user: {
