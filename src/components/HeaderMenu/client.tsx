@@ -44,7 +44,25 @@ export function NavItem(props: Readonly<NavItemProps>): React.JSX.Element {
   )
 }
 
-export function LoginButton() {
+// export function LoginButton() {
+//   const pathname = usePathname()
+
+//   return (
+//     <Link
+//       className={classNames(styles.actionAnchor)}
+//       href={`/auth/login?redirect=${pathname}`}
+//     >
+//       Login
+//     </Link>
+//   )
+// }
+
+/**
+ * A link to the login page that redirects to the current page after login.
+ *
+ * @returns {JSX.Element} The rendered login button component.
+ */
+export function LoginButton(): JSX.Element {
   const pathname = usePathname()
 
   return (
