@@ -1,11 +1,11 @@
 import { DashboardStatContainer } from './client'
 import { HandHelpingIcon, UsersIcon, VoteIcon } from 'lucide-react'
 import { notFound } from 'next/navigation'
+import { readSession } from '@/lib/session'
 import classNames from 'classnames'
 import Link from 'next/link'
 import Pagination from '@/components/Pagination/Pagination'
 import prisma from '@lib/prisma'
-import readSession from '@/lib/session'
 import styles from './page.module.css'
 import UsersTable from './server'
 type SearchParams = Readonly<{

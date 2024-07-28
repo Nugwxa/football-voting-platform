@@ -1,6 +1,6 @@
 import HeaderMenu from '@/components/HeaderMenu'
 import Image from 'next/image'
-import readSession from '@/lib/session'
+import { readSession } from '@/lib/session'
 import styles from './page.module.css'
 
 export default async function Home() {

@@ -1,8 +1,8 @@
 'use server'
+import { readSession } from '@/lib/session'
 import classNames from 'classnames'
 import Link from 'next/link'
 import prisma from '@lib/prisma'
-import readSession from '@/lib/session'
 import tableStyles from '@styles/tableStyles.module.css'
 
 interface UsersTableProps extends React.ComponentPropsWithoutRef<'div'> {
