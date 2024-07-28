@@ -1,33 +1,34 @@
 'use server'
+import { endSession, readSession } from '@/lib/session'
 import { revalidatePath } from 'next/cache'
-import prisma from '@/lib/prisma'
-import readSession from '@/lib/session'
 
-export default async function logoutUser(pathname: string) {
+/**
+ * Logs out the current user by ending their session.
+ *
+ * @param {string} pathname - The path to revalidate after logout.
+ */
+export default async function logoutUser(pathname: string): Promise<void> {
+  // Retrieve the current session
   const session = await readSession()
 
+  // If no session is found, revalidate the path to show the logged-out state
   if (!session) {
-    // Revalidate path so they'll see that they're already logged out
     revalidatePath(pathname)
     return
   }
 
-  const now = new Date()
-
-  now.setDate(now.getDate() - 7)
   try {
-    await prisma.session.update({
-      where: {
-        id: session.id,
-      },
-      data: {
-        expiryDate: now,
-      },
-    })
+    // End the current session
+    await endSession()
 
-    // Trigger revalidation of the current path
+    // Revalidate the path to ensure the changes are reflected
     revalidatePath(pathname)
-  } catch (e: any) {
-    console.log(e)
+  } catch (e) {
+    // Log the error based on its type
+    if (e instanceof Error) {
+      console.error(`Logout process failed: ${e.message}`)
+    } else {
+      console.error('Unknown error occurred during logout process:', e)
+    }
   }
 }
