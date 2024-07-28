@@ -29,6 +29,7 @@ type NavItemProps = {
  * @returns {JSX.Element} A styled nav link
  */
 export function NavItem(props: Readonly<NavItemProps>): React.JSX.Element {
+  // Destructure properties from props
   const { href, label } = props.item
   const pathname = usePathname()
   const isActive = pathname.startsWith(href)
@@ -43,19 +44,6 @@ export function NavItem(props: Readonly<NavItemProps>): React.JSX.Element {
     </Link>
   )
 }
-
-// export function LoginButton() {
-//   const pathname = usePathname()
-
-//   return (
-//     <Link
-//       className={classNames(styles.actionAnchor)}
-//       href={`/auth/login?redirect=${pathname}`}
-//     >
-//       Login
-//     </Link>
-//   )
-// }
 
 /**
  * A link to the login page that redirects to the current page after login.
@@ -75,19 +63,32 @@ export function LoginButton(): JSX.Element {
   )
 }
 
-export function MobileNavigationMenu({
-  isAdmin,
-  anchorLinks,
-  name,
-}: {
-  isAdmin: boolean
+type MobileNavProps = {
   anchorLinks: AnchorLink[]
   name: string
-}) {
+  isAdmin: boolean
+}
+/**
+ * Renders the mobile navigation menu.
+ *
+ * @param {boolean} isAdmin - Boolean indicating if the user is an admin.
+ * @param {AnchorLink[]} anchorLinks - Array of navigation links for the menu.
+ * @param {string} name - The name of the user to display in the profile section.
+ * @returns {JSX.Element} The mobile navigation menu.
+ */
+export function MobileNavigationMenu(
+  props: Readonly<MobileNavProps>
+): JSX.Element {
+  // Destructure properties from props
+  const { anchorLinks, name, isAdmin } = props
+
   const [isShowing, setIsShowing] = useState<boolean>(false)
+
+  // Determine which icon to display based on the state
   const icon = isShowing ? <XIcon /> : <MenuIcon />
   return (
     <>
+      {/* Button to toggle the visibility of the mobile navigation menu */}
       <button
         onClick={() => setIsShowing(!isShowing)}
         className={classNames(styles.button, styles.mobileButton)}
@@ -95,19 +96,23 @@ export function MobileNavigationMenu({
         {icon}
       </button>
 
+      {/* Overlay that covers the screen when the menu is showing */}
       <div
         className={classNames(styles.mobileNavOverlay, {
           [styles.mobileNavIsShowing]: isShowing,
         })}
       >
+        {/* Button to close the navigation menu if the user clicks the overlay */}
         <button onClick={() => setIsShowing(false)}></button>
       </div>
 
+      {/* Main content of the mobile navigation menu */}
       <div
         className={classNames(styles.mobileNavBody, {
           [styles.mobileNavIsShowing]: isShowing,
         })}
       >
+        {/* Profile section*/}
         <div className={styles.mobileNavBodyProfileSection}>
           <Link
             href={'/profile'}
@@ -133,6 +138,8 @@ export function MobileNavigationMenu({
             </div>
           </Link>
         </div>
+
+        {/* Nav links section*/}
 
         <div className={styles.mobileNavBodyNavigationSection}>
           {anchorLinks.map((link) => {
