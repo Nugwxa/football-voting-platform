@@ -8,6 +8,7 @@ import {
   UserPenIcon,
   XIcon,
 } from 'lucide-react'
+import { AnchorLink } from './HeaderMenu'
 import { usePathname } from 'next/navigation'
 import * as Popover from '@radix-ui/react-popover'
 import classNames from 'classnames'
@@ -17,24 +18,28 @@ import React, { Fragment, useState } from 'react'
 import styles from './HeaderMenu.module.css'
 import userButtonStyle from './HeaderUserButton.module.css'
 
-type AnchorLink = {
-  href: string
-  label: string
-  viewCondition: boolean
-  icon: JSX.Element
+type NavItemProps = {
+  item: Pick<AnchorLink, 'href' | 'label'>
 }
 
-export function NavItem({ item }: { item: { href: string; label: string } }) {
+/**
+ * Renders a nav link
+ *
+ * @param {Object} item - The navigation link data.
+ * @returns {JSX.Element} A styled nav link
+ */
+export function NavItem(props: Readonly<NavItemProps>): React.JSX.Element {
+  const { href, label } = props.item
   const pathname = usePathname()
-  const isActive = pathname.startsWith(item.href)
+  const isActive = pathname.startsWith(href)
   return (
     <Link
       className={classNames(styles.headerAnchor, {
         [styles.activeAnchor]: isActive,
       })}
-      href={item.href}
+      href={href}
     >
-      {item.label}
+      {label}
     </Link>
   )
 }
