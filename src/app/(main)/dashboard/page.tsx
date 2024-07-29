@@ -18,6 +18,7 @@ type PageProps = Readonly<{
 export default async function Page(props: PageProps) {
   const { searchParams } = props
   const page = searchParams.page ?? 1
+  const resultsPerPage = 10
 
   const session = await readSession()
   if (!session || !session.user.isAdmin) return notFound()
@@ -63,7 +64,7 @@ export default async function Page(props: PageProps) {
             </div>
           </div>
           <UsersTable page={page} />
-          <Pagination totalPages={34} />
+          <Pagination totalPages={Math.ceil(userCount / resultsPerPage)} />
         </section>
       </div>
     </>

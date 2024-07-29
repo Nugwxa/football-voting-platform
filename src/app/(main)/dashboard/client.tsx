@@ -11,9 +11,6 @@ interface DashboardStatContainerProps
 /**
  * A component that displays a statistical card with an icon, text, and count.
  *
- * @component
- *
- *
  * @param {Object} props - The component props.
  * @param {string} [props.className] - Optional additional class names for styling.
  * @param {number} props.count - The value to be displayed.
