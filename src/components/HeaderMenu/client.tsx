@@ -174,7 +174,12 @@ export function MobileNavigationMenu(
   )
 }
 
-export function HeaderUserButton() {
+/**
+ * A button for accessing user settings and logging out.
+ *
+ * @returns {JSX.Element} The rendered button with a popover menu.
+ */
+export function HeaderUserButton(): JSX.Element {
   return (
     <Popover.Root>
       <Popover.Trigger asChild>
