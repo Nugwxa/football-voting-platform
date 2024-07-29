@@ -8,7 +8,6 @@ export default function CreateUserForm() {
   const initialFormState: ActionResponse = {
     type: 'idle',
     message: '',
-    errors: [],
   }
 
   const [formState, formAction] = useFormState(createUser, initialFormState)
@@ -23,19 +22,8 @@ export default function CreateUserForm() {
 
   return (
     <>
-      {/* Form Feedback */}
-      {/* Research more on autocomplete */}
       <div>
-        {formState.errors &&
-          formState.errors.map((error, index) => {
-            return (
-              <li className={authStyle.error} key={index}>
-                {error}
-              </li>
-            )
-          })}
-
-        {formState.type !== 'errorArray' && formState.type !== 'idle' && (
+        {formState.type !== 'idle' && (
           <p
             className={
               formState.type === 'error' ? authStyle.error : authStyle.success
@@ -50,6 +38,7 @@ export default function CreateUserForm() {
           <label htmlFor="name">Name</label>
           <input
             id="name"
+            disabled={formState.type === 'success'}
             autoComplete="off"
             name="name"
             type="text"
@@ -60,6 +49,7 @@ export default function CreateUserForm() {
         <div className={authStyle.inputWrapper}>
           <label htmlFor="email">Email</label>
           <input
+            disabled={formState.type === 'success'}
             id="email"
             autoComplete="off"
             name="email"
@@ -70,13 +60,21 @@ export default function CreateUserForm() {
 
         <div className={authStyle.inputWrapper}>
           <label htmlFor="password">Password</label>
-          <input id="password" name="password" type="password" required />
+
+          <input
+            id="password"
+            disabled={formState.type === 'success'}
+            name="password"
+            type="password"
+            required
+          />
         </div>
 
         <div className={authStyle.inputWrapper}>
           <label htmlFor="confirm_password">Confirm Password</label>
           <input
             id="confirm_password"
+            disabled={formState.type === 'success'}
             name="confirm_password"
             type="password"
             required
