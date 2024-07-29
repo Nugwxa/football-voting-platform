@@ -11,8 +11,6 @@ export async function createUser(
   const password = formData.get('password')
   const confirmPassword = formData.get('confirm_password')
 
-  let errorsArray: String[] = []
-
   if (!name || !email || !password || !confirmPassword) {
     return {
       type: 'error',
