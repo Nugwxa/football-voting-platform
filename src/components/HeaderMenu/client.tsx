@@ -224,7 +224,17 @@ export function HeaderUserButton(): JSX.Element {
   )
 }
 
-function LogoutButton({ className }: { className?: string }) {
+type LogoutButtonType = {
+  className?: string
+}
+/**
+ * Renders a button for logging out.
+ *
+ * @param {string} className - Optional additional CSS class names to apply to the button.
+ * @returns {JSX.Element} The rendered logout button.
+ */
+function LogoutButton(props: Readonly<LogoutButtonType>) {
+  const { className } = props
   const [isPending, setIsPending] = useState(false)
   const pathname = usePathname()
 
