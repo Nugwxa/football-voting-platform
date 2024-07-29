@@ -35,7 +35,9 @@ export async function loginUser(
     }
   }
 
-  const userAuth = JSON.parse(user.auth as any) as UserAuthObject
+  const userAuth = JSON.parse(
+    user.auth?.toLocaleString() ?? ''
+  ) as UserAuthObject
 
   const providedPasswordHash = crypto
     .pbkdf2Sync(

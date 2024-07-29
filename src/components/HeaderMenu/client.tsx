@@ -8,6 +8,7 @@ import {
   UserPenIcon,
   XIcon,
 } from 'lucide-react'
+import { AnchorLink } from './HeaderMenu'
 import { usePathname } from 'next/navigation'
 import * as Popover from '@radix-ui/react-popover'
 import classNames from 'classnames'
@@ -17,29 +18,39 @@ import React, { Fragment, useState } from 'react'
 import styles from './HeaderMenu.module.css'
 import userButtonStyle from './HeaderUserButton.module.css'
 
-type AnchorLink = {
-  href: string
-  label: string
-  viewCondition: boolean
-  icon: JSX.Element
+type NavItemProps = {
+  item: Pick<AnchorLink, 'href' | 'label'>
 }
 
-export function NavItem({ item }: { item: { href: string; label: string } }) {
+/**
+ * Renders a nav link
+ *
+ * @param {Object} item - The navigation link data.
+ * @returns {JSX.Element} A styled nav link
+ */
+export function NavItem(props: Readonly<NavItemProps>): React.JSX.Element {
+  // Destructure properties from props
+  const { href, label } = props.item
   const pathname = usePathname()
-  const isActive = pathname.startsWith(item.href)
+  const isActive = pathname.startsWith(href)
   return (
     <Link
       className={classNames(styles.headerAnchor, {
         [styles.activeAnchor]: isActive,
       })}
-      href={item.href}
+      href={href}
     >
-      {item.label}
+      {label}
     </Link>
   )
 }
 
-export function LoginButton() {
+/**
+ * A link to the login page that redirects to the current page after login.
+ *
+ * @returns {JSX.Element} The rendered login button component.
+ */
+export function LoginButton(): JSX.Element {
   const pathname = usePathname()
 
   return (
@@ -52,19 +63,32 @@ export function LoginButton() {
   )
 }
 
-export function MobileNavigationMenu({
-  isAdmin,
-  anchorLinks,
-  name,
-}: {
-  isAdmin: boolean
+type MobileNavProps = {
   anchorLinks: AnchorLink[]
   name: string
-}) {
+  isAdmin: boolean
+}
+/**
+ * Renders the mobile navigation menu.
+ *
+ * @param {boolean} isAdmin - Boolean indicating if the user is an admin.
+ * @param {AnchorLink[]} anchorLinks - Array of navigation links for the menu.
+ * @param {string} name - The name of the user to display in the profile section.
+ * @returns {JSX.Element} The mobile navigation menu.
+ */
+export function MobileNavigationMenu(
+  props: Readonly<MobileNavProps>
+): JSX.Element {
+  // Destructure properties from props
+  const { anchorLinks, name, isAdmin } = props
+
   const [isShowing, setIsShowing] = useState<boolean>(false)
+
+  // Determine which icon to display based on the state
   const icon = isShowing ? <XIcon /> : <MenuIcon />
   return (
     <>
+      {/* Button to toggle the visibility of the mobile navigation menu */}
       <button
         onClick={() => setIsShowing(!isShowing)}
         className={classNames(styles.button, styles.mobileButton)}
@@ -72,19 +96,23 @@ export function MobileNavigationMenu({
         {icon}
       </button>
 
+      {/* Overlay that covers the screen when the menu is showing */}
       <div
         className={classNames(styles.mobileNavOverlay, {
           [styles.mobileNavIsShowing]: isShowing,
         })}
       >
+        {/* Button to close the navigation menu if the user clicks the overlay */}
         <button onClick={() => setIsShowing(false)}></button>
       </div>
 
+      {/* Main content of the mobile navigation menu */}
       <div
         className={classNames(styles.mobileNavBody, {
           [styles.mobileNavIsShowing]: isShowing,
         })}
       >
+        {/* Profile section*/}
         <div className={styles.mobileNavBodyProfileSection}>
           <Link
             href={'/profile'}
@@ -110,6 +138,8 @@ export function MobileNavigationMenu({
             </div>
           </Link>
         </div>
+
+        {/* Nav links section*/}
 
         <div className={styles.mobileNavBodyNavigationSection}>
           {anchorLinks.map((link) => {
@@ -144,7 +174,12 @@ export function MobileNavigationMenu({
   )
 }
 
-export function HeaderUserButton() {
+/**
+ * A button for accessing user settings and logging out.
+ *
+ * @returns {JSX.Element} The rendered button with a popover menu.
+ */
+export function HeaderUserButton(): JSX.Element {
   return (
     <Popover.Root>
       <Popover.Trigger asChild>
@@ -189,7 +224,17 @@ export function HeaderUserButton() {
   )
 }
 
-function LogoutButton({ className }: { className?: string }) {
+type LogoutButtonType = {
+  className?: string
+}
+/**
+ * Renders a button for logging out.
+ *
+ * @param {string} className - Optional additional CSS class names to apply to the button.
+ * @returns {JSX.Element} The rendered logout button.
+ */
+function LogoutButton(props: Readonly<LogoutButtonType>) {
+  const { className } = props
   const [isPending, setIsPending] = useState(false)
   const pathname = usePathname()
 

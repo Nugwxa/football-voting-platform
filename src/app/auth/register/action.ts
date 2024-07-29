@@ -11,8 +11,6 @@ export async function createUser(
   const password = formData.get('password')
   const confirmPassword = formData.get('confirm_password')
 
-  let errorsArray: String[] = []
-
   if (!name || !email || !password || !confirmPassword) {
     return {
       type: 'error',
@@ -27,28 +25,31 @@ export async function createUser(
   })
 
   if (usersWithSpecifiedEmail > 0) {
-    errorsArray.push('Email already in use')
+    return {
+      type: 'error',
+      message: 'Email already in use',
+    }
   }
 
   const isValidName = /^[a-zA-Z\s\.\-]+$/.test(name as string)
 
   if (!isValidName) {
-    errorsArray.push(
-      'Invalid name. Please use only letters, spaces, periods, and hyphens.'
-    )
+    return {
+      type: 'error',
+      message:
+        'Invalid name. Please use only letters, spaces, periods, and hyphens.',
+    }
   }
   if (password.toString().length < 6) {
-    errorsArray.push('Password too short (Minimum is 6 characters)')
+    return {
+      type: 'error',
+      message: 'Password too short (Minimum is 6 characters)',
+    }
   }
   if (password !== confirmPassword) {
-    errorsArray.push("Passwords don't match")
-  }
-
-  if (errorsArray.length > 0) {
     return {
-      type: 'errorArray',
-      errors: errorsArray,
-      message: '',
+      type: 'error',
+      message: "Passwords don't match",
     }
   }
 

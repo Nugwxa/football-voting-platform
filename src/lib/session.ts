@@ -2,12 +2,18 @@
 import { cookies } from 'next/headers'
 import prisma from '@lib/prisma'
 
-export default async function readSession() {
+/**
+ * Retrieves the user's session data from the cookie.
+ *
+ * @returns {null} Returns null if the session cookie is missing, the session is expired, or an error occurs during the database query.
+ * @returns {Object} The session data
+ */
+export async function readSession() {
   const cookieName = 'tally-token'
   const cookie = cookies().get(cookieName)
 
-  //   Check cookie presence
-  if (!cookie || cookie.value === '') return null
+  // Check if the cookie is present and has a valid value
+  if (!cookie?.value) return null
 
   //   Search for a session that matches the cookie value
   let session
@@ -29,16 +35,20 @@ export default async function readSession() {
         },
       },
     })
-  } catch (e: any) {
-    console.error(`Database error:`, e.message)
+  } catch (e) {
+    if (e instanceof Error) {
+      console.error(`Session database error: ${e.message}`)
+    } else {
+      console.error('Unknown session database error:', e)
+    }
     return null
   }
 
   const now = new Date()
-  // If no session is found or the session has expired, return null
+  // Check if session exists and is not expired
   if (!session || session.expiryDate < now) return null
 
-  //   Return session object
+  // Return session object
   return {
     id: session.id,
     user: {
@@ -47,5 +57,46 @@ export default async function readSession() {
       email: session.user.email,
       isAdmin: session.user.isAdmin,
     },
+  }
+}
+
+/**
+ * Invalidates the user's session by setting its expiry date in the past.
+ */
+export async function endSession() {
+  // Retrieve the user's session
+  const session = await readSession()
+
+  // If no session is found, exit the function early.
+  if (!session) {
+    return
+  }
+
+  // Create a new Date object representing the current date and time
+  // and modify the date to be 7 days in the past.
+  const now = new Date()
+
+  now.setDate(now.getDate() - 7)
+
+  try {
+    // Update the session in the database, setting its expiryDate to 7 days ago.
+    await prisma.session.update({
+      where: {
+        id: session.id,
+      },
+      data: {
+        expiryDate: now,
+      },
+    })
+  } catch (e) {
+    // If an error occurs during the session update, log it to the console.
+    // Handle the error based on its type.
+    if (e instanceof Error) {
+      console.error(
+        `Session deletion failed for session ID ${session.id}: ${e.message}`
+      )
+    } else {
+      console.error(`Session deletion failed for session ID ${session.id}`, e)
+    }
   }
 }
