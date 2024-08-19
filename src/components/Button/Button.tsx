@@ -17,13 +17,12 @@ interface ButtonProps extends React.ComponentPropsWithoutRef<'button'> {
  * A customizable button component that supports icons, bold text, wide styling, and different modes.
  *
  * @param {string} children - The text to display inside the button.
- * @param {string} [className] - Optional additional class names to apply to the button for additional styling.
- * @param {LucideIcon} [icon] - Optional icon component from Lucide to display inside the button.
- * @param {boolean} [isBold=false] - Whether the button text should be bold.
- * @param {boolean} [isWide=false] - Whether the button's width should fill the container.
- * @param {'solid' | 'border'} [mode='solid'] - The style mode of the button; can be 'solid' or 'border'.
+ * @param {string} className - Optional additional class names to apply to the button for additional styling.
+ * @param {LucideIcon} icon - Optional icon component from Lucide to display inside the button.
+ * @param {boolean} isBold - Whether the button text should be bold.
+ * @param {boolean} isWide - Whether the button's width should fill the container.
+ * @param {'solid' | 'border'} mode - The style mode of the button; can be 'solid' or 'border'.
  *
- * @returns {JSX.Element} The rendered button element.
  */
 export default function Button(props: Readonly<ButtonProps>): JSX.Element {
   const {
