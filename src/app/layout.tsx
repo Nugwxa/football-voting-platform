@@ -29,7 +29,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={classNames(fjallaOne.variable, poppins.variable)}>
-        <Theme accentColor="brown">{children}</Theme>
+        <Theme accentColor="brown" hasBackground={false}>
+          {children}
+        </Theme>
       </body>
     </html>
   )
