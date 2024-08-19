@@ -1,0 +1,12 @@
+.divider {
+  border-bottom: 1.5px solid var(--accent-5);
+  line-height: 0.1em;
+  margin: 10px 0 20px;
+  text-align: center;
+  width: 100%;
+}
+
+.divider span {
+  background: var(--gray-1);
+  padding: 0 10px;
+}
