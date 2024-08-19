@@ -8,15 +8,20 @@ interface AuthNavButtonsWrapperProps
   extends React.ComponentPropsWithoutRef<'div'> {
   className?: string
 }
-export function AuthNavButtonsWrapper(props: AuthNavButtonsWrapperProps) {
-  const { className } = props
+export default function AuthNavButtonsWrapper(
+  props: Readonly<AuthNavButtonsWrapperProps>
+) {
+  const { className, ...rest } = props
 
   const pathname = usePathname()
   //   Filter out empty characters and get the current page
-  const currentPage = pathname.split('/').filter(Boolean).pop() ?? ''
+  const currentPage = pathname.split('/').filter(Boolean).pop()
 
   return (
-    <div className={classNames(className, style.authNavButtonsWrapper)}>
+    <div
+      className={classNames(className, style.authNavButtonsWrapper)}
+      {...rest}
+    >
       <AuthNavButton
         label="SIGN IN"
         href="/auth/login"

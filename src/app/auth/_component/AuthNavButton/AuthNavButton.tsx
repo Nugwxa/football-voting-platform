@@ -9,7 +9,7 @@ interface AuthNavButtonProps extends React.ComponentPropsWithoutRef<'a'> {
   label: string
   href: string
 }
-export default function AuthNavButton(props: AuthNavButtonProps) {
+export default function AuthNavButton(props: Readonly<AuthNavButtonProps>) {
   const { className, isActive = false, label, href, ...rest } = props
 
   return (
