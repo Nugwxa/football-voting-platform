@@ -2,23 +2,26 @@
 import authStyle from '../auth.layout.module.css'
 import CreateUserForm from './client'
 import Link from 'next/link'
-import TextWithDivider from '@/components/TextWithDivider/TextWithDivider'
+import formStyles from '@styles/formStyles.module.css'
+
+import AuthNavButtonsWrapper from '../_component/AuthNavButtonsWrapper'
+import Divider from '@/components/Divider'
 
 export default async function Page() {
   return (
-    <div className={authStyle.contentContainer}>
-      <h1 className={authStyle.heading}>Sign Up</h1>
+    <div className={authStyle.authContentContainer}>
+      <AuthNavButtonsWrapper className={authStyle.authNavButtonPositioning} />
 
       <CreateUserForm />
 
-      <TextWithDivider>or</TextWithDivider>
+      <Divider />
 
-      <p className={authStyle.redirectText}>
+      <div className={authStyle.authFooterSection}>
         Already have an account?{' '}
-        <Link className={authStyle.singleAnchor} href={'/auth/login'}>
+        <Link className={formStyles.anchorSpan} href={'/auth/login'}>
           Login
         </Link>
-      </p>
+      </div>
     </div>
   )
 }

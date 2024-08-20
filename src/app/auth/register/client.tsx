@@ -2,7 +2,10 @@
 import { createUser } from './action'
 import { useFormState } from 'react-dom'
 import { useRouter } from 'next/navigation'
-import authStyle from '../auth.layout.module.css'
+import formStyles from '@styles/formStyles.module.css'
+import Required from '@/components/Required'
+import Button from '@/components/Button'
+import ActionCallout from '@/components/ActionCallout'
 
 export default function CreateUserForm() {
   const initialFormState: ActionResponse = {
@@ -12,7 +15,7 @@ export default function CreateUserForm() {
 
   const [formState, formAction] = useFormState(createUser, initialFormState)
 
-  //   Redirect the user once the their account has been created
+  //   Redirect the user once their account has been created
   const router = useRouter()
   if (formState.type === 'success') {
     setTimeout(() => {
@@ -22,44 +25,39 @@ export default function CreateUserForm() {
 
   return (
     <>
-      <div>
-        {formState.type !== 'idle' && (
-          <p
-            className={
-              formState.type === 'error' ? authStyle.error : authStyle.success
-            }
-          >
-            {formState.message}
-          </p>
-        )}
-      </div>
-      <form action={formAction}>
-        <div className={authStyle.inputWrapper}>
-          <label htmlFor="name">Name</label>
+      <form action={formAction} className={formStyles.form}>
+        <div className={formStyles.inputWrapper}>
+          <label htmlFor="name">
+            Name <Required />
+          </label>
           <input
             id="name"
             disabled={formState.type === 'success'}
-            autoComplete="off"
             name="name"
             type="text"
+            placeholder="John Doe"
             required
           />
         </div>
 
-        <div className={authStyle.inputWrapper}>
-          <label htmlFor="email">Email</label>
+        <div className={formStyles.inputWrapper}>
+          <label htmlFor="email">
+            Email <Required />
+          </label>
           <input
             disabled={formState.type === 'success'}
             id="email"
-            autoComplete="off"
             name="email"
             type="email"
+            placeholder="your@email.com"
             required
           />
         </div>
 
-        <div className={authStyle.inputWrapper}>
-          <label htmlFor="password">Password</label>
+        <div className={formStyles.inputWrapper}>
+          <label htmlFor="password">
+            Password <Required />
+          </label>
 
           <input
             id="password"
@@ -70,8 +68,10 @@ export default function CreateUserForm() {
           />
         </div>
 
-        <div className={authStyle.inputWrapper}>
-          <label htmlFor="confirm_password">Confirm Password</label>
+        <div className={formStyles.inputWrapper}>
+          <label htmlFor="confirm_password">
+            Confirm Password <Required />
+          </label>
           <input
             id="confirm_password"
             disabled={formState.type === 'success'}
@@ -81,13 +81,16 @@ export default function CreateUserForm() {
           />
         </div>
 
-        <button
-          disabled={authStyle.type === 'success'}
-          className={authStyle.button}
+        <Button
+          disabled={formState.type === 'success'}
           type="submit"
+          isWide
+          isBold
         >
-          Create Account
-        </button>
+          REGISTER
+        </Button>
+
+        <ActionCallout responseObj={formState} isWide />
       </form>
     </>
   )
