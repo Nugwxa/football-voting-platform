@@ -1,15 +1,15 @@
 type UserAuthObject = {
-  passwordHash: String
-  passwordSalt: String
+  passwordHash: string
+  passwordSalt: string
 }
 
 type ActionResponse = {
   type: 'error' | 'success' | 'idle'
-  message: String
+  message: string
 }
 
 type VoteCandidate = {
-  id: String
-  name: String
-  imgURL: String // Imgur
+  id: string
+  name: string
+  imgURL: string // Imgur
 }
