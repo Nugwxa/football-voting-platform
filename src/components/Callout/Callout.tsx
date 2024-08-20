@@ -1,3 +1,4 @@
+'use client'
 import { LucideIcon } from 'lucide-react'
 import classNames from 'classnames'
 import style from './callout.module.css'
@@ -19,7 +20,7 @@ interface CalloutProps extends React.ComponentPropsWithoutRef<'div'> {
  * @param {LucideIcon} icon - Icon to display in the callout. Must be a LucideIcon component.
  * @param {boolean} isWide - Optional flag to apply wide styling to the callout.
  */
-export default async function Callout(props: Readonly<CalloutProps>) {
+export default function Callout(props: Readonly<CalloutProps>) {
   const {
     children,
     className,
