@@ -5,6 +5,7 @@
   color: var(--gray-1);
   cursor: pointer;
   display: flex;
+  font-size: 1rem;
   gap: var(--space-2);
   justify-content: center;
   margin: unset;
