@@ -1,5 +1,5 @@
 'use client'
-import { createUser } from './action'
+import { createUser } from '../../action'
 import { useFormState } from 'react-dom'
 import { useRouter } from 'next/navigation'
 import formStyles from '@styles/formStyles.module.css'
@@ -7,7 +7,7 @@ import Required from '@/components/Required'
 import Button from '@/components/Button'
 import ActionCallout from '@/components/ActionCallout'
 
-export default function CreateUserForm() {
+export default function RegistrationForm() {
   const initialFormState: ActionResponse = {
     type: 'idle',
     message: '',
