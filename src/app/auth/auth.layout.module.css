@@ -1,86 +1,60 @@
-.main {
-  background-color: #101010;
-  min-height: 100vh;
-  height: 100%;
+.authNav {
+  background-color: var(--accent-8);
+  padding: var(--space-4);
   display: flex;
-  padding: 10px 40px;
+  align-items: center;
   justify-content: center;
 }
+.authNavLogoWrapper {
+  position: relative;
+  height: 58px;
+  width: 58px;
+}
 
-.container {
-  background-color: black;
-  border: 1px solid rgb(255, 255, 255, 0.5);
-  margin-top: 60px;
+.authBackgroundSection {
+  width: 100%;
+  height: 306px;
+  background-image: url('/img/designs/auth_background.png');
+}
+.authMain {
+  background-color: var(--gray-2);
+  display: flex;
+  justify-content: center;
+  padding-bottom: var(--space-9);
+}
+
+.authBodyContainer {
+  background-color: var(--gray-1);
+  box-shadow: 0px 0px 1px rgba(3, 7, 18, 0), 0px 0px 3px rgba(3, 7, 18, 0.01),
+    0px 0px 6px rgba(3, 7, 18, 0.01), 0px 0px 11px rgba(3, 7, 18, 0.01),
+    0px 0px 17px rgba(3, 7, 18, 0.02), 0px 0px 24px rgba(3, 7, 18, 0.02);
+  margin-top: calc(var(--space-9) * 2.3 * -1);
   padding: 40px;
+  padding-top: 0px;
   border-radius: 10px;
-  width: 100%;
-  max-width: 500px;
+  width: min(100%, 638px);
   height: fit-content;
+  min-height: 200px;
+  margin-bottom: var(--space-4);
 }
 
-.heading {
-  font-size: 36px;
-  margin-bottom: 40px;
+.authNavButtonPositioning {
+  margin-top: -40px;
+  margin-bottom: var(--space-6);
 }
 
-.error {
-  color: #d46161;
-  font-weight: 700;
-}
-.success {
-  color: #05c99e;
-  font-weight: 700;
-}
-.inputWrapper {
+.authContentContainer {
   display: flex;
-  gap: 10px;
   flex-direction: column;
-  margin-bottom: 20px;
+  gap: var(--space-3);
 }
 
-.inputWrapper label {
-  font-weight: 500;
-}
-
-.inputWrapper input {
-  background-color: #101010;
-  border-radius: 5px;
-  border: 1.5px solid rgb(255, 255, 255, 0.5);
-  color: rgb(255, 255, 255, 0.5);
-  font: inherit;
-  font-weight: 600;
-  padding: 10px;
-}
-
-.button {
-  background-color: #12b692;
-  border-radius: 5px;
-  border: none;
-  box-sizing: border-box;
-  color: #000;
-  cursor: pointer;
-  font: inherit;
-  font-weight: 700;
-  padding: 15px;
-  width: 100%;
-}
-
-.button:disabled {
-  cursor: not-allowed;
-  opacity: 0.5;
-}
-
-.redirectText {
+.authFooterSection {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  justify-content: center;
   text-align: center;
-}
-
-.singleAnchor {
-  color: #05c99e;
-  font-weight: 700;
-}
-
-.contentContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  width: 100%;
 }
