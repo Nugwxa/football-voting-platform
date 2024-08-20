@@ -35,7 +35,7 @@
   width: min(100%, 638px);
   height: fit-content;
   min-height: 200px;
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-2);
 }
 
 .authNavButtonPositioning {
@@ -57,4 +57,10 @@
   justify-content: center;
   text-align: center;
   width: 100%;
+}
+
+@media only screen and (max-width: 638px) {
+  .authBodyContainer {
+    border-radius: 0px;
+  }
 }
