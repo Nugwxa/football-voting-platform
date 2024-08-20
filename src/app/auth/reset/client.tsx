@@ -1,7 +1,10 @@
 'use client'
 import { sendResetLink } from './action'
 import { useFormState } from 'react-dom'
-import authStyle from '../auth.layout.module.css'
+import ActionCallout from '@/components/ActionCallout'
+import Button from '@/components/Button'
+import formStyles from '@styles/formStyles.module.css'
+import Required from '@/components/Required'
 
 export function ResetPasswordEmailForm() {
   const initialFormState: ActionResponse = {
@@ -12,30 +15,24 @@ export function ResetPasswordEmailForm() {
   const [formState, formAction] = useFormState(sendResetLink, initialFormState)
   return (
     <>
-      <div>
-        {formState.type !== 'idle' && (
-          <p
-            className={
-              formState.type === 'error' ? authStyle.error : authStyle.success
-            }
-          >
-            {formState.message}
-          </p>
-        )}
-      </div>
-
-      <form action={formAction}>
-        <div className={authStyle.inputWrapper}>
-          <label htmlFor="email">Email</label>
+      <form action={formAction} className={formStyles.form}>
+        <div className={formStyles.inputWrapper}>
+          <label htmlFor="email">
+            Email <Required />
+          </label>
           <input id="email" name="email" type="email" required />
         </div>
-        <button
-          disabled={authStyle.type === 'success'}
-          className={authStyle.button}
+
+        <Button
+          disabled={formState.type === 'success'}
           type="submit"
+          isWide
+          isBold
         >
-          Send Reset Link
-        </button>
+          REQUEST PASSWORD RESET
+        </Button>
+
+        <ActionCallout responseObj={formState} isWide />
       </form>
     </>
   )
