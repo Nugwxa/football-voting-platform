@@ -1,27 +1,34 @@
-'use server'
-import { LoginForm } from './client'
+import AuthNavButtonsWrapper from '../_component/AuthNavButtonsWrapper'
 import authStyle from '../auth.layout.module.css'
+import Divider from '@/components/Divider'
+import formStyles from '@styles/formStyles.module.css'
 import Link from 'next/link'
+import LoginForm from './_components/LoginForm'
+type SearchParams = {
+  redirect?: string
+}
 
-export default async function Page() {
+interface LoginPageProps {
+  searchParams: SearchParams
+}
+
+export default async function Page(props: Readonly<LoginPageProps>) {
+  const { searchParams } = props
+
+  const redirectTo = searchParams.redirect
   return (
-    <div className={authStyle.contentContainer}>
-      <h1>Login</h1>
-      <LoginForm />
+    <div className={authStyle.authContentContainer}>
+      <AuthNavButtonsWrapper className={authStyle.authNavButtonPositioning} />
 
-      <p className={authStyle.redirectText}>
-        Forgot Password?{' '}
-        <Link className={authStyle.singleAnchor} href={'/auth/reset'}>
-          Reset
-        </Link>
-      </p>
+      <LoginForm redirectTo={redirectTo} />
+      <Divider />
 
-      <p className={authStyle.redirectText}>
+      <div className={authStyle.authFooterSection}>
         Don't have an account?{' '}
-        <Link className={authStyle.singleAnchor} href={'/auth/login'}>
-          Register
+        <Link className={formStyles.anchorSpan} href={'/auth/register'}>
+          Register Now
         </Link>
-      </p>
+      </div>
     </div>
   )
 }

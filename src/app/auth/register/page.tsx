@@ -1,24 +1,26 @@
 'use server'
+
+import AuthNavButtonsWrapper from '../_component/AuthNavButtonsWrapper'
 import authStyle from '../auth.layout.module.css'
-import CreateUserForm from './client'
+import Divider from '@/components/Divider'
+import formStyles from '@styles/formStyles.module.css'
 import Link from 'next/link'
-import TextWithDivider from '@/components/TextWithDivider/TextWithDivider'
+import RegistrationForm from './_component/RegistrationForm'
 
 export default async function Page() {
   return (
-    <div className={authStyle.contentContainer}>
-      <h1 className={authStyle.heading}>Sign Up</h1>
+    <div className={authStyle.authContentContainer}>
+      <AuthNavButtonsWrapper className={authStyle.authNavButtonPositioning} />
+      <RegistrationForm />
 
-      <CreateUserForm />
+      <Divider />
 
-      <TextWithDivider>or</TextWithDivider>
-
-      <p className={authStyle.redirectText}>
+      <div className={authStyle.authFooterSection}>
         Already have an account?{' '}
-        <Link className={authStyle.singleAnchor} href={'/auth/login'}>
+        <Link className={formStyles.anchorSpan} href={'/auth/login'}>
           Login
         </Link>
-      </p>
+      </div>
     </div>
   )
 }

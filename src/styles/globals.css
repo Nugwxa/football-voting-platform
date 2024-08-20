@@ -1,0 +1,65 @@
+@import './themes.css';
+:root {
+  --content-max-width: 1280px;
+
+  /* Font variables */
+  --font-fjalla-one: 'Fjalla One', sans-serif;
+  --font-poppins: 'Poppins', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  background: #f9f9f8 !important;
+}
+
+body main {
+  color: var(--accent-12);
+}
+
+body {
+  font-family: var(--font-poppins);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: var(--accent-12);
+  font-family: var(--font-fjalla-one);
+}
+
+input {
+  border-radius: 5px;
+  border: 1px solid var(--accent-5);
+  box-sizing: border-box;
+  color: var(--accent-12);
+  font-size: 1rem;
+  padding: 10px;
+}
+
+input:hover {
+  border-color: var(--accent-7);
+}
+
+input::placeholder {
+  color: inherit;
+  opacity: 0.4;
+}
+
+input:focus {
+  border-color: transparent;
+  outline: 2px solid var(--accent-10);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}

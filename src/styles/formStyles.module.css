@@ -1,0 +1,30 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.inputWrapper label {
+  color: var(--accent-12);
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+.anchorSpan {
+  color: var(--accent-12);
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: underline;
+  width: fit-content;
+}
+
+.required {
+  color: var(--red-10);
+  font-weight: 500;
+}

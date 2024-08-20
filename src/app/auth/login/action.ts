@@ -5,6 +5,7 @@ import crypto from 'crypto'
 import prisma from '@lib/prisma'
 
 export async function loginUser(
+  redirectTo: string,
   prevState: any,
   formData: FormData
 ): Promise<ActionResponse> {
@@ -79,5 +80,5 @@ export async function loginUser(
       message: 'Error logging in', // Update message later
     }
   }
-  redirect('/')
+  redirect(redirectTo)
 }

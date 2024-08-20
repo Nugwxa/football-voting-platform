@@ -1,4 +1,4 @@
-import './globals.css'
+import '@styles/globals.css'
 import '@radix-ui/themes/styles.css'
 import { Fjalla_One, Poppins } from '@next/font/google'
 import { Theme } from '@radix-ui/themes'
@@ -29,7 +29,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={classNames(fjallaOne.variable, poppins.variable)}>
-        <Theme accentColor="brown">{children}</Theme>
+        <Theme accentColor="brown" hasBackground={false}>
+          {children}
+        </Theme>
       </body>
     </html>
   )
