@@ -1,40 +1,61 @@
 'use client'
 import { loginUser } from './action'
 import { useFormState } from 'react-dom'
-import authStyle from '../auth.layout.module.css'
+import ActionCallout from '@/components/ActionCallout'
+import Button from '@/components/Button'
+import formStyles from '@styles/formStyles.module.css'
+import Link from 'next/link'
+import Required from '@/components/Required'
 
-export function LoginForm() {
+interface LoginFormProps {
+  redirectTo?: string
+}
+export function LoginForm(props: Readonly<LoginFormProps>) {
+  const { redirectTo } = props
   const initialFormState: ActionResponse = {
     type: 'idle',
     message: '',
   }
-
-  const [formState, formAction] = useFormState(loginUser, initialFormState)
+  const boundAction = loginUser.bind(null, redirectTo ?? '/')
+  const [formState, formAction] = useFormState(boundAction, initialFormState)
   return (
     <>
-      <div>
-        {formState.type === 'error' && (
-          <p className={authStyle.error}>{formState.message}</p>
-        )}
-      </div>
-
-      <form action={formAction}>
-        <div className={authStyle.inputWrapper}>
-          <label htmlFor="email">Email</label>
-          <input id="email" name="email" type="email" required />
+      <form action={formAction} className={formStyles.form}>
+        <div className={formStyles.inputWrapper}>
+          <label htmlFor="email">
+            Email Address <Required />
+          </label>
+          <input
+            placeholder="your@email.com"
+            id="email"
+            name="email"
+            type="email"
+            required
+          />
         </div>
-        <div className={authStyle.inputWrapper}>
-          <label htmlFor="password">Password</label>
+        <div className={formStyles.inputWrapper}>
+          <label htmlFor="password">
+            Password <Required />
+          </label>
           <input id="password" name="password" type="password" required />
         </div>
 
-        <button
-          disabled={authStyle.type === 'success'}
-          className={authStyle.button}
+        <div className={formStyles.inputWrapper}>
+          <Link className={formStyles.anchorSpan} href={'/auth/reset'}>
+            Forgot Password
+          </Link>
+        </div>
+
+        <Button
+          disabled={formState.type === 'success'}
           type="submit"
+          isWide
+          isBold
         >
-          Login
-        </button>
+          SIGN IN
+        </Button>
+
+        <ActionCallout responseObj={formState} isWide />
       </form>
     </>
   )
