@@ -8,10 +8,12 @@
   min-width: 186px;
   padding: var(--space-3);
   text-align: center;
+  text-transform: uppercase;
 }
 
 .authNavButtonActive {
-  color: var(--accent-7);
+  color: var(--orange-5);
+
   background-color: var(--accent-12);
 }
 
