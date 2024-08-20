@@ -1,9 +1,9 @@
-import { LoginForm } from './client'
 import AuthNavButtonsWrapper from '../_component/AuthNavButtonsWrapper'
 import authStyle from '../auth.layout.module.css'
-import Link from 'next/link'
 import Divider from '@/components/Divider'
 import formStyles from '@styles/formStyles.module.css'
+import Link from 'next/link'
+import LoginForm from './_components/LoginForm'
 type SearchParams = {
   redirect?: string
 }

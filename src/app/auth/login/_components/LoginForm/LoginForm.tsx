@@ -1,5 +1,5 @@
 'use client'
-import { loginUser } from './action'
+import { loginUser } from '../../action'
 import { useFormState } from 'react-dom'
 import ActionCallout from '@/components/ActionCallout'
 import Button from '@/components/Button'
@@ -10,7 +10,7 @@ import Required from '@/components/Required'
 interface LoginFormProps {
   redirectTo?: string
 }
-export function LoginForm(props: Readonly<LoginFormProps>) {
+export default function LoginForm(props: Readonly<LoginFormProps>) {
   const { redirectTo } = props
   const initialFormState: ActionResponse = {
     type: 'idle',
