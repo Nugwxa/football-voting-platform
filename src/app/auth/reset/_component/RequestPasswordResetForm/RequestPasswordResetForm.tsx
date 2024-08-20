@@ -1,12 +1,12 @@
 'use client'
-import { sendResetLink } from './action'
+import { sendResetLink } from '../../action'
 import { useFormState } from 'react-dom'
 import ActionCallout from '@/components/ActionCallout'
 import Button from '@/components/Button'
 import formStyles from '@styles/formStyles.module.css'
 import Required from '@/components/Required'
 
-export function ResetPasswordEmailForm() {
+export default function RequestPasswordResetForm() {
   const initialFormState: ActionResponse = {
     type: 'idle',
     message: '',

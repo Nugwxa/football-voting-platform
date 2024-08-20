@@ -1,11 +1,11 @@
-import { ResetPasswordEmailForm } from './client'
+import AuthNavButton from '../_component/AuthNavButton'
 import authStyle from '../auth.layout.module.css'
-import style from './reset.module.css'
-import Link from 'next/link'
+import classNames from 'classnames'
 import Divider from '@/components/Divider'
 import formStyles from '@styles/formStyles.module.css'
-import AuthNavButton from '../_component/AuthNavButton'
-import classNames from 'classnames'
+import Link from 'next/link'
+import RequestPasswordResetForm from './_component/RequestPasswordResetForm'
+import style from './reset.module.css'
 
 export default async function Page() {
   return (
@@ -24,7 +24,7 @@ export default async function Page() {
         password.
       </p>
 
-      <ResetPasswordEmailForm />
+      <RequestPasswordResetForm />
       <Divider />
 
       <div className={authStyle.authFooterSection}>
