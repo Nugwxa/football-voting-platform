@@ -1,6 +1,5 @@
 'use client'
 
-import { LucideIcon } from 'lucide-react'
 import classNames from 'classnames'
 import styles from './Button.module.css'
 
@@ -14,9 +13,9 @@ export type ButtonMode = 'solid' | 'border' | 'transparent' // I could probably 
 // Main button props type, combining the `as` prop and omitting the original `as` if it exists.
 type ButtonProps<T extends React.ElementType = 'button'> = AsProp<T> &
   Omit<React.ComponentPropsWithoutRef<T>, 'as'> & {
-    children: string
+    children: React.ReactNode
     className?: string
-    icon?: LucideIcon
+    icon?: React.ReactElement
     isBold?: boolean
     isWide?: boolean
     mode?: ButtonMode
@@ -42,7 +41,7 @@ export default function Button<T extends React.ElementType = 'button'>(
     as: Component = 'button', // Default to 'button' if no `as` prop is provided
     children,
     className,
-    icon: Icon,
+    icon,
     isBold = false,
     isWide = false,
     mode = 'solid',
@@ -61,7 +60,7 @@ export default function Button<T extends React.ElementType = 'button'>(
       })}
       {...rest}
     >
-      {Icon && <Icon size={16} />}
+      {icon && <span className={styles.icon}>{icon}</span>}
       {children}
     </Element>
   )
