@@ -9,6 +9,8 @@ type AsProp<T extends React.ElementType> = {
   as?: T
 }
 
+export type ButtonMode = 'solid' | 'border' | 'transparent' // I could probably use better names
+
 // Main button props type, combining the `as` prop and omitting the original `as` if it exists.
 type ButtonProps<T extends React.ElementType = 'button'> = AsProp<T> &
   Omit<React.ComponentPropsWithoutRef<T>, 'as'> & {
@@ -17,7 +19,7 @@ type ButtonProps<T extends React.ElementType = 'button'> = AsProp<T> &
     icon?: LucideIcon
     isBold?: boolean
     isWide?: boolean
-    mode?: 'solid' | 'border'
+    mode?: ButtonMode
   }
 
 /**
@@ -53,7 +55,8 @@ export default function Button<T extends React.ElementType = 'button'>(
     <Element
       className={classNames(className, styles.button, {
         [styles.isWide]: isWide,
-        [styles.alternativeButton]: mode === 'border',
+        [styles.borderButton]: mode === 'border',
+        [styles.transparentButton]: mode === 'transparent',
         [styles.isBold]: isBold,
       })}
       {...rest}
