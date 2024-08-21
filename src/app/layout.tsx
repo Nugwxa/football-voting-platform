@@ -19,6 +19,24 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   title: 'Team 9 Voting',
+  description: 'Vote for your favorite Team 9 players!',
+
+  openGraph: {
+    title: 'Team 9 Voting',
+    description: 'Vote for your favorite Team 9 players!',
+    url: `${process.env.HOST_URL}`,
+    siteName: 'Team 9 Voting',
+    images: [
+      {
+        url: `${process.env.HOST_URL}/img/team9_logo.png`,
+        width: 500,
+        height: 500,
+        alt: 'Team 9 Logo',
+      },
+    ],
+    locale: 'en_GB',
+    type: 'website',
+  },
 }
 
 export default function RootLayout({

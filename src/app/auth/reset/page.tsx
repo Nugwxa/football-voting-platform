@@ -6,6 +6,12 @@ import formStyles from '@styles/formStyles.module.css'
 import Link from 'next/link'
 import RequestPasswordResetForm from './_component/RequestPasswordResetForm'
 import style from './reset.module.css'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Forgot Password | Team 9 Voting',
+  description: 'Request a password reset',
+}
 
 export default async function Page() {
   return (

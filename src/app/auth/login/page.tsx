@@ -4,6 +4,12 @@ import Divider from '@/components/Divider'
 import formStyles from '@styles/formStyles.module.css'
 import Link from 'next/link'
 import LoginForm from './_components/LoginForm'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Sign In | Team 9 Voting',
+  description: 'Welcome back! Sign in to continue voting',
+}
 type SearchParams = {
   redirect?: string
 }
@@ -14,7 +20,6 @@ interface LoginPageProps {
 
 export default async function Page(props: Readonly<LoginPageProps>) {
   const { searchParams } = props
-
   const redirectTo = searchParams.redirect
   return (
     <div className={authStyle.authContentContainer}>
