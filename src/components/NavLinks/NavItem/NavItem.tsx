@@ -19,6 +19,7 @@ export interface NavLinkType {
   label: string
   viewCondition?: boolean
   isAbsolutePathMatch?: boolean
+  isBold?: boolean
   mode?: ButtonMode
 }
 /**
@@ -27,6 +28,7 @@ export interface NavLinkType {
  * @param {string} href - The URL path to navigate to when the link is clicked.
  * @param {string} label - The text label to display for the link.
  * @param {ButtonMode} mode - The visual mode of the button (e.g., 'solid', 'border').
+ * @param {boolean} isBold - Flag to make button text bold.
  * @param {boolean} isAbsolutePathMatch - Flag to determine if the current path must exactly match the href to be considered active.
  * @param {Object} styling - Optional styling classes for the link in different states.
  * @param {string} styling.base - Class name for the default state of the link.
@@ -36,7 +38,7 @@ export default function NavItem(
   props: Readonly<NavItemProps>
 ): React.JSX.Element {
   // Destructure properties from props
-  const { href, label, mode, isAbsolutePathMatch, styling } = props
+  const { href, label, mode, isAbsolutePathMatch, styling, isBold } = props
 
   // Get the current pathname
   const pathname = usePathname()
@@ -56,6 +58,7 @@ export default function NavItem(
       as={Link}
       href={href}
       mode={mode}
+      isBold={isBold}
     >
       {label}
     </Button>
