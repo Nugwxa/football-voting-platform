@@ -1,0 +1,27 @@
+.footerWrapper {
+  color: var(--gray-2);
+  background-color: var(--gold-9);
+  padding: var(--space-2) 0;
+}
+
+.footerContainer {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-4);
+  align-items: center;
+  color: var(--gray-2);
+}
+
+.footerSocialLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  color: var(--gray-2);
+}
+
+.nameScribble {
+  text-decoration-line: underline;
+  text-decoration-style: wavy;
+}
