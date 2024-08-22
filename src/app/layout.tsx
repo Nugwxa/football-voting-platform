@@ -1,6 +1,6 @@
 import '@styles/globals.css'
 import '@radix-ui/themes/styles.css'
-import { Fjalla_One, Poppins } from '@next/font/google'
+import { Fjalla_One, Poppins } from 'next/font/google'
 import { Theme } from '@radix-ui/themes'
 import classNames from 'classnames'
 import type { Metadata } from 'next'
