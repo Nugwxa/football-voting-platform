@@ -20,6 +20,7 @@ model User {
   name             String
   email            String             @unique
   isAdmin          Boolean            @default(false)
+  isActive         Boolean            @default(true)
   auth             Json
   VoteRegigtration VoteRegigtration[]
   Session          Session[]
