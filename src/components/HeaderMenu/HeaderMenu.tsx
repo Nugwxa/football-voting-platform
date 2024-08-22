@@ -1,95 +1,75 @@
-import { Fragment } from 'react'
-import {
-  HeaderUserButton,
-  LoginButton,
-  MobileNavigationMenu,
-  NavItem,
-} from './client'
-import { LayoutDashboardIcon, VoteIcon } from 'lucide-react'
+'use server'
+import { NavLinkType } from '../NavLinks/NavItem/NavItem'
 import { readSession } from '@/lib/session'
-import classNames from 'classnames'
+import HeaderActionButton from './_components/HeaderActionButton'
+import Image from 'next/image'
 import Link from 'next/link'
+import NavLinks from '../NavLinks/'
 import styles from './HeaderMenu.module.css'
-
-export type AnchorLink = {
-  href: string
-  label: string
-  viewCondition: boolean
-  icon: JSX.Element
-}
 
 /**
  * Renders the header menu
  */
 export default async function HeaderMenu() {
   const session = await readSession()
-  const name = session?.user.name ?? 'null'
-  const sessionIsPresent = session !== null
   const isAdmin = session?.user.isAdmin ?? false
-  const anchorLinks: AnchorLink[] = [
+  const anchorLinks: NavLinkType[] = [
     {
-      href: '/dashboard',
-      label: 'Dashboard',
-      viewCondition: isAdmin,
-      icon: <LayoutDashboardIcon />,
+      href: '/',
+      label: 'Polls',
+      viewCondition: true,
+      isAbsolutePathMatch: true,
+    },
+
+    {
+      href: '/players',
+      label: 'Players',
+      viewCondition: true,
     },
     {
       href: '/polls',
-      label: 'My Polls',
-      viewCondition: sessionIsPresent,
-      icon: <VoteIcon />,
+      label: 'Admin',
+      viewCondition: isAdmin,
     },
   ]
   return (
     <div className={styles.contentWrapper}>
       <div className={styles.contentContainer}>
-        <div className={styles.headerLeft}>
+        <div className={styles.headerTop}>
           <div className={styles.logoArea}>
-            <Link className={styles.textLogo} href={'/'}>
-              Tally Vote
+            <Link className={styles.headerLogoWrapper} href={'/'}>
+              <Image
+                priority
+                sizes="(max-width: 768px) 40px"
+                src={'/img/team9_logo.png'}
+                alt="Team 9 Logo"
+                fill
+              />
             </Link>
           </div>
-          {session && (
-            <nav className={styles.headerNav}>
-              <ul>
-                {anchorLinks.map((anchorLink) => {
-                  if (anchorLink.viewCondition)
-                    return (
-                      <li key={anchorLink.href}>
-                        <NavItem item={anchorLink} />
-                      </li>
-                    )
-
-                  return <Fragment key={anchorLink.href} />
-                })}
-              </ul>
-            </nav>
-          )}
         </div>
-        <div className={styles.headerRight}>
-          {!session ? (
-            <div className={styles.actionAnchorWrapper}>
-              <LoginButton />
-              <Link
-                className={classNames(
-                  styles.actionAnchor,
-                  styles.specialAnchor
-                )}
-                href={'/auth/register'}
-              >
-                Register
+        <div className={styles.headerBottom}>
+          <div className={styles.headerLeft}>
+            <div className={styles.logoArea}>
+              <Link className={styles.headerLogoWrapper} href={'/'}>
+                <Image
+                  priority
+                  sizes="(max-width: 768px) 58px"
+                  src={'/img/team9_logo.png'}
+                  alt="Team 9 Logo"
+                  fill
+                />
               </Link>
             </div>
-          ) : (
-            <>
-              <HeaderUserButton />
-              <MobileNavigationMenu
-                name={name}
-                isAdmin={isAdmin}
-                anchorLinks={anchorLinks}
-              />
-            </>
-          )}
+
+            <NavLinks links={anchorLinks} mode="transparent" />
+          </div>
+          <div className={styles.headerRight}>
+            <HeaderActionButton
+              name={session?.user.name}
+              sessionIsPresent={session !== null}
+            />
+          </div>
         </div>
       </div>
     </div>
