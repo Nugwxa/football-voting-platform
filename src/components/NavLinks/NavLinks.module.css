@@ -1,0 +1,15 @@
+.nav {
+  align-items: center;
+  display: flex;
+}
+
+.nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.nav ul li {
+  list-style: none;
+  font-weight: 500;
+}

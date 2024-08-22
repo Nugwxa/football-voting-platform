@@ -1,5 +1,5 @@
 .authNav {
-  background-color: var(--accent-8);
+  background-color: var(--brown-7);
   padding: var(--space-4);
   display: flex;
   align-items: center;
@@ -14,13 +14,15 @@
 .authBackgroundSection {
   width: 100%;
   height: 306px;
-  background-image: url('/img/designs/auth_background.png');
+  background: linear-gradient(rgba(49, 26, 0, 0.2), rgba(49, 26, 0, 0.2)),
+    url('/img/designs/auth_background.png');
+  background-size: cover;
+  background-position: center;
 }
 .authMain {
   background-color: var(--gray-2);
   display: flex;
   justify-content: center;
-  padding-bottom: var(--space-9);
 }
 
 .authBodyContainer {
@@ -35,7 +37,6 @@
   width: min(100%, 638px);
   height: fit-content;
   min-height: 200px;
-  margin-bottom: var(--space-2);
 }
 
 .authNavButtonPositioning {
