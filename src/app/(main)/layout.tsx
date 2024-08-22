@@ -1,5 +1,5 @@
 import HeaderMenu from '@/components/HeaderMenu'
-import style from './layout.module.css'
+import Footer from '@/components/Footer'
 
 export default function GeneralLayout({
   children,
@@ -9,9 +9,8 @@ export default function GeneralLayout({
   return (
     <>
       <HeaderMenu />
-      <main className={style.bodyWrapper}>
-        <div className={style.bodyContainer}>{children}</div>
-      </main>
+      <main>{children}</main>
+      <Footer />
     </>
   )
 }
