@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import style from './auth.layout.module.css'
+import Footer from '@/components/Footer'
 
 export default function AuthLayout({
   children,
@@ -30,6 +31,8 @@ export default function AuthLayout({
         {/* Auth Body Container */}
         <div className={style.authBodyContainer}>{children}</div>
       </main>
+
+      <Footer />
     </>
   )
 }
