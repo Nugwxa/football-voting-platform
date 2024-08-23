@@ -1,6 +1,9 @@
 import { adminNavLinks } from './data'
+import adminStyles from './adminStyles.module.css'
 import ContentWrapper from '@/components/ContentWrapper'
 import PageHeader from '@/components/PageHeader'
+import SearchInput from '@/components/SearchInput'
+import UserTable from './_components/UserTable'
 
 type SearchParam = {
   query?: string
@@ -17,7 +20,16 @@ export default async function Page(props: Readonly<AdminUsersPageProps>) {
   return (
     <>
       <PageHeader title="Users" links={adminNavLinks} />
-      <ContentWrapper>Content Here</ContentWrapper>
+      <ContentWrapper>
+        <section className={adminStyles.headingActionsSection}>
+          <SearchInput
+            className={adminStyles.searchInput}
+            placeholder="Search users ..."
+          />
+        </section>
+
+        <UserTable page={Number(page)} query={query} />
+      </ContentWrapper>
     </>
   )
 }
