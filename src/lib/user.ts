@@ -137,7 +137,7 @@ export async function getUser(props: Readonly<GetUserProps>) {
  * @param {UpdateUserDTO} updatedUserData - The data to update the user with.
  * @returns {Promise<ActionResponse>} - An object indicating the success or failure of the update operation.
  */
-interface UpdateUserDTO extends Omit<UserDTO, 'registrationDate'> {}
+export interface UpdateUserDTO extends Omit<UserDTO, 'registrationDate'> {}
 export async function updateUser(
   updatedUserData: Readonly<UpdateUserDTO>
 ): Promise<ActionResponse> {
