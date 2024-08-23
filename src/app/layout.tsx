@@ -13,7 +13,7 @@ const fjallaOne = Fjalla_One({
 
 const poppins = Poppins({
   subsets: ['latin'],
-  weight: ['400', '700'],
+  weight: ['400', '500', '600', '700'],
   variable: '--font-poppins',
 })
 
@@ -46,7 +46,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={classNames(fjallaOne.variable, poppins.variable)}>
+      <body
+        data-theme="gold"
+        className={classNames(fjallaOne.variable, poppins.variable)}
+      >
         <Theme
           className="themeWrapper"
           accentColor="gold"
