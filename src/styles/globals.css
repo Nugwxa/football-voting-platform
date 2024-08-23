@@ -1,4 +1,6 @@
 @import './themes.css';
+@import './sizes.css';
+
 :root {
   --content-max-width: 1280px;
 
@@ -17,6 +19,8 @@ html,
 body {
   overflow-x: hidden;
   background: #f9f9f8 !important;
+  font-family: var(--font-poppins);
+  color: var(--accent-12);
 }
 
 body .themeWrapper {
