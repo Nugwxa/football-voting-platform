@@ -2,7 +2,7 @@
   width: 42px;
   border: none;
   height: 25px;
-  background-color: var(--gray-4);
+  background-color: var(--accent-4);
   border-radius: 9999px;
   position: relative;
 }
