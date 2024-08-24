@@ -21,9 +21,6 @@
   background: var(--accent-6);
 }
 
-.ellipsis {
-  /* cursor: unset; */
-}
 .paginationButton:not(:disabled):not(.ellipsis):hover {
   background-color: #eeeeee;
   border-color: 2px solid #f1f1f3;
