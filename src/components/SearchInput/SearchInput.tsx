@@ -43,18 +43,10 @@ export default function SearchInput(props: Readonly<SearchInputProps>) {
     const delayDebounceFn = setTimeout(() => {
       const params = new URLSearchParams(searchParams.toString())
       if (searchQuery) {
+        params.set('page', '1')
         params.set(paramName, searchQuery)
       } else {
         params.delete(paramName)
-      }
-
-      // Reset the page parameter to 1 if the current page is greater than 1
-      const currentPage = params.get('page') ?? 1
-      console.log(Number(currentPage))
-      if (Number(currentPage) > 1) {
-        params.set('page', '1')
-      } else {
-        params.delete('page')
       }
 
       // Replace the URL with the updated search query
