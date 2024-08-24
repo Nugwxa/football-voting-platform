@@ -19,6 +19,9 @@
   padding: 10px 20px;
 }
 
+.tableBody tr:not(:last-child) {
+  border-bottom: 1px solid var(--accent-5);
+}
 .tableHead th {
   border-bottom: 1px solid var(--accent-5);
   text-align: left;
