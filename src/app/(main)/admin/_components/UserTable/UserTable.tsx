@@ -3,38 +3,63 @@ import { getUsers } from '@/lib/user'
 import Badge from '@/components/Badge'
 import classNames from 'classnames'
 import EditUserDialog from '../EditUserDialog'
+import TableSortToggle from '@/components/TableSortToggle'
 import tableStyles from '@styles/tableStyles.module.css'
 
 interface UserTableProps extends React.ComponentPropsWithoutRef<'div'> {
   page: number
   query?: string
+  sort?: string
 }
 
+/**
+ * Renders a table of users with sorting and editing funtionalty.
+ *
+ * @param {string} className - Additional class name to apply to the callout.
+ * @param {number} page - The current page number for pagination.
+ * @param {string} query - The search query for filtering users.
+ * @param {string} sort - The sorting key for ordering users.
+ */
 export default async function UserTable(props: Readonly<UserTableProps>) {
-  const { className, page, query, ...rest } = props
+  const { className, page, query, sort, ...rest } = props
 
   // Fetch users from the database excluding the current user
-  const users = await getUsers({ page: page, query: query })
+  const users = await getUsers({ page: page, query: query, sortKey: sort })
   const usersArePresent = users.length > 0
   return (
     <div className={classNames(tableStyles.container, className)} {...rest}>
       <table>
         <thead className={tableStyles.tableHead}>
           <tr>
-            <th className={tableStyles.widerCol} scope="col">
-              Name
+            <th scope="col">
+              <TableSortToggle
+                text="Name"
+                topKey="name-az"
+                bottomKey="name-za"
+              />
             </th>
-            <th className={tableStyles.widerCol} scope="col">
-              Email
+            <th scope="col">
+              <TableSortToggle
+                text="Email"
+                topKey="email-az"
+                bottomKey="email-za"
+              />
             </th>
             <th scope="col">Status</th>
             <th scope="col">Role</th>
-            <th scope="col">Joined</th>
-            <th scope="col"></th>
+            <th scope="col">
+              <TableSortToggle
+                text="Joined on"
+                topKey="joined-newest"
+                bottomKey="joined-oldest"
+                defaultToTop
+              />
+            </th>
+            <th scope="col"> </th>
           </tr>
         </thead>
 
-        {/* Render logic */}
+        {/* Conditionally render the table body */}
         {usersArePresent && (
           <tbody className={tableStyles.tableBody}>
             {users.map((user) => {
@@ -72,6 +97,8 @@ export default async function UserTable(props: Readonly<UserTableProps>) {
           </tbody>
         )}
       </table>
+
+      {/* Display a message if no users are found */}
       {!usersArePresent && (
         <div className={tableStyles.noResultWrapper}>No User Found</div>
       )}
