@@ -16,7 +16,7 @@ export type UserDTO = {
  * @param {string} query - The query string to search for in user names/emails.
  * @returns {Promise<number>} - The number of users matching the query, or -1 if an error occurs.
  */
-export async function countUsers(query: Readonly<string>) {
+export async function countUsers(query = '') {
   let userCount = 0
 
   try {
