@@ -1,5 +1,6 @@
 'use server'
 
+import { readSession } from '@/lib/session'
 import { revalidatePath } from 'next/cache'
 import { updateUser, UpdateUserDTO } from '@/lib/user'
 
@@ -15,6 +16,15 @@ export async function handleUserEditForm(
   prevState: any,
   formData: FormData
 ): Promise<ActionResponse> {
+  const session = await readSession()
+
+  if (!session || !session.user.isAdmin) {
+    return {
+      type: 'error',
+      message: 'Invalid session',
+    }
+  }
+
   // Extract form data fields
   const name = formData.get('name')?.toString()
   const email = formData.get('email')?.toString()
