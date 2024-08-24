@@ -5,6 +5,19 @@
   border-radius: 10px;
 }
 
+.container::-webkit-scrollbar {
+  height: var(--space-2);
+}
+
+.container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.container::-webkit-scrollbar-thumb {
+  background-color: var(--accent-11);
+  border-radius: 90px;
+}
+
 .container table {
   border-collapse: collapse;
   width: 100%;
