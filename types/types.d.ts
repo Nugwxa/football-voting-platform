@@ -3,7 +3,7 @@ type UserAuthObject = {
   passwordSalt: string
 }
 
-type PlayerImage = {
+type UploadedImage = {
   id: string
   link: string
   deleteHash: string
