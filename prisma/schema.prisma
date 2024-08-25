@@ -28,6 +28,24 @@ model User {
   ResetToken       ResetToken[]
 }
 
+enum PlayerPositions {
+  Goalkeeper
+  Defender
+  Midfielder
+  Forward
+}
+
+model Player {
+  id          String          @id @default(uuid())
+  key         String          @unique
+  img         Json?
+  firstName   String
+  lastName    String
+  squadNumber Int
+  position    PlayerPositions
+  isActive    Boolean
+}
+
 model ResetToken {
   id         String   @id @default(uuid())
   userId     String
