@@ -41,7 +41,7 @@ model Player {
   img         Json?
   firstName   String
   lastName    String
-  squadNumber Int
+  squadNumber Int?
   position    PlayerPositions
   isActive    Boolean
 }

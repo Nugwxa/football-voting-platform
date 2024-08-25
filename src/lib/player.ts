@@ -8,7 +8,7 @@ export type PlayerDTO = {
   firstName: string
   lastName: string
   img: PlayerImage | null
-  squadNumber: number
+  squadNumber: number | null
   position: $Enums.PlayerPositions
   isActive: boolean
 }
