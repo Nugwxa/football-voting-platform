@@ -3,6 +3,12 @@ type UserAuthObject = {
   passwordSalt: string
 }
 
+type PlayerImage = {
+  id: string
+  link: string
+  deleteHash: string
+}
+
 type ActionResponse = {
   type: 'error' | 'success' | 'idle'
   message: string
