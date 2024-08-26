@@ -9,8 +9,3 @@
 .searchInput {
   flex: 1;
 }
-
-.button {
-  padding: var(--space-2);
-  border-radius: 10px;
-}
