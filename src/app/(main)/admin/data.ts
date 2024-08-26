@@ -21,6 +21,8 @@ export const adminNavLinks: NavLinkType[] = [
   },
 ]
 
+export const positions = ['Goalkeeper', 'Defender', 'Midfielder', 'Forward']
+
 /**
  * Checks if a given position string is a valid player position.
  *
@@ -31,12 +33,7 @@ export const adminNavLinks: NavLinkType[] = [
 export function isValidPosition(
   position: string
 ): position is $Enums.PlayerPositions {
-  const positions: Set<string> = new Set([
-    'goalkeeper',
-    'defender',
-    'midfielder',
-    'forward',
-  ])
+  const positionSet: Set<string> = new Set(positions)
 
-  return positions.has(position)
+  return positionSet.has(position)
 }
