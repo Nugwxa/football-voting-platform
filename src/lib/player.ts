@@ -1,5 +1,6 @@
 'use server'
 import { $Enums, Prisma } from '@prisma/client'
+import { deleteImage } from './imgur'
 import prisma from '@lib/prisma'
 
 export type PlayerDTO = {
@@ -7,7 +8,7 @@ export type PlayerDTO = {
   key: string
   firstName: string
   lastName: string
-  img: PlayerImage | null
+  img: UploadedImage | null
   squadNumber: number | null
   position: $Enums.PlayerPositions
   isActive: boolean
@@ -86,7 +87,9 @@ export async function getPlayers(
       key: player.key,
       firstName: player.firstName,
       lastName: player.lastName,
-      img: player.img as PlayerImage | null,
+      img: player.img
+        ? (JSON.parse(player.img.toString()) as UploadedImage)
+        : null,
       squadNumber: player.squadNumber,
       position: player.position,
       isActive: player.isActive,
@@ -134,7 +137,9 @@ export async function getPlayer(
       key: player.key,
       firstName: player.firstName,
       lastName: player.lastName,
-      img: player.img as PlayerImage | null,
+      img: player.img
+        ? (JSON.parse(player.img.toString()) as UploadedImage)
+        : null,
       squadNumber: player.squadNumber,
       position: player.position as $Enums.PlayerPositions, // Assuming position is an enum
       isActive: player.isActive,
@@ -150,7 +155,7 @@ export async function getPlayer(
 }
 
 export interface UpdatePlayerDTO extends Omit<PlayerDTO, 'img'> {
-  img: PlayerImage | null | undefined
+  img: UploadedImage | null | undefined
 }
 
 /**
@@ -205,6 +210,9 @@ export async function updatePlayer(
         img: imgData,
       },
     })
+    if (existingPlayer.img) {
+      deleteImage(existingPlayer.img.deleteHash)
+    }
     return { type: 'success', message: 'Player updated!' }
   } catch (e) {
     console.error(
