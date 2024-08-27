@@ -43,6 +43,12 @@ export default function EditPlayerDialog(
   const [isActive, setIsActive] = useState(player.isActive)
   const [isUpdatingImage, setIsUpdatingImage] = useState(false)
 
+  // Sync state with player data when dialog is opened
+  useEffect(() => {
+    setIsActive(player.isActive)
+    setIsUpdatingImage(false)
+  }, [dialogOpen, player.isActive])
+
   // Effect to close the dialog when the form submission is successful
   useEffect(() => {
     if (formState.type === 'success') {
@@ -56,9 +62,9 @@ export default function EditPlayerDialog(
       setWindowIsOpen={setDialogOpen}
       windowTitle={`Editing ${player.firstName + ' '}${player.lastName}`}
       trigger={
-        <Button icon={<EllipsisVerticalIcon />} mode="transparent">
-          {null}
-        </Button>
+        <div style={{ display: 'flex' }}>
+          <EllipsisVerticalIcon />
+        </div>
       }
     >
       <div className={styles.editPlayerDialog}>
