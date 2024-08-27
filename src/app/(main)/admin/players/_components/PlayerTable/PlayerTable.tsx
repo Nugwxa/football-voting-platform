@@ -58,11 +58,11 @@ export default async function PlayerTable(props: Readonly<PlayerTableProps>) {
         {playersArePresent && (
           <tbody className={tableStyles.tableBody}>
             {players.map((player) => {
-              // console.log(player.img)
               return (
                 <tr key={player.id}>
                   <td style={{ maxWidth: '54px' }}>
                     <PlayerTableImage
+                      isActive={player.isActive}
                       name={player.lastName}
                       imgUrl={player.img?.link}
                     />
