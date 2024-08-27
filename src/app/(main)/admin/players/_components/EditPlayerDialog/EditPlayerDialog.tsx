@@ -130,6 +130,7 @@ export default function EditPlayerDialog(
                 value: position,
                 label: position,
               }))}
+              required
               isSearchable={false}
               defaultValue={{ value: player.position, label: player.position }}
             />
