@@ -10,6 +10,12 @@ import Pagination from '@/components/Pagination/'
 import PlayerTable from './_components/PlayerTable'
 import SearchInput from '@/components/SearchInput'
 import styles from './page.module.css'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Players (Admin) | Team 9 Voting',
+  description: 'Request a password reset',
+}
 
 type SearchParam = {
   query?: string

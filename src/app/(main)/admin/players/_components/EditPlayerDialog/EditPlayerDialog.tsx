@@ -179,6 +179,7 @@ export default function EditPlayerDialog(
                 className={styles.input}
                 name="playerImage"
                 type="file"
+                accept="image/png"
               />
             </div>
           )}
