@@ -14,7 +14,6 @@ import { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Players (Admin) | Team 9 Voting',
-  description: 'Request a password reset',
 }
 
 type SearchParam = {
