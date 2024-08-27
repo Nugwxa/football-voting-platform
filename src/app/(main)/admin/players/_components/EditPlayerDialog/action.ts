@@ -66,7 +66,12 @@ export async function handlePlayerEditForm(
     }
   }
 
-  if (isUpdatingImage && playerImage && playerImage.type !== 'image/png') {
+  if (
+    isUpdatingImage &&
+    playerImage &&
+    playerImage.size > 0 &&
+    playerImage.type !== 'image/png'
+  ) {
     return {
       type: 'error',
       message: 'Player image must be a PNG file.',
@@ -82,18 +87,22 @@ export async function handlePlayerEditForm(
 
   let imageToUse = undefined
 
-  if (isUpdatingImage && playerImage) {
-    const res = await uploadImage(
-      playerImage,
-      `${firstName + ' '}${lastName}'s Photo`
-    )
-    if (!res)
-      return {
-        type: 'error',
-        message: 'An error occurred while uploading the image',
-      }
+  if (isUpdatingImage) {
+    if (playerImage && playerImage.size > 0) {
+      const res = await uploadImage(
+        playerImage,
+        `${firstName + ' '}${lastName}'s Photo`
+      )
+      if (!res)
+        return {
+          type: 'error',
+          message: 'An error occurred while uploading the image',
+        }
 
-    imageToUse = res
+      imageToUse = res
+    } else {
+      imageToUse = null
+    }
   }
 
   const updatedPlayer: UpdatePlayerDTO = {
