@@ -1,9 +1,6 @@
 import { adminNavLinks } from './data'
-import { AlertTriangleIcon } from 'lucide-react'
 import { countUsers } from '@/lib/user'
-import { readSession } from '@/lib/session'
 import adminStyles from './adminStyles.module.css'
-import Callout from '@/components/Callout'
 import ContentWrapper from '@/components/ContentWrapper'
 import PageHeader from '@/components/PageHeader'
 import Pagination from '@/components/Pagination/Pagination'
@@ -19,17 +16,6 @@ interface AdminUsersPageProps {
   searchParams: SearchParam
 }
 export default async function Page(props: Readonly<AdminUsersPageProps>) {
-  const session = await readSession()
-
-  // Restrict access if the user is not authenticated
-  if (!session || !session.user.isAdmin)
-    return (
-      <ContentWrapper>
-        <Callout title="Restricted Page!" icon={<AlertTriangleIcon />} isWide>
-          You don't have the permission to view this page
-        </Callout>
-      </ContentWrapper>
-    )
   const { searchParams } = props
   const page = searchParams.page ?? 1
   const query = searchParams.query ?? ''
