@@ -89,7 +89,7 @@ export default async function PlayerTable(props: Readonly<PlayerTableProps>) {
       </table>
 
       {/* Display a message if no players are found */}
-      {!players && (
+      {players.length <= 0 && (
         <div className={tableStyles.noResultWrapper}>No Player Found</div>
       )}
     </div>
