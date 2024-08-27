@@ -1,0 +1,98 @@
+.select {
+  background: none;
+}
+
+.input > input {
+  box-shadow: none;
+}
+
+.container {
+  width: 100%;
+}
+
+.control {
+  border: 1px solid var(--accent-5) !important;
+  border-radius: 5px !important;
+  padding: var(--space-0) 0px;
+  transition: none !important;
+}
+
+.control:hover {
+  border-color: var(--accent-7) !important;
+}
+
+.control:focus {
+  border-color: transparent !important;
+  outline: 2px solid var(--accent-10) !important;
+  z-index: 10000 !important;
+}
+
+.control:focus-within {
+  border-color: transparent !important;
+  outline: 2px solid var(--accent-10) !important;
+  z-index: 10000 !important;
+}
+
+.option {
+  background-color: transparent !important;
+}
+
+.option:hover,
+.optionFocused {
+  background-color: var(--accent-3) !important;
+}
+
+.optionSelected,
+.optionSelected:hover {
+  background-color: var(--accent-9) !important;
+  color: var(--accent-2) !important;
+}
+.multiValue {
+  align-items: center !important;
+  background-color: var(--accent-3) !important;
+  border: 1px solid var(--accent-5) !important;
+  border-radius: var(--space-1) !important;
+  color: var(--accent-9) !important;
+  display: inline-flex !important;
+  font-size: 0.6rem !important;
+  gap: var(--space-1) !important;
+  justify-content: space-between !important;
+  padding: var(--space-2px) var(--space-2) !important;
+}
+
+.multiValueGeneric {
+  color: var(--accent-9) !important;
+  font-size: 0.7rem !important;
+  padding: 0 !important;
+}
+
+.multiValueRemove {
+  background-color: transparent !important;
+  color: var(--accent-9) !important;
+  padding: var(--space-px) !important;
+}
+
+.multiValueRemove:hover,
+.clearIndicator:hover {
+  color: var(--red-9) !important;
+}
+
+.clearIndicator,
+.dropdownIndicator {
+  color: var(--accent-6) !important;
+  padding: 0 !important;
+}
+
+.dropdownIndicator {
+  padding-right: var(--space-1) !important;
+}
+
+.dropdownIndicator:hover {
+  color: var(--accent-9) !important;
+}
+
+.indicatorSeparator {
+  background-color: var(--accent-6) !important;
+  margin-left: var(--space-1) !important;
+  margin-right: var(--space-1) !important;
+}
