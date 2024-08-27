@@ -1,0 +1,22 @@
+.input {
+  background-color: var(--accent-1);
+}
+.inputRow {
+  width: 100%;
+  display: flex;
+  gap: var(--space-4);
+}
+
+.inputRow div {
+  flex-grow: 1;
+}
+
+.callout {
+  margin-top: var(--space-4);
+}
+
+@media only screen and (max-width: 500px) {
+  .inputRow {
+    flex-direction: column;
+  }
+}
