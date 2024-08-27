@@ -6,9 +6,8 @@ import { isValidPosition } from '@admin/data'
 import { readSession } from '@/lib/session'
 import { revalidatePath } from 'next/cache'
 /**
- * Handles the edit player form submission.
+ * Handles the create player form submission.
  *
- * @param {string} playerID - The ID of the player being updated.
  * @param {any} prevState - The previous state of the form.
  * @param {FormData} formData - The form data submitted by the player.
  */
