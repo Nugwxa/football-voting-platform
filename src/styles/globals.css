@@ -44,7 +44,14 @@ h4 {
   font-family: var(--font-fjalla-one);
 }
 
-input {
+textarea {
+  min-height: 100px;
+  resize: none;
+}
+
+input,
+textarea {
+  font-family: inherit;
   border-radius: var(--space-2);
   border: 1px solid var(--accent-5);
   box-sizing: border-box;
@@ -53,16 +60,19 @@ input {
   padding: 10px;
 }
 
-input:hover {
+input:hover,
+textarea:hover {
   border-color: var(--accent-7);
 }
 
-input::placeholder {
+input::placeholder,
+textarea::placeholder {
   color: inherit;
   opacity: 0.4;
 }
 
-input:focus {
+input:focus,
+textarea:focus {
   border-color: transparent;
   outline: 2px solid var(--accent-10);
 }
