@@ -1,11 +1,10 @@
 .select {
   background: none;
 }
-
-.input > input {
-  box-shadow: none;
+.placeholder {
+  color: inherit !important;
+  opacity: 0.4 !important;
 }
-
 .container {
   width: 100%;
 }

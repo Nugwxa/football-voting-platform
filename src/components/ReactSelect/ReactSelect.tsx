@@ -21,6 +21,9 @@ export default function ReactSelect(props: Readonly<ReactSelectProps>) {
       className={classNames(className, styles.select)}
       // Override styling
       classNames={{
+        placeholder: (state) => {
+          return styles.placeholder
+        },
         input: (state) => {
           return styles.input
         },
