@@ -46,6 +46,7 @@ type GetPlayersProps = {
   sortKey?: string
   page?: number
   perPage?: number
+  isPaginated?: boolean
 }
 
 /**
@@ -55,7 +56,13 @@ type GetPlayersProps = {
 export async function getPlayers(
   props: Readonly<GetPlayersProps>
 ): Promise<PlayerDTO[]> {
-  const { query, sortKey, page = 1, perPage = 10 } = props
+  const {
+    query = '',
+    sortKey,
+    page = 1,
+    perPage = 10,
+    isPaginated = true,
+  } = props
 
   const validPage = page > 0 ? page : 1
   // Calculate the number of players to skip for pagination
@@ -73,12 +80,22 @@ export async function getPlayers(
     const players = await prisma.player.findMany({
       where: {
         OR: [
-          { firstName: { contains: query } },
-          { lastName: { contains: query } },
+          {
+            AND: [
+              { firstName: { contains: query.split(' ')[0] } },
+              { lastName: { contains: query.split(' ')[1] || '' } },
+            ],
+          },
+          {
+            AND: [
+              { firstName: { contains: query.split(' ')[1] || '' } },
+              { lastName: { contains: query.split(' ')[0] } },
+            ],
+          },
         ],
       },
-      skip: skip,
-      take: perPage,
+      skip: isPaginated ? skip : undefined,
+      take: isPaginated ? perPage : undefined,
       orderBy: orderMap[sortKey ?? 'name-az'] || orderMap['name-az'],
     })
 
