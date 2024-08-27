@@ -27,7 +27,7 @@ export default async function HeaderMenu() {
       viewCondition: true,
     },
     {
-      href: '/polls',
+      href: '/admin',
       label: 'Admin',
       viewCondition: isAdmin,
     },
