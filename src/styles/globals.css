@@ -45,7 +45,7 @@ h4 {
 }
 
 input {
-  border-radius: 5px;
+  border-radius: var(--space-2);
   border: 1px solid var(--accent-5);
   box-sizing: border-box;
   color: var(--accent-12);
