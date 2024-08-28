@@ -84,7 +84,7 @@ export default function CreatePollForm() {
               className={formStyles.whiteBackground}
               name="coverImage"
               type="file"
-              accept="image/png"
+              accept="image/png, image/jpeg"
             />
           </div>
         </div>

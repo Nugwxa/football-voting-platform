@@ -53,10 +53,15 @@ export async function handlePollCreateForm(
     }
   }
 
-  if (coverImage && coverImage.size > 0 && coverImage.type !== 'image/png') {
+  if (
+    coverImage &&
+    coverImage.size > 0 &&
+    coverImage.type !== 'image/png' &&
+    coverImage.type !== 'image/jpeg'
+  ) {
     return {
       type: 'error',
-      message: 'Cover image must be a PNG file.',
+      message: 'Cover image must be a PNG or JPEG file.',
     }
   }
 
