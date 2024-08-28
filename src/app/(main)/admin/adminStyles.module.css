@@ -9,3 +9,8 @@
 .searchInput {
   flex: 1;
 }
+
+.adminButton {
+  padding: var(--space-2) !important;
+  border-radius: 10px !important;
+}
