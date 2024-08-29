@@ -29,7 +29,7 @@ export async function handlePollCreateForm(
   const description = formData.get('description')?.toString()
   const closingDateString = formData.get('closingDate')?.toString()
   const playerIDs = formData.getAll('players').map((id) => String(id))
-  const coverImage = formData.get('playerImage') as File | null
+  const coverImage = formData.get('coverImage') as File | null
 
   // Validate required fields
   if (!title) {
