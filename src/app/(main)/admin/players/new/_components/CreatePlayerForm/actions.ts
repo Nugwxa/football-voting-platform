@@ -85,22 +85,24 @@ export async function handlePlayerCreateForm(
 
   let imageToUse = null
 
-  if (isAddingImage && playerImage && playerImage.size > 0) {
-    const res = await uploadImage(
-      playerImage,
-      `${firstName + ' '}${lastName}'s Photo`
-    )
-    if (!res)
+  if (isAddingImage) {
+    if (playerImage && playerImage.size > 0) {
+      const res = await uploadImage(
+        playerImage,
+        `${firstName + ' '}${lastName}'s Photo`
+      )
+      if (!res)
+        return {
+          type: 'error',
+          message: 'An error occurred while uploading the image',
+        }
+
+      imageToUse = res
+    } else {
       return {
         type: 'error',
-        message: 'An error occurred while uploading the image',
+        message: 'Player image is required',
       }
-
-    imageToUse = res
-  } else {
-    return {
-      type: 'error',
-      message: 'Player image is required',
     }
   }
 
