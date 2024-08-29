@@ -50,3 +50,15 @@
   height: 150px;
   width: 100%;
 }
+
+.dividedSection {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.dividedLowerSection {
+  font-size: 0.8rem;
+  font-style: italic;
+  color: var(--accent-9);
+}
