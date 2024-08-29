@@ -1,11 +1,16 @@
 import { adminNavLinks } from './data'
 import { countUsers } from '@/lib/user'
+import { Metadata } from 'next'
 import adminStyles from './adminStyles.module.css'
 import ContentWrapper from '@/components/ContentWrapper'
 import PageHeader from '@/components/PageHeader'
 import Pagination from '@/components/Pagination/Pagination'
 import SearchInput from '@/components/SearchInput'
 import UserTable from './_components/UserTable'
+
+export const metadata: Metadata = {
+  title: 'Users (Admin) | Team 9 Voting',
+}
 
 type SearchParam = {
   query?: string

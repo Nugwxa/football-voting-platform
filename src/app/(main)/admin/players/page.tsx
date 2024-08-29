@@ -1,5 +1,6 @@
 import { adminNavLinks } from '../data'
 import { countPlayers } from '@/lib/player'
+import { Metadata } from 'next'
 import { PlusIcon } from 'lucide-react'
 import adminStyles from '../adminStyles.module.css'
 import Button from '@/components/Button'
@@ -10,7 +11,6 @@ import Pagination from '@/components/Pagination/'
 import PlayerTable from './_components/PlayerTable'
 import SearchInput from '@/components/SearchInput'
 import styles from './page.module.css'
-import { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Players (Admin) | Team 9 Voting',
