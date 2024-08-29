@@ -1,5 +1,5 @@
 'use server'
-import { getPolls } from '@/lib/poll'
+import { getPolls } from '@/data/poll'
 import classNames from 'classnames'
 import EditPollDialog from '../EditPollDialog'
 import Link from 'next/link'

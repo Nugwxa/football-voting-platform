@@ -1,10 +1,10 @@
 'use server'
-
+import { deleteImage, uploadImage } from '@/data/imgur'
+import { isValidPosition } from '@admin/data'
 import { readSession } from '@/lib/session'
 import { revalidatePath } from 'next/cache'
-import { updatePlayer, UpdatePlayerDTO } from '@/lib/player'
-import { deleteImage, uploadImage } from '@/lib/imgur'
-import { isValidPosition } from '../../../data'
+import { updatePlayer } from '@/data/player'
+import { UpdatePlayerDTO } from '@/data/player/types'
 /**
  * Handles the edit player form submission.
  *

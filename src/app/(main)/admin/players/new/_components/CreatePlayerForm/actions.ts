@@ -1,7 +1,7 @@
 'use server'
-
-import { createPlayer } from '@/lib/player'
-import { deleteImage, uploadImage } from '@/lib/imgur'
+import { createPlayer } from '@/data/player'
+import { CreatePlayerDTO } from '@/data/player/types'
+import { deleteImage, uploadImage } from '@/data/imgur'
 import { isValidPosition } from '@admin/data'
 import { readSession } from '@/lib/session'
 import { revalidatePath } from 'next/cache'
@@ -104,7 +104,7 @@ export async function handlePlayerCreateForm(
     }
   }
 
-  const player = {
+  const player: CreatePlayerDTO = {
     firstName,
     lastName,
     isActive: isActive ? true : false,

@@ -1,5 +1,5 @@
 import { adminNavLinks } from '@admin/data'
-import { countPolls } from '@/lib/poll'
+import { countPolls } from '@/data/poll'
 import { Metadata } from 'next'
 import { PlusIcon } from 'lucide-react'
 import adminStyles from '@admin/adminStyles.module.css'

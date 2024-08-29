@@ -1,10 +1,9 @@
 'use client'
-
 import { EllipsisVerticalIcon } from 'lucide-react'
 import { handleUserEditForm } from './action'
 import { useEffect, useState } from 'react'
 import { useFormState } from 'react-dom'
-import { UserDTO } from '@/lib/user'
+import { UserDTO } from '@/data/user/types'
 import ActionCallout from '@/components/ActionCallout'
 import Button from '@/components/Button'
 import DialogWindow from '@/components/DialogWindow'

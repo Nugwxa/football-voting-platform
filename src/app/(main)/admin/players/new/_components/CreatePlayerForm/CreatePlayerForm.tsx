@@ -8,7 +8,6 @@ import Button from '@/components/Button'
 import formStyles from '@styles/formStyles.module.css'
 import ReactSelect from '@/components/ReactSelect'
 import Required from '@/components/Required'
-import styles from './CreatePlayerForm.module.css'
 import Switch from '@/components/Switch'
 
 /**
@@ -28,140 +27,134 @@ export default function CreatePlayerForm() {
   const [isActive, setIsActive] = useState(true)
   const [isAddingImage, setIsAddingImage] = useState(true)
   return (
-    <>
-      <form className={formStyles.form} action={formAction}>
-        <div className={styles.inputRow}>
-          <div className={formStyles.inputWrapper}>
-            {/* First Name */}
-            <label htmlFor="firstName">
-              First Name <Required />
-            </label>
-            <input
-              className={styles.input}
-              placeholder="John"
-              id="firstName"
-              name="firstName"
-              type="text"
-              required
-            />
-          </div>
-
-          {/* Last Name */}
-          <div className={formStyles.inputWrapper}>
-            <label htmlFor="lastName">
-              Last Name <Required />
-            </label>
-            <input
-              placeholder="Doe"
-              id="lastName"
-              className={styles.input}
-              name="lastName"
-              type="text"
-              required
-            />
-          </div>
-        </div>
-
-        {/* Key */}
+    <form className={formStyles.form} action={formAction}>
+      <div className={formStyles.inputRow}>
         <div className={formStyles.inputWrapper}>
-          <label htmlFor="key">
-            Key <Required />
+          {/* First Name */}
+          <label htmlFor="firstName">
+            First Name <Required />
           </label>
           <input
-            placeholder="john-doe"
-            id="key"
-            className={styles.input}
-            name="key"
+            className={formStyles.whitebackground}
+            placeholder="John"
+            id="firstName"
+            name="firstName"
             type="text"
             required
           />
         </div>
 
-        {/* Key */}
+        {/* Last Name */}
         <div className={formStyles.inputWrapper}>
-          <label htmlFor="position">
-            Position <Required />
+          <label htmlFor="lastName">
+            Last Name <Required />
           </label>
-          <ReactSelect
-            instanceId={'position'}
-            id="position"
-            name="position"
-            options={positions.map((position) => ({
-              value: position,
-              label: position,
-            }))}
-            isSearchable={false}
+          <input
+            placeholder="Doe"
+            id="lastName"
+            className={formStyles.whitebackground}
+            name="lastName"
+            type="text"
+            required
           />
         </div>
+      </div>
 
-        {/* Active */}
-        <div className={formStyles.inputWrapper}>
-          <label htmlFor="isActive">Active?</label>
-          <div>
-            <Switch
-              defaultChecked
-              onChange={(e) => setIsActive(e)}
-              name="isActive"
-            />
-          </div>
+      {/* Key */}
+      <div className={formStyles.inputWrapper}>
+        <label htmlFor="key">
+          Key <Required />
+        </label>
+        <input
+          placeholder="john-doe"
+          id="key"
+          className={formStyles.whitebackground}
+          name="key"
+          type="text"
+          required
+        />
+      </div>
+
+      {/* Key */}
+      <div className={formStyles.inputWrapper}>
+        <label htmlFor="position">
+          Position <Required />
+        </label>
+        <ReactSelect
+          instanceId={'position'}
+          id="position"
+          name="position"
+          options={positions.map((position) => ({
+            value: position,
+            label: position,
+          }))}
+          isSearchable={false}
+        />
+      </div>
+
+      {/* Active */}
+      <div className={formStyles.inputWrapper}>
+        <label htmlFor="isActive">Active?</label>
+        <div>
+          <Switch
+            defaultChecked
+            onChange={(e) => setIsActive(e)}
+            name="isActive"
+          />
         </div>
+      </div>
 
-        {isActive && (
-          <div className={formStyles.inputWrapper}>
-            <label htmlFor="squadNumber">
-              Squad Number <Required />
-            </label>
-            <input
-              placeholder="97"
-              id="squadNumber"
-              min={1}
-              max={99}
-              className={styles.input}
-              name="squadNumber"
-              type="number"
-              defaultValue={1}
-              required
-            />
-          </div>
-        )}
-
+      {isActive && (
         <div className={formStyles.inputWrapper}>
-          <label htmlFor="isAddingImage">Add Image?</label>
-          <div>
-            <Switch
-              name="isAddingImage"
-              defaultChecked={isAddingImage}
-              onChange={(e) => setIsAddingImage(e)}
-            />
-          </div>
+          <label htmlFor="squadNumber">
+            Squad Number <Required />
+          </label>
+          <input
+            placeholder="97"
+            id="squadNumber"
+            min={1}
+            max={99}
+            className={formStyles.whitebackground}
+            name="squadNumber"
+            type="number"
+            defaultValue={1}
+            required
+          />
         </div>
+      )}
 
-        {isAddingImage && (
-          <div className={formStyles.inputWrapper}>
-            <label htmlFor="playerImage">
-              Player Image <Required />
-            </label>
-            <input
-              id="playerImage"
-              className={styles.input}
-              name="playerImage"
-              type="file"
-              accept="image/png"
-              required
-            />
-          </div>
-        )}
+      <div className={formStyles.inputWrapper}>
+        <label htmlFor="isAddingImage">Add Image?</label>
+        <div>
+          <Switch
+            name="isAddingImage"
+            defaultChecked={isAddingImage}
+            onChange={(e) => setIsAddingImage(e)}
+          />
+        </div>
+      </div>
 
-        <Button type="submit" mode="border" isWide>
-          Create Player
-        </Button>
-      </form>
+      {isAddingImage && (
+        <div className={formStyles.inputWrapper}>
+          <label htmlFor="playerImage">
+            Player Image <Required />
+          </label>
+          <input
+            id="playerImage"
+            className={formStyles.whitebackground}
+            name="playerImage"
+            type="file"
+            accept="image/png"
+            required
+          />
+        </div>
+      )}
 
-      <ActionCallout
-        className={styles.callout}
-        responseObj={formState}
-        isWide
-      />
-    </>
+      <Button type="submit" mode="border" isWide>
+        Create Player
+      </Button>
+
+      <ActionCallout responseObj={formState} isWide />
+    </form>
   )
 }

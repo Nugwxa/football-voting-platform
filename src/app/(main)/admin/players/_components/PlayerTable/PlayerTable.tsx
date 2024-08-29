@@ -1,5 +1,5 @@
 'use server'
-import { getPlayers } from '@/lib/player'
+import { getPlayers } from '@/data/player'
 import Badge from '@/components/Badge'
 import classNames from 'classnames'
 import EditPlayerDialog from '../EditPlayerDialog'

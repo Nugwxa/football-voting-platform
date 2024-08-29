@@ -1,9 +1,10 @@
 'use server'
 
-import { deleteImage, uploadImage } from '@/lib/imgur'
+import { deleteImage, uploadImage } from '@/data/imgur'
 import { readSession } from '@/lib/session'
 import { revalidatePath } from 'next/cache'
-import { updatePoll, UpdatePollDTO } from '@/lib/poll'
+import { updatePoll } from '@/data/poll'
+import { UpdatePollDTO } from '@/data/poll/types'
 /**
  * Handles the edit poll form submission.
  *

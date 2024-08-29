@@ -1,5 +1,5 @@
 'use server'
-import { getUsers } from '@/lib/user'
+import { getUsers } from '@/data/user'
 import Badge from '@/components/Badge'
 import classNames from 'classnames'
 import EditUserDialog from '../EditUserDialog'

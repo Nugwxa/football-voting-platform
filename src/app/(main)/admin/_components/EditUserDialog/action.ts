@@ -1,8 +1,8 @@
 'use server'
-
 import { readSession } from '@/lib/session'
 import { revalidatePath } from 'next/cache'
-import { updateUser, UpdateUserDTO } from '@/lib/user'
+import { updateUser } from '@/data/user'
+import { UpdateUserDTO } from '@/data/user/types'
 
 /**
  * Handles the edit user form submission.

@@ -3,7 +3,7 @@
 import { EllipsisVerticalIcon } from 'lucide-react'
 import { fetchPlayers } from '@admin/polls/new/_components/CreatePollForm/actions'
 import { handlePollEditForm } from './action'
-import { PollDTO } from '@/lib/poll'
+import { PollDTO } from '@/data/poll/types'
 import { useEffect, useState } from 'react'
 import { useFormState } from 'react-dom'
 import ActionCallout from '@/components/ActionCallout'

@@ -1,10 +1,11 @@
 'use server'
-
-import { getPlayers } from '@/lib/player'
-import { deleteImage, uploadImage } from '@/lib/imgur'
+import { createPoll } from '@/data/poll'
+import { CreatePollDTO } from '@/data/poll/types'
+import { deleteImage, uploadImage } from '@/data/imgur'
+import { getPlayers } from '@/data/player'
 import { readSession } from '@/lib/session'
 import { revalidatePath } from 'next/cache'
-import { createPoll, CreatePollDTO } from '@/lib/poll'
+
 /**
  * Handles the create poll form submission.
  *

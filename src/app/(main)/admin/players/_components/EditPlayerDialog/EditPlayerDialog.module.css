@@ -4,10 +4,3 @@
   margin-top: var(--space-4);
   gap: var(--space-4);
 }
-.input {
-  background-color: var(--accent-1);
-}
-.inputRow {
-  display: flex;
-  gap: var(--space-4);
-}

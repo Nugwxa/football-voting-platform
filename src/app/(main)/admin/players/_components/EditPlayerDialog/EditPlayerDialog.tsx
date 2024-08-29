@@ -1,9 +1,8 @@
 'use client'
-
 import { EllipsisVerticalIcon } from 'lucide-react'
 import { handlePlayerEditForm } from './action'
-import { PlayerDTO } from '@/lib/player'
-import { positions } from '../../../data'
+import { PlayerDTO } from '@/data/player/types'
+import { positions } from '@admin/data'
 import { useEffect, useState } from 'react'
 import { useFormState } from 'react-dom'
 import ActionCallout from '@/components/ActionCallout'
@@ -75,7 +74,7 @@ export default function EditPlayerDialog(
               First Name <Required />
             </label>
             <input
-              className={styles.input}
+              className={formStyles.whiteBackground}
               placeholder={player.firstName}
               id="firstName"
               name="firstName"
@@ -93,7 +92,7 @@ export default function EditPlayerDialog(
             <input
               placeholder={player.lastName}
               id="lastName"
-              className={styles.input}
+              className={formStyles.whiteBackground}
               name="lastName"
               type="text"
               defaultValue={player.lastName}
@@ -109,7 +108,7 @@ export default function EditPlayerDialog(
             <input
               placeholder={player.key}
               id="key"
-              className={styles.input}
+              className={formStyles.whiteBackground}
               name="key"
               type="text"
               defaultValue={player.key}
@@ -194,12 +193,12 @@ export default function EditPlayerDialog(
           <Button type="submit" mode="border" isWide>
             Save Changes
           </Button>
-        </form>
 
-        {/* Error message display */}
-        {formState.type === 'error' && (
-          <ActionCallout responseObj={formState} isWide />
-        )}
+          {/* Error message display */}
+          {formState.type === 'error' && (
+            <ActionCallout responseObj={formState} isWide />
+          )}
+        </form>
       </div>
     </DialogWindow>
   )
