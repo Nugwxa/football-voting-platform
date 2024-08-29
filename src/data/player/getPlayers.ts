@@ -47,6 +47,7 @@ export async function getPlayers(
       'name-za': [{ firstName: 'desc' }, { lastName: 'desc' }],
       'position-az': [{ position: 'asc' }],
       'position-za': [{ position: 'desc' }],
+      'squad-number': [{ squadNumber: 'asc' }],
     }
 
     // Fetch players from Prisma
