@@ -45,18 +45,18 @@ model Player {
   position    PlayerPositions
   isActive    Boolean
   votes       Vote[]
-  polls       PollPlayer[]
+  polls       Poll[]
 }
 
 model Poll {
-  id          String       @id @default(uuid())
+  id          String   @id @default(uuid())
   title       String
-  description String       @db.Text()
-  startDate   DateTime     @default(now())
+  description String   @db.Text()
+  startDate   DateTime @default(now())
   closingDate DateTime
   img         Json?
   votes       Vote[]
-  players     PollPlayer[]
+  players     Player[]
 }
 
 model Vote {
@@ -67,17 +67,6 @@ model Vote {
   selectedPlayerId String
   selectedPlayer   Player @relation(fields: [selectedPlayerId], references: [id])
   user             User   @relation(fields: [voterId], references: [id])
-}
-
-model PollPlayer {
-  pollId   String
-  poll     Poll   @relation(fields: [pollId], references: [id], onDelete: Cascade)
-  playerId String
-  player   Player @relation(fields: [playerId], references: [id], onDelete: Cascade)
-
-  @@id([pollId, playerId])
-  @@index([pollId])
-  @@index([playerId])
 }
 
 model ResetToken {

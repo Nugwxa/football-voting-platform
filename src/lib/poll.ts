@@ -118,11 +118,7 @@ export async function getPolls(
         closingDate: true,
         img: true,
         title: true,
-        players: {
-          select: {
-            player: true,
-          },
-        },
+        players: true,
       },
       skip,
       take: validPerPage,
@@ -138,10 +134,8 @@ export async function getPolls(
       createdOn: poll.startDate,
       closesOn: poll.closingDate,
       players: poll.players.map((p) => ({
-        ...p.player,
-        img: p.player.img
-          ? (JSON.parse(p.player.img.toString()) as UploadedImage)
-          : null,
+        ...p,
+        img: p.img ? (JSON.parse(p.img.toString()) as UploadedImage) : null,
       })),
     }))
 
@@ -183,11 +177,7 @@ export async function getPoll(
         closingDate: true,
         img: true,
         title: true,
-        players: {
-          select: {
-            player: true,
-          },
-        },
+        players: true,
       },
     })
 
@@ -200,10 +190,8 @@ export async function getPoll(
       createdOn: poll.startDate,
       closesOn: poll.closingDate,
       players: poll.players.map((p) => ({
-        ...p.player,
-        img: p.player.img
-          ? (JSON.parse(p.player.img.toString()) as UploadedImage)
-          : null,
+        ...p,
+        img: p.img ? (JSON.parse(p.img.toString()) as UploadedImage) : null,
       })),
     }
     return pollDTO
@@ -215,8 +203,10 @@ export async function getPoll(
   }
 }
 
-export interface UpdatePollDTO extends Omit<PollDTO, 'img' | 'createdOn'> {
+export interface UpdatePollDTO
+  extends Omit<PollDTO, 'img' | 'createdOn' | 'players'> {
   img: UploadedImage | null | undefined
+  playerIDs: string[]
 }
 
 /**
@@ -227,7 +217,19 @@ export interface UpdatePollDTO extends Omit<PollDTO, 'img' | 'createdOn'> {
 export async function updatePoll(
   updatedPollData: Readonly<UpdatePollDTO>
 ): Promise<ActionResponse> {
-  const { id, title, description, closesOn, players, img } = updatedPollData
+  const { id, title, description, closesOn, playerIDs, img } = updatedPollData
+
+  if (playerIDs.length < 1) {
+    return { type: 'error', message: 'No user in poll' }
+  }
+
+  // Validate player IDs
+  for (const playerId of playerIDs) {
+    const player = await getPlayer({ playerId })
+    if (!player) {
+      return { type: 'error', message: `Invalid player ID: ${playerId}` }
+    }
+  }
 
   const existingPoll = await getPoll({ pollId: id })
 
@@ -245,24 +247,28 @@ export async function updatePoll(
   }
 
   try {
-    await prisma.poll.update({
-      where: {
-        id: id,
-      },
-      data: {
-        title,
-        description,
-        closingDate: closesOn,
-        players: {
-          set: players.map((p) => ({
-            pollId_playerId: {
-              playerId: p.id,
-              pollId: id,
-            },
-          })),
+    await prisma.$transaction([
+      prisma.poll.update({
+        where: { id: id },
+        data: {
+          players: {
+            set: [],
+          },
         },
-      },
-    })
+      }),
+      prisma.poll.update({
+        where: { id: id },
+        data: {
+          title,
+          description,
+          closingDate: closesOn,
+          img: imgData,
+          players: {
+            set: playerIDs.map((playerID) => ({ id: playerID })),
+          },
+        },
+      }),
+    ])
 
     // Delete previous cover image if one was provided
     if (existingPoll.img) {
@@ -288,8 +294,14 @@ export interface CreatePollDTO
  * @returns {Promise<ActionResponse>} - An object indicating the success or failure of the update operation.
  */
 
-export async function createPoll(newPoll: Readonly<CreatePollDTO>) {
+export async function createPoll(
+  newPoll: Readonly<CreatePollDTO>
+): Promise<ActionResponse> {
   const { title, description, closesOn, img, playerIDs } = newPoll
+
+  if (playerIDs.length < 1) {
+    return { type: 'error', message: 'No user in poll' }
+  }
 
   // Validate player IDs
   for (const playerId of playerIDs) {
@@ -318,9 +330,7 @@ export async function createPoll(newPoll: Readonly<CreatePollDTO>) {
         closingDate: closesOn,
         img: imgData,
         players: {
-          create: playerIDs.map((playerId) => ({
-            player: { connect: { id: playerId } },
-          })),
+          connect: playerIDs.map((id) => ({ id })),
         },
       },
     })
