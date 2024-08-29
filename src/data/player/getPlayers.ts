@@ -1,6 +1,6 @@
 'use server'
 import { PlayerDTO } from '@/data/player/types'
-import { Prisma } from '@prisma/client'
+import { $Enums, Prisma } from '@prisma/client'
 import prisma from '@/lib/prisma'
 
 type GetPlayersProps = {
@@ -8,6 +8,8 @@ type GetPlayersProps = {
   sortKey?: string
   page?: number
   perPage?: number
+  position?: $Enums.PlayerPositions
+  isActive?: boolean
   isPaginated?: boolean
 }
 
@@ -17,6 +19,8 @@ type GetPlayersProps = {
  * @param {string} sortKey - The key used to sort the players.
  * @param {number} page - The page number for pagination. Defaults to 1.
  * @param {number} perPage - The number of players to retrieve per page. Defaults to 10.
+ * @param {$Enums.PlayerPositions} position - Filter players by their position.
+ * @param {boolean} isActive - Filter players by their active status.
  * @param {boolean} isPaginated - Whether to paginate the results. Defaults to true.
  * @returns {Promise<PlayerDTO[]>} - A list of players matching the criteria.
  */
@@ -28,6 +32,8 @@ export async function getPlayers(
     sortKey,
     page = 1,
     perPage = 10,
+    position = undefined,
+    isActive = undefined,
     isPaginated = true,
   } = props
 
@@ -60,6 +66,8 @@ export async function getPlayers(
             ],
           },
         ],
+        position,
+        isActive,
       },
       skip: isPaginated ? skip : undefined,
       take: isPaginated ? perPage : undefined,
