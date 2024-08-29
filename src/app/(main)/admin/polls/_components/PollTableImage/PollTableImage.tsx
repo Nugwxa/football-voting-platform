@@ -17,7 +17,7 @@ interface PlayerTableImageProps extends React.ComponentPropsWithoutRef<'div'> {
 export default function PollTableImage(props: Readonly<PlayerTableImageProps>) {
   const { imgUrl, className, link, ...rest } = props
   return (
-    <div className={classNames(className, styles.playerTableImage)} {...rest}>
+    <div className={classNames(className, styles.pollTableImage)} {...rest}>
       <Link href={link} className={styles.imageWrapper}>
         <Image
           className={classNames(styles.image)}
