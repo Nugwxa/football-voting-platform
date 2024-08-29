@@ -61,7 +61,9 @@ export default function EditPlayerDialog(
       setWindowIsOpen={setDialogOpen}
       windowTitle={`Editing ${player.firstName + ' '}${player.lastName}`}
       trigger={
-        <div style={{ display: 'flex' }}>
+        <div
+          style={{ width: 'fit-content', display: 'flex', cursor: 'pointer' }}
+        >
           <EllipsisVerticalIcon />
         </div>
       }

@@ -48,9 +48,11 @@ export default function EditUserDialog(props: Readonly<EditUserDialogProps>) {
       setWindowIsOpen={setDialogOpen}
       windowTitle={`Editing ${user.name}`}
       trigger={
-        <Button icon={<EllipsisVerticalIcon />} mode="transparent">
-          {null}
-        </Button>
+        <div
+          style={{ width: 'fit-content', display: 'flex', cursor: 'pointer' }}
+        >
+          <EllipsisVerticalIcon />
+        </div>
       }
     >
       <div className={styles.editUserDialog}>

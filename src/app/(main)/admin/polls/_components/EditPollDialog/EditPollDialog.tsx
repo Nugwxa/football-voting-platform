@@ -62,7 +62,9 @@ export default function EditPollDialog(props: Readonly<EditPollDialogProps>) {
       setWindowIsOpen={setDialogOpen}
       windowTitle={`Editing ${poll.title}`}
       trigger={
-        <div style={{ display: 'flex', cursor: 'pointer' }}>
+        <div
+          style={{ width: 'fit-content', display: 'flex', cursor: 'pointer' }}
+        >
           <EllipsisVerticalIcon />
         </div>
       }
