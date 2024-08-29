@@ -1,0 +1,68 @@
+.playerCard {
+  aspect-ratio: 3 / 4;
+  background-color: var(--accent-3);
+  border: 1.5px solid var(--accent-4);
+  border-radius: var(--space-4);
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.imageOverlayGradient {
+  background: linear-gradient(to bottom, transparent, var(--accent-12));
+  bottom: 0;
+  height: 50%;
+  opacity: 1;
+  position: absolute;
+  width: 100%;
+  z-index: 2;
+}
+
+.playerImage {
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+  z-index: 1;
+}
+
+.playerCardContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: flex-end;
+  padding: var(--space-4);
+  position: relative;
+  width: 100%;
+  z-index: 4;
+}
+
+.squadNumber {
+  color: var(--accent-7);
+  font-family: var(--font-fjalla-one);
+  font-size: 2rem;
+  left: var(--space-4);
+  position: absolute;
+  top: 10px;
+}
+
+.playerInfoSection {
+  color: var(--accent-2);
+  display: flex;
+  flex-direction: column;
+}
+
+.playerPosition {
+  color: var(--accent-4);
+  font-family: var(--font-fjalla-one);
+}
+
+.playerFirstName {
+  font-style: italic;
+}
+
+.playerLastName {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-top: calc(-1 * var(--space-2));
+}
