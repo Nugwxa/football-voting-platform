@@ -1,0 +1,26 @@
+.pollTableImage {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 54px;
+  overflow: hidden;
+  border-radius: var(--space-1);
+}
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: 0.3s ease-in-out;
+}
+
+.imageWrapper:hover {
+  width: 150%;
+  height: 150%;
+}
+
+.image {
+  object-fit: cover;
+  object-position: center;
+}
