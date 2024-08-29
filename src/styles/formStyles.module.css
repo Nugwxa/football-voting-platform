@@ -10,6 +10,19 @@
   gap: var(--space-1);
 }
 
+.inputRow {
+  width: 100%;
+  display: flex;
+  gap: var(--space-4);
+}
+.inputRow .inputWrapper {
+  flex-grow: 1;
+}
+
+.inputRow input {
+  height: 100%;
+}
+
 .inputWrapper label {
   color: var(--accent-12);
   font-weight: 400;
@@ -27,4 +40,14 @@
 .required {
   color: var(--red-10);
   font-weight: 500;
+}
+
+.whiteBackground {
+  background-color: var(--accent-1);
+}
+
+@media only screen and (max-width: 700px) {
+  .inputRow {
+    flex-direction: column;
+  }
 }

@@ -16,15 +16,57 @@ model Session {
 }
 
 model User {
-  id               String             @id @default(uuid())
+  id               String       @id @default(uuid())
   name             String
-  email            String             @unique
-  isAdmin          Boolean            @default(false)
+  email            String       @unique
+  isAdmin          Boolean      @default(false)
+  isActive         Boolean      @default(true)
   auth             Json
-  VoteRegigtration VoteRegigtration[]
   Session          Session[]
   registrationDate DateTime
   ResetToken       ResetToken[]
+  Vote             Vote[]
+}
+
+enum PlayerPositions {
+  Goalkeeper
+  Defender
+  Midfielder
+  Forward
+}
+
+model Player {
+  id          String          @id @default(uuid())
+  key         String          @unique
+  img         Json?
+  firstName   String
+  lastName    String
+  squadNumber Int?
+  position    PlayerPositions
+  isActive    Boolean
+  votes       Vote[]
+  polls       Poll[]
+}
+
+model Poll {
+  id          String   @id @default(uuid())
+  title       String
+  description String   @db.Text()
+  startDate   DateTime @default(now())
+  closingDate DateTime
+  img         Json?
+  votes       Vote[]
+  players     Player[]
+}
+
+model Vote {
+  id               String @id @default(uuid())
+  pollId           String
+  vote             Poll   @relation(fields: [pollId], references: [id])
+  voterId          String
+  selectedPlayerId String
+  selectedPlayer   Player @relation(fields: [selectedPlayerId], references: [id])
+  user             User   @relation(fields: [voterId], references: [id])
 }
 
 model ResetToken {
@@ -34,23 +76,4 @@ model ResetToken {
   created    DateTime @default(now())
   expiryDate DateTime
   user       User     @relation(fields: [userId], references: [id])
-}
-
-model Vote {
-  id               String             @id @default(uuid())
-  title            String
-  candidates       Json               @default("{\"data\": []}")
-  startDate        DateTime
-  expiryDate       DateTime
-  VoteRegigtration VoteRegigtration[]
-  isEnabled        Boolean            @default(true)
-}
-
-model VoteRegigtration {
-  id                String @id @default(uuid())
-  voteId            String
-  vote              Vote   @relation(fields: [voteId], references: [id])
-  voterId           String
-  selectedCandidate String
-  user              User   @relation(fields: [voterId], references: [id])
 }

@@ -1,6 +1,11 @@
 import ContentWrapper from '@/components/ContentWrapper'
-import HeaderMenu from '@/components/HeaderMenu'
+import PageHeader from '@/components/PageHeader'
 
-export default async function Home() {
-  return <ContentWrapper>Test</ContentWrapper>
+export default async function Page() {
+  return (
+    <>
+      <PageHeader title="Polls" />
+      <ContentWrapper>Content Here</ContentWrapper>
+    </>
+  )
 }

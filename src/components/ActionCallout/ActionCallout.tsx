@@ -30,7 +30,7 @@ export default function ActionCallout(props: Readonly<ActionCalloutProps>) {
   const actionIsSuccessful = responseObj.type === 'success'
 
   // Set the appropriate icon and theme color based on the action's success or failure
-  const calloutIcon = actionIsSuccessful ? CheckIcon : AlertTriangleIcon
+  const calloutIcon = actionIsSuccessful ? <CheckIcon /> : <AlertTriangleIcon />
   const calloutTheme = actionIsSuccessful ? 'green' : 'red'
 
   return (

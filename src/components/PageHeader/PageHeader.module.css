@@ -1,0 +1,23 @@
+.pageHeaderWrapper {
+  background: linear-gradient(rgba(49, 26, 0, 0.2), rgba(49, 26, 0, 0.2)),
+    url('/img/designs/auth_background.png');
+  color: var(--gray-2);
+  padding: var(--space-2) 0;
+}
+
+.pageHeaderContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.baseLink {
+  color: var(--gray-2);
+}
+
+.activeLink {
+  background-color: var(--accent-9);
+}

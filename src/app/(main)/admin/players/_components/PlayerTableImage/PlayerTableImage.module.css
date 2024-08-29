@@ -1,0 +1,25 @@
+.playerTableImage {
+  position: relative;
+  width: 54px;
+  height: 54px;
+}
+
+.imageOverlayGradient {
+  z-index: 3;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 40%;
+  background: linear-gradient(to bottom, transparent, var(--accent-2));
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.alumniPlayer {
+  -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+  filter: grayscale(100%);
+}

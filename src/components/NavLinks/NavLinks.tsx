@@ -38,7 +38,12 @@ export default async function NavLinks(props: Readonly<NavLinks>) {
 
           return (
             <li key={link.href}>
-              <NavItem {...link} mode={mode} styling={styling} />
+              <NavItem
+                {...link}
+                mode={mode}
+                styling={styling}
+                isBold={isBold}
+              />
             </li>
           )
         })}
