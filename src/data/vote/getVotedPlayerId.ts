@@ -1,7 +1,7 @@
 'use server'
 import { getPoll } from '../poll'
-import prisma from '@lib/prisma'
 import { getUser } from '../user'
+import prisma from '@lib/prisma'
 
 interface GetVotedPlayerIdProps {
   userId: string
@@ -15,7 +15,7 @@ interface GetVotedPlayerIdProps {
  * @param {string} pollId - The ID of the poll to check the user's vote in
  * @returns {Promise<string | null>} The ID of the selected player if the user has voted; otherwise, null
  */
-export default async function getVotedPlayerId(
+export async function getVotedPlayerId(
   props: Readonly<GetVotedPlayerIdProps>
 ): Promise<string | null> {
   const { userId, pollId } = props

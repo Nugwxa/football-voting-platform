@@ -20,7 +20,7 @@ interface CreateVoteProps {
  * @param {string} playerId - The ID of the player being voted for.
 
  */
-export default async function createVote(props: Readonly<CreateVoteProps>) {
+export async function createVote(props: Readonly<CreateVoteProps>) {
   const { userId, pollId, playerId } = props
 
   // Read the session to validate the user is authenticated
