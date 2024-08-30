@@ -29,7 +29,7 @@ export default async function Page(props: Readonly<AdminPollsPageProps>) {
   const query = searchParams.query ?? ''
   const sort = searchParams.sort ?? 'created-date-new-old'
 
-  // Count the total number of players based on the search query
+  // Count the total number of polls based on the search query
   const pollCount = await countPolls({ query })
   const perPage = 10
   return (

@@ -1,0 +1,62 @@
+.pollCard {
+  align-items: center;
+  background-color: var(--accent-2);
+  border: 1px solid var(--accent-4);
+  border-radius: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  overflow: hidden;
+  padding: var(--space-4);
+  position: relative;
+  width: 100%;
+}
+
+.coverImageWrapper {
+  aspect-ratio: 4 / 2;
+  border-radius: var(--space-2);
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.coverImage {
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+}
+
+.pollTitle {
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  display: -webkit-box;
+  font-size: 1.25rem;
+  line-clamp: 3;
+  overflow: hidden;
+  text-align: center;
+  text-overflow: ellipsis;
+}
+
+.wrapper {
+  width: 100%;
+  flex-grow: 1;
+  justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.textWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+@media only screen and (max-width: 500px) {
+  .pollTitle {
+    font-size: 1.15rem;
+  }
+}
