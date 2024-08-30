@@ -23,7 +23,7 @@ export default function PollTableImage(props: Readonly<PlayerTableImageProps>) {
           className={classNames(styles.image)}
           priority
           sizes="(max-width: 768px) 100px"
-          src={imgUrl ?? '/img/poll_default.jpeg'}
+          src={imgUrl ?? '/img/poll_default.jpg'}
           alt={`image`}
           fill
         />
