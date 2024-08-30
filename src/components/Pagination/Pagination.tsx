@@ -1,6 +1,6 @@
 'use client'
 import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import * as React from 'react'
 import Button from '../Button'
 import classNames from 'classnames'
@@ -22,16 +22,17 @@ interface PaginationProps extends React.ComponentPropsWithoutRef<'div'> {
 export default function Pagination(props: Readonly<PaginationProps>) {
   const { totalPages, className, ...rest } = props
   const router = useRouter()
+  const searchParams = useSearchParams()
 
   const [currentPage, setCurrentPage] = React.useState(1)
 
   // Initialize the current page based on the URL query parameter
   React.useEffect(() => {
-    const params = new URLSearchParams(window.location.search)
+    const params = new URLSearchParams(searchParams.toString())
     const page = parseInt(params.get('page') ?? '1')
     // Set the current page, ensuring it's at least 1
     setCurrentPage(page > 0 ? page : 1)
-  }, [router])
+  }, [router, searchParams])
 
   /**
    * Handles the click event for page buttons.
