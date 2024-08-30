@@ -2,7 +2,7 @@
   aspect-ratio: 3 / 4;
   background-color: var(--accent-3);
   border: 1.5px solid var(--accent-4);
-  border-radius: var(--space-4);
+  border-radius: var(--space-2);
   overflow: hidden;
   position: relative;
   width: 100%;
