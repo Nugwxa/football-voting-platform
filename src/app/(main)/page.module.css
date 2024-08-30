@@ -1,0 +1,28 @@
+.headingAcionWrapper {
+  background-color: white;
+  border-bottom: 2px solid var(--accent-3);
+}
+
+.headingAcionSection {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+.activeFilterLink {
+  font-weight: 600;
+  color: var(--accent-8);
+}
+
+.pollCardsWrapper {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: repeat(2, 1fr);
+  width: 100%;
+}
+
+@media only screen and (max-width: 700px) {
+  .pollCardsWrapper {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
