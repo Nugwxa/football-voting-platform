@@ -31,12 +31,27 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
   display: -webkit-box;
-  font-family: var(--font-poppins);
   font-size: 1.25rem;
   line-clamp: 3;
   overflow: hidden;
   text-align: center;
   text-overflow: ellipsis;
+}
+
+.wrapper {
+  flex-grow: 1;
+  justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.textWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
 }
 
 @media only screen and (max-width: 500px) {

@@ -30,29 +30,33 @@ export default async function PollCard(
             className={styles.coverImage}
             priority
             sizes="(max-width: 768px) 768px"
-            src={poll.imgURL ?? '/img/poll_default.jpeg'}
+            src={poll.imgURL ?? '/img/poll_default.jpg'}
             alt={`${poll.title}`}
             fill
           />
         </Link>
       </div>
 
-      {/* Poll title*/}
-      <h3 className={styles.pollTitle} title={poll.title}>
-        <Link href={`/poll/${poll.id}`}>{poll.title}</Link>
-      </h3>
+      <div className={styles.wrapper}>
+        <div className={styles.textWrapper}>
+          {/* Poll title*/}
+          <h3 className={styles.pollTitle} title={poll.title}>
+            <Link href={`/poll/${poll.id}`}>{poll.title}</Link>
+          </h3>
 
-      {/* Display a badge if the poll is closed, otherwise show a
-     countdown to the close date */}
-      {poll.closesOn < now ? (
-        <Badge data-theme="red">Closed</Badge>
-      ) : (
-        <Countdown key={poll.id} targetDate={poll.closesOn} />
-      )}
+          {/* Display a badge if the poll is closed, otherwise show a
+           countdown to the close date */}
+          {poll.closesOn < now ? (
+            <Badge data-theme="red">Closed</Badge>
+          ) : (
+            <Countdown key={poll.id} targetDate={poll.closesOn} />
+          )}
+        </div>
 
-      <Button as={Link} href={`/poll/${poll.id}`} isWide isBold>
-        View Poll
-      </Button>
+        <Button as={Link} href={`/poll/${poll.id}`} isWide isBold>
+          View Poll
+        </Button>
+      </div>
     </div>
   )
 }
