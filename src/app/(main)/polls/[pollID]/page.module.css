@@ -1,0 +1,40 @@
+.headingSectionWrapper {
+  position: relative;
+  aspect-ratio: 4 / 1.5;
+}
+.coverImage {
+  z-index: 1;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+}
+
+.pollTitle {
+  font-size: 2rem;
+}
+
+.playersWrapper {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: repeat(4, 1fr);
+  width: 100%;
+}
+
+@media only screen and (max-width: 1200px) {
+  .playersWrapper {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .playersWrapper {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .playersWrapper {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

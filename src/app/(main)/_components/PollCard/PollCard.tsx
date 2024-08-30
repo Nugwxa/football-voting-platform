@@ -21,10 +21,10 @@ export default async function PollCard(
   const { poll, ...rest } = props
   const now = new Date()
   return (
-    <div className={styles.pollCard}>
+    <div className={styles.pollCard} {...rest}>
       <div className={styles.coverImageWrapper}>
         {/* Poll cover image*/}
-        <Link href={`/poll/${poll.id}`}>
+        <Link href={`/polls/${poll.id}`}>
           <Image
             key={poll.id}
             className={styles.coverImage}
@@ -41,7 +41,7 @@ export default async function PollCard(
         <div className={styles.textWrapper}>
           {/* Poll title*/}
           <h3 className={styles.pollTitle} title={poll.title}>
-            <Link href={`/poll/${poll.id}`}>{poll.title}</Link>
+            <Link href={`/polls/${poll.id}`}>{poll.title}</Link>
           </h3>
 
           {/* Display a badge if the poll is closed, otherwise show a
@@ -53,7 +53,7 @@ export default async function PollCard(
           )}
         </div>
 
-        <Button as={Link} href={`/poll/${poll.id}`} isWide isBold>
+        <Button as={Link} href={`/polls/${poll.id}`} isWide isBold>
           View Poll
         </Button>
       </div>

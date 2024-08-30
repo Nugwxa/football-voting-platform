@@ -1,0 +1,33 @@
+.voteResultBar {
+  background: linear-gradient(
+    90deg,
+    var(--accent-8) var(--vote-percent, 50%),
+    var(--accent-12) var(--vote-percent, 50%)
+  );
+
+  align-items: center;
+  border-radius: var(--space-2);
+  border: none;
+  color: var(--gray-1);
+  display: flex;
+  font-weight: 700;
+  gap: var(--space-2);
+  justify-content: center;
+  padding: var(--space-3);
+  width: 100%;
+}
+
+.playerVoteCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.selectedPlayer {
+  background: var(--green-3) !important;
+  border-color: var(--green-4) !important;
+}
+
+.disabled {
+  opacity: 0.6;
+}

@@ -12,10 +12,10 @@ type SearchParam = {
   page?: string
   filter?: string
 }
-interface AdminUsersPageProps {
+interface PollsPageProps {
   searchParams: SearchParam
 }
-export default async function Page(props: Readonly<AdminUsersPageProps>) {
+export default async function Page(props: Readonly<PollsPageProps>) {
   const { searchParams } = props
   const page = searchParams.page ?? 1
   const filter = searchParams.filter ?? 'open'
