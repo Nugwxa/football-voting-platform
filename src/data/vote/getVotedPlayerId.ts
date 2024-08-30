@@ -36,8 +36,15 @@ export default async function getVotedPlayerId(
         voterId: userId,
       },
     })
+    if (!userVote) return null
 
-    return userVote?.selectedPlayerId ?? null
+    // Check if the selected player is still part of the poll
+    const isPlayerInPoll = poll.players.some(
+      (player) => player.id === userVote.selectedPlayerId
+    )
+
+    // Return the ID of the selected player if they are still part of the poll; otherwise, return null
+    return isPlayerInPoll ? userVote.selectedPlayerId : null
   } catch (e) {
     console.error(
       `User vote check database error: ${e instanceof Error ? e.message : e}`
