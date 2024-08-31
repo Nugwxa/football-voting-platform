@@ -1,10 +1,9 @@
 'use server'
-
-import supabase from '@/lib/supabaseClient'
 import { CreateUserDTO } from './types'
 import { getUser } from './getUser'
 import prisma from '@/lib/prisma'
-import supabaseAdmin from '@/lib/supabaseAdminClient'
+import supabaseAdmin from '@/lib/supabase/supabaseAdmin'
+import supabaseServer from '@/lib/supabase/supabaseServer'
 
 export async function createUser(
   newUser: Readonly<CreateUserDTO>
@@ -15,6 +14,8 @@ export async function createUser(
   if (existingUser) {
     return { type: 'error', message: 'Email in use' }
   }
+
+  const supabase = supabaseServer()
 
   const {
     data: { user },
@@ -51,7 +52,7 @@ export async function createUser(
 
 async function deleteIncompleteUser(userId: string) {
   try {
-    await supabaseAdmin.auth.admin.deleteUser(userId)
+    await supabaseAdmin().auth.admin.deleteUser(userId)
   } catch (error) {
     console.error('Error deleting incomplete user from Supabase:', error)
   }
