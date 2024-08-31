@@ -1,4 +1,5 @@
 'use server'
+import { getUser } from '@/data/user'
 import supabaseServer from '@/lib/supabase/supabaseServer'
 
 /**
@@ -20,6 +21,23 @@ export async function sendResetLink(
   const supabase = supabaseServer()
 
   try {
+    const existingUserWithEmail = await getUser({ userEmail: email })
+
+    if (!existingUserWithEmail) {
+      return {
+        type: 'success',
+        message: 'Password reset link sent! Please check your email.',
+      }
+    }
+
+    if (!existingUserWithEmail.isActive) {
+      return {
+        type: 'error',
+        message:
+          'Your account has been disabled. Please contact support for assistance.',
+      }
+    }
+
     // Attempt to send a password reset link to the specified email
     const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
       redirectTo: `${process.env.HOST_URL}/auth/reset/confirm`,
@@ -34,10 +52,12 @@ export async function sendResetLink(
     }
 
     // Handle any error that occurs during the password reset request
-    if (error) console.error('Send password reset link error:', error)
-    return {
-      type: 'error',
-      message: 'Error sending password reset: Please try again later.',
+    if (error) {
+      console.error('Send password reset link error:', error)
+      return {
+        type: 'error',
+        message: 'Error sending password reset: Please try again later.',
+      }
     }
   } catch (error) {
     console.error('Unexpected error:', error)
