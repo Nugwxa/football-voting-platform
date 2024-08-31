@@ -3,6 +3,7 @@ import { createUser } from '@/data/user'
 import { redirect } from 'next/navigation'
 
 export async function handleRegistrationForm(
+  redirectTo: string,
   prevState: any,
   formData: FormData
 ): Promise<ActionResponse> {
@@ -48,5 +49,5 @@ export async function handleRegistrationForm(
       message: response.message,
     }
 
-  redirect('/auth/login')
+  redirect(redirectTo)
 }
