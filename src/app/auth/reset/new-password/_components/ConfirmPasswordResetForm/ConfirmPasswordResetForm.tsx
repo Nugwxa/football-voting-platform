@@ -6,17 +6,24 @@ import Button from '@/components/Button'
 import formStyles from '@styles/formStyles.module.css'
 import Required from '@/components/Required'
 
+interface ConfirmPasswordResetFormProps {
+  redirectTo?: string
+}
+
 /**
  * Renders a form for confirming a new password.
  */
-export default function ConfirmPasswordResetForm() {
+export default function ConfirmPasswordResetForm(
+  props: Readonly<ConfirmPasswordResetFormProps>
+) {
+  const { redirectTo } = props
   // Initial state for the form's action response.
   const initialFormState: ActionResponse = {
     type: 'idle',
     message: '',
   }
-
-  const [formState, formAction] = useFormState(resetPassword, initialFormState)
+  const boundAction = resetPassword.bind(null, redirectTo ?? '/')
+  const [formState, formAction] = useFormState(boundAction, initialFormState)
   return (
     <>
       <form action={formAction} className={formStyles.form}>
@@ -45,7 +52,7 @@ export default function ConfirmPasswordResetForm() {
         </div>
 
         <Button
-          disabled={formState.type === 'success'}
+          disabled={formState && formState.type === 'success'}
           type="submit"
           isWide
           isBold

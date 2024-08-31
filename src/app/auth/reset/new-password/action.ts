@@ -2,17 +2,11 @@
 import { redirect } from 'next/navigation'
 import supabaseServer from '@/lib/supabase/supabaseServer'
 
-/**
- * Handles the password reset process by validating the new password and updating the user password.
- *
- * @param {any} prevState - The previous state
- * @param {FormData} formData - The form data containing the new password and its confirmation.
- */
 export async function resetPassword(
+  redirectTo: string,
   prevState: any,
   formData: FormData
 ): Promise<ActionResponse> {
-  // Extract and validate password and confirm password fields from form data.
   const password = formData.get('new-password')?.toString()
   const confirmPassword = formData.get('confirm-password')?.toString()
 
@@ -37,28 +31,24 @@ export async function resetPassword(
   const supabase = supabaseServer()
 
   try {
-    // Attempt to update the user's password in Supabase.
     const { data, error } = await supabase.auth.updateUser({
       password: password,
     })
 
-    // Check if no data is returned, which may indicate an issue.
     if (!data) {
-      console.error(
-        'Unexpected response: No data received after password reset request.'
-      )
+      console.error('User password reset error')
       return {
         type: 'error',
-        message: 'Error changing password: No response data.',
+        message: 'Error changing password',
       }
     }
 
-    // Check for errors in the response.
     if (error) {
-      console.error('Password update error:', error) // Log the error for debugging purposes.
+      console.error('Error From auth: ', error)
+
       return {
         type: 'error',
-        message: 'Error changing password: Please try again later.',
+        message: `Error changing password: ${error.message}`,
       }
     }
   } catch (error) {
@@ -70,6 +60,10 @@ export async function resetPassword(
     }
   }
 
-  // Redirect to the homepage after a successful password reset.
-  redirect('/')
+  redirect(redirectTo ?? '/')
+
+  return {
+    type: 'success',
+    message: 'Password changed',
+  }
 }
