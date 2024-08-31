@@ -10,7 +10,7 @@ export type UserDTO = {
 export interface UpdateUserDTO extends Omit<UserDTO, 'registrationDate'> {}
 
 export type CreateUserDTO = {
-  id: string
   name: string
   email: string
+  password: string
 }
