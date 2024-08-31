@@ -3,28 +3,18 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
-}
-
-model Session {
-  id         String   @id @default(uuid())
-  userId     String
-  user       User     @relation(fields: [userId], references: [id])
-  startDate  DateTime
-  expiryDate DateTime
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 model User {
-  id               String       @id @default(uuid())
+  id               String   @id @default(uuid())
   name             String
-  email            String       @unique
-  isAdmin          Boolean      @default(false)
-  isActive         Boolean      @default(true)
-  auth             Json
-  Session          Session[]
-  registrationDate DateTime
-  ResetToken       ResetToken[]
+  email            String   @unique
+  isAdmin          Boolean  @default(false)
+  isActive         Boolean  @default(true)
+  registrationDate DateTime @default(now())
   Vote             Vote[]
 }
 
@@ -67,13 +57,4 @@ model Vote {
   selectedPlayerId String
   selectedPlayer   Player @relation(fields: [selectedPlayerId], references: [id])
   user             User   @relation(fields: [voterId], references: [id])
-}
-
-model ResetToken {
-  id         String   @id @default(uuid())
-  userId     String
-  isUsed     Boolean  @default(false)
-  created    DateTime @default(now())
-  expiryDate DateTime
-  user       User     @relation(fields: [userId], references: [id])
 }
