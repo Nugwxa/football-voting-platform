@@ -28,10 +28,10 @@ export async function handleSignInForm(
       }
     }
   } catch (e: any) {
-    console.log('Error: ', e)
+    console.error('Error: ', e)
     return {
       type: 'error',
-      message: 'Error logging in', // Update message later
+      message: 'Error logging in',
     }
   }
   redirect(redirectTo)

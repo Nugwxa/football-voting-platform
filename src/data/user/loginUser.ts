@@ -1,7 +1,7 @@
 'use server'
 import { getUser } from './getUser'
 import { LoginUserDTO } from './types'
-import supabase from '@/lib/supabaseClient'
+import supabaseServer from '@/lib/supabase/supabaseServer'
 
 /**
  * Logs in a user by email and password.
@@ -16,7 +16,6 @@ export async function loginUser(
   props: Readonly<LoginUserDTO>
 ): Promise<ActionResponse> {
   const { email, password } = props
-
   // Check if the user exists
   const existingUser = await getUser({ userEmail: email })
 
@@ -36,10 +35,14 @@ export async function loginUser(
     }
   }
 
+  const supabase = supabaseServer()
+
   const { data, error } = await supabase.auth.signInWithPassword({
     email,
     password,
   })
+
+  // console.log(data.session)
 
   if (error) {
     console.error('Error during sign-in attempt:', error.message)
