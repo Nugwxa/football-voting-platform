@@ -23,10 +23,10 @@ export async function GET(request: Request) {
     })
 
     if (error || !data) {
-      console.error('Error verifying OTP:', error)
+      console.error('Error verifying OTP: ', error)
       // Redirect to an error page or handle error response
       return NextResponse.redirect(
-        new URL('/?eror=error-verifying', request.url)
+        new URL('/?error=error-verifying', request.url)
       )
     }
 
@@ -36,7 +36,7 @@ export async function GET(request: Request) {
       new URL('/auth/reset/new-password', request.url)
     )
   } catch (error) {
-    console.error('Server error during verification:', error)
+    console.error('Server error during verification: ', error)
     // Handle server errors, potentially redirect to an error page
     return NextResponse.redirect(new URL('/?error=server-error', request.url))
   }
