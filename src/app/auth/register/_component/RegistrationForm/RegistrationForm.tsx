@@ -1,7 +1,6 @@
 'use client'
-import { createUser } from '../../action'
+import { handleRegistrationForm } from '../../action'
 import { useFormState } from 'react-dom'
-import { useRouter } from 'next/navigation'
 import formStyles from '@styles/formStyles.module.css'
 import Required from '@/components/Required'
 import Button from '@/components/Button'
@@ -13,15 +12,10 @@ export default function RegistrationForm() {
     message: '',
   }
 
-  const [formState, formAction] = useFormState(createUser, initialFormState)
-
-  //   Redirect the user once their account has been created
-  const router = useRouter()
-  if (formState.type === 'success') {
-    setTimeout(() => {
-      router.push('/auth/login')
-    }, 5000)
-  }
+  const [formState, formAction] = useFormState(
+    handleRegistrationForm,
+    initialFormState
+  )
 
   return (
     <>

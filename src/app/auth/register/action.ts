@@ -1,15 +1,15 @@
 'use server'
-import crypto from 'crypto'
-import prisma from '@lib/prisma'
+import { createUser } from '@/data/user'
+import { redirect } from 'next/navigation'
 
-export async function createUser(
+export async function handleRegistrationForm(
   prevState: any,
   formData: FormData
 ): Promise<ActionResponse> {
-  const name = formData.get('name')
-  const email = formData.get('email')
-  const password = formData.get('password')
-  const confirmPassword = formData.get('confirm_password')
+  const name = formData.get('name')?.toString()
+  const email = formData.get('email')?.toString()
+  const password = formData.get('password')?.toString()
+  const confirmPassword = formData.get('confirm_password')?.toString()
 
   if (!name || !email || !password || !confirmPassword) {
     return {
@@ -18,20 +18,7 @@ export async function createUser(
     }
   }
 
-  const usersWithSpecifiedEmail = await prisma.user.count({
-    where: {
-      email: email as string,
-    },
-  })
-
-  if (usersWithSpecifiedEmail > 0) {
-    return {
-      type: 'error',
-      message: 'Email already in use',
-    }
-  }
-
-  const isValidName = /^[a-zA-Z\s\.\-]+$/.test(name as string)
+  const isValidName = /^[a-zA-Z\s\.\-]+$/.test(name)
 
   if (!isValidName) {
     return {
@@ -53,42 +40,13 @@ export async function createUser(
     }
   }
 
-  //   Generate Salt & Hash The User's Password
-  const passwordSalt = crypto.randomBytes(64)
-  const passwordHash = crypto
-    .pbkdf2Sync(
-      password as string,
-      passwordSalt.toString('hex'),
-      10000,
-      256 / 8,
-      'sha256'
-    )
-    .toString('base64')
+  const response = await createUser({ email, password, name })
 
-  const authObject = {
-    passwordHash: passwordHash,
-    passwordSalt: passwordSalt.toString('hex'),
-  }
-  const now = new Date()
-  try {
-    await prisma.user.create({
-      data: {
-        name: name as string,
-        email: email as string,
-        auth: JSON.stringify(authObject),
-        registrationDate: now,
-      },
-    })
-  } catch (e: any) {
-    console.error(e)
+  if (response.type === 'error')
     return {
       type: 'error',
-      message: 'Error creating account',
+      message: response.message,
     }
-  }
 
-  return {
-    type: 'success',
-    message: 'Account created, you will be redirected to the login page',
-  }
+  redirect('/auth/login')
 }
