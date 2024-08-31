@@ -1,5 +1,5 @@
 'use client'
-import { loginUser } from '../../action'
+import { handleSignInForm } from '../../action'
 import { useFormState } from 'react-dom'
 import ActionCallout from '@/components/ActionCallout'
 import Button from '@/components/Button'
@@ -16,7 +16,7 @@ export default function LoginForm(props: Readonly<LoginFormProps>) {
     type: 'idle',
     message: '',
   }
-  const boundAction = loginUser.bind(null, redirectTo ?? '/')
+  const boundAction = handleSignInForm.bind(null, redirectTo ?? '/')
   const [formState, formAction] = useFormState(boundAction, initialFormState)
   return (
     <>
