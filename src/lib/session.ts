@@ -1,40 +1,45 @@
 'use server'
-import { cookies } from 'next/headers'
-import prisma from '@lib/prisma'
+import { revalidatePath } from 'next/cache'
+import prisma from './prisma'
+import supabaseServer from './supabase/supabaseServer'
 
 /**
- * Retrieves the user's session data from the cookie.
- *
- * @returns {null} Returns null if the session cookie is missing, the session is expired, or an error occurs during the database query.
- * @returns {Object} The session data
+ *Reads the current user session and retrieves user details if the session is valid.
  */
 export async function readSession() {
-  const cookieName = 'tally-token'
-  const cookie = cookies().get(cookieName)
-
-  // Check if the cookie is present and has a valid value
-  if (!cookie?.value) return null
-
-  //   Search for a session that matches the cookie value
-  let session
   try {
-    session = await prisma.session.findUnique({
+    const supabase = supabaseServer()
+
+    const {
+      data: { user },
+      error,
+    } = await supabase.auth.getUser()
+
+    if (error) {
+      console.error('Error retrieving session:', error.message)
+      return null
+    }
+
+    if (!user) {
+      console.error('No user from session')
+      return null
+    }
+
+    const sessionUser = await prisma.user.findUnique({
       where: {
-        id: cookie.value,
-      },
-      select: {
-        id: true,
-        expiryDate: true,
-        user: {
-          select: {
-            id: true,
-            name: true,
-            email: true,
-            isAdmin: true,
-          },
-        },
+        id: user.id,
       },
     })
+
+    if (!sessionUser || !sessionUser.isActive) return null
+    return {
+      user: {
+        id: user.id,
+        name: sessionUser.name,
+        email: sessionUser.email,
+        isAdmin: sessionUser.isAdmin,
+      },
+    }
   } catch (e) {
     if (e instanceof Error) {
       console.error(`Session database error: ${e.message}`)
@@ -43,60 +48,26 @@ export async function readSession() {
     }
     return null
   }
-
-  const now = new Date()
-  // Check if session exists and is not expired
-  if (!session || session.expiryDate < now) return null
-
-  // Return session object
-  return {
-    id: session.id,
-    user: {
-      id: session.user.id,
-      name: session.user.name,
-      email: session.user.email,
-      isAdmin: session.user.isAdmin,
-    },
-  }
 }
 
 /**
- * Invalidates the user's session by setting its expiry date in the past.
+ * Ends the current user session and optionally revalidates to a specified path.
+ *
+ * @param {string} path - Optional path to revalidate after sign-out.
  */
-export async function endSession() {
-  // Retrieve the user's session
-  const session = await readSession()
-
-  // If no session is found, exit the function early.
-  if (!session) {
-    return
-  }
-
-  // Create a new Date object representing the current date and time
-  // and modify the date to be 7 days in the past.
-  const now = new Date()
-
-  now.setDate(now.getDate() - 7)
-
+export async function endSession(path?: string) {
   try {
-    // Update the session in the database, setting its expiryDate to 7 days ago.
-    await prisma.session.update({
-      where: {
-        id: session.id,
-      },
-      data: {
-        expiryDate: now,
-      },
-    })
-  } catch (e) {
-    // If an error occurs during the session update, log it to the console.
-    // Handle the error based on its type.
-    if (e instanceof Error) {
-      console.error(
-        `Session deletion failed for session ID ${session.id}: ${e.message}`
-      )
-    } else {
-      console.error(`Session deletion failed for session ID ${session.id}`, e)
+    const supabase = supabaseServer()
+
+    const { error } = await supabase.auth.signOut()
+    if (error) {
+      console.error('Error during sign-out:', error.message)
+      return
     }
+    if (path) {
+      revalidatePath(path)
+    }
+  } catch (error) {
+    console.error('Unexpected error during sign-out process:', error)
   }
 }

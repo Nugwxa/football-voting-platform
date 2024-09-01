@@ -1,58 +1,63 @@
 'use client'
-import { handleSignInForm } from '../../action'
+import { resetPassword } from '../../action'
 import { useFormState } from 'react-dom'
 import ActionCallout from '@/components/ActionCallout'
 import Button from '@/components/Button'
 import formStyles from '@styles/formStyles.module.css'
-import Link from 'next/link'
 import Required from '@/components/Required'
 
-interface LoginFormProps {
+interface ConfirmPasswordResetFormProps {
   redirectTo?: string
 }
-export default function LoginForm(props: Readonly<LoginFormProps>) {
+
+/**
+ * Renders a form for confirming a new password.
+ */
+export default function ConfirmPasswordResetForm(
+  props: Readonly<ConfirmPasswordResetFormProps>
+) {
   const { redirectTo } = props
+  // Initial state for the form's action response.
   const initialFormState: ActionResponse = {
     type: 'idle',
     message: '',
   }
-  const boundAction = handleSignInForm.bind(null, redirectTo ?? '/')
+  const boundAction = resetPassword.bind(null, redirectTo ?? '/')
   const [formState, formAction] = useFormState(boundAction, initialFormState)
   return (
     <>
       <form action={formAction} className={formStyles.form}>
         <div className={formStyles.inputWrapper}>
-          <label htmlFor="email">
-            Email Address <Required />
+          <label htmlFor="new-password">
+            New Password <Required />
           </label>
           <input
-            placeholder="your@email.com"
-            id="email"
-            name="email"
-            type="email"
+            id="new-password"
+            name="new-password"
+            type="password"
             required
           />
         </div>
-        <div className={formStyles.inputWrapper}>
-          <label htmlFor="password">
-            Password <Required />
-          </label>
-          <input id="password" name="password" type="password" required />
-        </div>
 
         <div className={formStyles.inputWrapper}>
-          <Link className={formStyles.anchorSpan} href={'/auth/reset'}>
-            Forgot Password
-          </Link>
+          <label htmlFor="confirm-password">
+            Confirm New Password <Required />
+          </label>
+          <input
+            id="confirm-password"
+            name="confirm-password"
+            type="password"
+            required
+          />
         </div>
 
         <Button
-          disabled={formState.type === 'success'}
+          disabled={formState && formState.type === 'success'}
           type="submit"
           isWide
           isBold
         >
-          SIGN IN
+          CHANGE PASSWORD
         </Button>
 
         <ActionCallout responseObj={formState} isWide />

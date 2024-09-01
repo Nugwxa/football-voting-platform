@@ -1,27 +1,25 @@
 'use client'
-import { createUser } from '../../action'
+import { handleRegistrationForm } from '../../action'
 import { useFormState } from 'react-dom'
-import { useRouter } from 'next/navigation'
+import ActionCallout from '@/components/ActionCallout'
+import Button from '@/components/Button'
 import formStyles from '@styles/formStyles.module.css'
 import Required from '@/components/Required'
-import Button from '@/components/Button'
-import ActionCallout from '@/components/ActionCallout'
 
-export default function RegistrationForm() {
+interface RegistrationFormProps {
+  redirectTo?: string
+}
+export default function RegistrationForm(
+  props: Readonly<RegistrationFormProps>
+) {
+  const { redirectTo } = props
   const initialFormState: ActionResponse = {
     type: 'idle',
     message: '',
   }
 
-  const [formState, formAction] = useFormState(createUser, initialFormState)
-
-  //   Redirect the user once their account has been created
-  const router = useRouter()
-  if (formState.type === 'success') {
-    setTimeout(() => {
-      router.push('/auth/login')
-    }, 5000)
-  }
+  const boundAction = handleRegistrationForm.bind(null, redirectTo ?? '/')
+  const [formState, formAction] = useFormState(boundAction, initialFormState)
 
   return (
     <>

@@ -21,6 +21,7 @@ interface LoginPageProps {
 export default async function Page(props: Readonly<LoginPageProps>) {
   const { searchParams } = props
   const redirectTo = searchParams.redirect
+
   return (
     <div className={authStyle.authContentContainer}>
       <AuthNavButtonsWrapper className={authStyle.authNavButtonPositioning} />

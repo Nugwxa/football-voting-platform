@@ -10,11 +10,20 @@ export const metadata: Metadata = {
   title: 'Register | Team 9 Voting',
   description: 'Welcome! Register to begin voting',
 }
-export default async function Page() {
+type SearchParams = {
+  redirect?: string
+}
+
+interface RegisterPageProps {
+  searchParams: SearchParams
+}
+export default async function Page(props: Readonly<RegisterPageProps>) {
+  const { searchParams } = props
+  const redirectTo = searchParams.redirect
   return (
     <div className={authStyle.authContentContainer}>
       <AuthNavButtonsWrapper className={authStyle.authNavButtonPositioning} />
-      <RegistrationForm />
+      <RegistrationForm redirectTo={redirectTo} />
 
       <Divider />
 
