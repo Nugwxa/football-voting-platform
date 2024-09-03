@@ -16,7 +16,9 @@ export async function readSession() {
     } = await supabase.auth.getUser()
 
     if (error) {
-      console.error('Error retrieving session:', error.message)
+      if (error.message !== 'Auth session missing!') {
+        console.error('Error retrieving session:', error.message)
+      }
       return null
     }
 
