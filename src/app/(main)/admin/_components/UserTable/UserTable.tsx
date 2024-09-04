@@ -1,5 +1,6 @@
 'use server'
 import { getUsers } from '@/data/user'
+import { readSession } from '@/lib/session'
 import Badge from '@/components/Badge'
 import classNames from 'classnames'
 import EditUserDialog from '../EditUserDialog'
@@ -23,6 +24,9 @@ interface UserTableProps extends React.ComponentPropsWithoutRef<'div'> {
 export default async function UserTable(props: Readonly<UserTableProps>) {
   const { className, page, query, sort, ...rest } = props
 
+  const session = await readSession()
+
+  if (!session) return null
   // Fetch users from the database excluding the current user
   const users = await getUsers({ page: page, query: query, sortKey: sort })
   const usersArePresent = users.length > 0
@@ -89,7 +93,11 @@ export default async function UserTable(props: Readonly<UserTableProps>) {
                   </td>
 
                   <td>
-                    <EditUserDialog user={user} />
+                    {/* Prevent admins from editing the main accont or their accounts */}
+                    {user.email !== process.env.MAIN_EMAIL ||
+                      (user.id === session.user.id && (
+                        <EditUserDialog user={user} />
+                      ))}
                   </td>
                 </tr>
               )
