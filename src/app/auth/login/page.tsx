@@ -30,8 +30,8 @@ export default async function Page(props: Readonly<LoginPageProps>) {
       <Divider />
 
       <div className={authStyle.authFooterSection}>
-        Don't have an account?
-        <Link className={formStyles.anchorSpan} href={'/auth/register'}>
+        Don&apos;t have an account?
+        <Link className={formStyles.anchorSpan} href="/auth/register">
           Register Now
         </Link>
       </div>
