@@ -6,4 +6,5 @@ export type PlayerCardDTO = {
   position: $Enums.PlayerPositions
   imgUrl?: string
   squadNumber: number | null
+  isActive?: boolean
 }

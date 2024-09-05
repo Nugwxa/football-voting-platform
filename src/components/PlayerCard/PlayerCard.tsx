@@ -19,7 +19,8 @@ export default async function PlayerCard(
   props: Readonly<PlayerCardProps>
 ): Promise<JSX.Element> {
   const { player, className, ...rest } = props
-  const { firstName, lastName, position, imgUrl, squadNumber } = player
+  const { firstName, lastName, position, imgUrl, squadNumber, isActive } =
+    player
   return (
     <div className={classNames(className, styles.playerCard)} {...rest}>
       {/* Display the player's squad number if available */}
@@ -43,7 +44,9 @@ export default async function PlayerCard(
 
       {/* Display the player's image or a placeholder if not available */}
       <Image
-        className={classNames(styles.playerImage)}
+        className={classNames(styles.playerImage, {
+          [styles.alumniPlayer]: isActive === false,
+        })}
         priority
         sizes="(max-width: 768px) 768px"
         src={imgUrl ?? '/img/vacant.png'}
