@@ -26,6 +26,11 @@
   z-index: 1;
 }
 
+.alumniPlayer {
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
+
 .playerCardContainer {
   display: flex;
   flex-direction: column;

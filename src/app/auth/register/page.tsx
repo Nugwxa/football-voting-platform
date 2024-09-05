@@ -7,7 +7,7 @@ import Link from 'next/link'
 import RegistrationForm from './_component/RegistrationForm'
 
 export const metadata: Metadata = {
-  title: 'Register | Team 9 Voting',
+  title: 'Register',
   description: 'Welcome! Register to begin voting',
 }
 type SearchParams = {

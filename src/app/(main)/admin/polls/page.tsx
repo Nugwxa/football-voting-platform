@@ -12,7 +12,7 @@ import PollTable from './_components/PollTable/PollTable'
 import SearchInput from '@/components/SearchInput'
 
 export const metadata: Metadata = {
-  title: 'Polls (Admin) | Team 9 Voting',
+  title: 'Polls (Admin)',
 }
 
 type SearchParam = {

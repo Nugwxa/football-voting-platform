@@ -13,7 +13,7 @@ import SearchInput from '@/components/SearchInput'
 import styles from './page.module.css'
 
 export const metadata: Metadata = {
-  title: 'Players (Admin) | Team 9 Voting',
+  title: 'Players (Admin)',
 }
 
 type SearchParam = {

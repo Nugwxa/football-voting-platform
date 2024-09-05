@@ -15,9 +15,9 @@
 }
 
 .baseLink {
-  color: var(--gray-2);
+  color: var(--gray-2) !important;
 }
 
 .activeLink {
-  background-color: var(--accent-9);
+  background-color: var(--accent-9) !important;
 }

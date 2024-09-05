@@ -57,6 +57,15 @@ export async function handlePlayerCreateForm(
     }
   }
 
+  const isValidKey = /^[a-zA-Z-]+$/.test(key)
+
+  if (!isValidKey) {
+    return {
+      type: 'error',
+      message: 'The key can only contain letters and hyphens (-).',
+    }
+  }
+
   if (isActive && !squadNumber) {
     return {
       type: 'error',

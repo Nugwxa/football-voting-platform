@@ -41,6 +41,7 @@ export default async function PlayerVoteCard(
     squadNumber: null,
     imgUrl: player.img?.link,
     position: player.position,
+    isActive: player.isActive,
   }
 
   // Determine if the card should be disabled based on poll state and winner status
@@ -51,10 +52,12 @@ export default async function PlayerVoteCard(
   // Check if poll is closed or if the user has already voted
   if (pollIsClosed || selectedPlayerId) {
     // Get the vote percentage for the player
-    const playerVotePercent = await getPlayerVotePercent({
-      playerId: player.id,
-      pollId,
-    })
+    const playerVotePercent = Math.round(
+      await getPlayerVotePercent({
+        playerId: player.id,
+        pollId,
+      })
+    )
 
     // Render the vote result bar with the calculated percentage
     interactiveItem = (

@@ -7,7 +7,7 @@ import LoginForm from './_components/LoginForm'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Sign In | Team 9 Voting',
+  title: 'Sign In',
   description: 'Welcome back! Sign in to continue voting',
 }
 type SearchParams = {

@@ -6,13 +6,12 @@ import { handlePollEditForm } from './action'
 import { PollDTO } from '@/data/poll/types'
 import { useEffect, useState } from 'react'
 import { useFormState } from 'react-dom'
-import ActionCallout from '@/components/ActionCallout'
-import Button from '@/components/Button'
 import DialogWindow from '@/components/DialogWindow'
 import formStyles from '@styles/formStyles.module.css'
 import ReactSelectAsync from '@/components/ReactSelectAsync'
 import Required from '@/components/Required'
 import styles from './EditPollDialog.module.css'
+import SubmitButton from '@/components/SubmitButton'
 import Switch from '@/components/Switch'
 
 interface EditPollDialogProps {
@@ -172,14 +171,11 @@ export default function EditPollDialog(props: Readonly<EditPollDialogProps>) {
             />
           </div>
 
-          <Button type="submit" mode="border" isWide>
-            Save Changes
-          </Button>
-
-          {/* Error message display */}
-          {formState.type === 'error' && (
-            <ActionCallout responseObj={formState} isWide />
-          )}
+          <SubmitButton
+            label="Save Changes"
+            actionCondition={formState.type === 'error'}
+            formState={formState}
+          />
         </form>
       </div>
     </DialogWindow>

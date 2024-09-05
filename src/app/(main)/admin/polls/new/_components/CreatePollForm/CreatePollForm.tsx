@@ -1,11 +1,10 @@
 'use client'
 import { fetchPlayers, handlePollCreateForm } from './actions'
 import { useFormState } from 'react-dom'
-import ActionCallout from '@/components/ActionCallout'
-import Button from '@/components/Button'
 import formStyles from '@styles/formStyles.module.css'
 import ReactSelectAsync from '@/components/ReactSelectAsync'
 import Required from '@/components/Required'
+import SubmitButton from '@/components/SubmitButton'
 
 /**
  * Renders a form to create a new poll
@@ -108,11 +107,11 @@ export default function CreatePollForm() {
           />
         </div>
 
-        <Button type="submit" mode="border" isWide>
-          Create Poll
-        </Button>
-
-        <ActionCallout responseObj={formState} isWide />
+        <SubmitButton
+          label="Create Poll"
+          actionCondition={true}
+          formState={formState}
+        />
       </form>
     </>
   )

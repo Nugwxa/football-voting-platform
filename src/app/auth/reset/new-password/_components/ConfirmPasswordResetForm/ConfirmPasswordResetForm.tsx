@@ -1,10 +1,9 @@
 'use client'
 import { resetPassword } from '../../action'
 import { useFormState } from 'react-dom'
-import ActionCallout from '@/components/ActionCallout'
-import Button from '@/components/Button'
 import formStyles from '@styles/formStyles.module.css'
 import Required from '@/components/Required'
+import SubmitButton from '@/components/SubmitButton'
 
 interface ConfirmPasswordResetFormProps {
   redirectTo?: string
@@ -51,16 +50,12 @@ export default function ConfirmPasswordResetForm(
           />
         </div>
 
-        <Button
-          disabled={formState && formState.type === 'success'}
-          type="submit"
-          isWide
+        <SubmitButton
+          label="CHANGE PASSWORD"
+          actionCondition={true}
+          formState={formState}
           isBold
-        >
-          CHANGE PASSWORD
-        </Button>
-
-        <ActionCallout responseObj={formState} isWide />
+        />
       </form>
     </>
   )
