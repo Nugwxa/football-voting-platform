@@ -1,9 +1,9 @@
 'use client'
-
+import { ReactNode } from 'react'
 import { useFormStatus } from 'react-dom'
+import ActionCallout from '../ActionCallout'
 import Button from '../Button'
 import classNames from 'classnames'
-import { ReactNode } from 'react'
 
 interface SubmitButtonProps {
   className?: string
@@ -11,16 +11,18 @@ interface SubmitButtonProps {
   mode?: 'border' | 'transparent' | 'solid'
   isWide?: boolean
   isBold?: boolean
-  children: JSX.Element
+  actionCondition: boolean
+  formState: ActionResponse
 }
 export default function SubmitButton(props: Readonly<SubmitButtonProps>) {
   const {
     className,
-    children,
     mode = 'border',
     isBold = false,
     isWide = true,
     label,
+    actionCondition,
+    formState,
   } = props
   const { pending } = useFormStatus()
   return (
@@ -36,7 +38,9 @@ export default function SubmitButton(props: Readonly<SubmitButtonProps>) {
         {label}
       </Button>
 
-      {!pending && <>{children}</>}
+      {!pending && actionCondition && (
+        <ActionCallout responseObj={formState} isWide />
+      )}
     </>
   )
 }
