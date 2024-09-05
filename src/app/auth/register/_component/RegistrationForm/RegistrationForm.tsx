@@ -1,10 +1,9 @@
 'use client'
 import { handleRegistrationForm } from '../../action'
 import { useFormState } from 'react-dom'
-import ActionCallout from '@/components/ActionCallout'
-import Button from '@/components/Button'
 import formStyles from '@styles/formStyles.module.css'
 import Required from '@/components/Required'
+import SubmitButton from '@/components/SubmitButton'
 
 interface RegistrationFormProps {
   redirectTo?: string
@@ -79,16 +78,12 @@ export default function RegistrationForm(
           />
         </div>
 
-        <Button
-          disabled={formState.type === 'success'}
-          type="submit"
-          isWide
+        <SubmitButton
+          label="REGISTER"
+          actionCondition={true}
+          formState={formState}
           isBold
-        >
-          REGISTER
-        </Button>
-
-        <ActionCallout responseObj={formState} isWide />
+        />
       </form>
     </>
   )

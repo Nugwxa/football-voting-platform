@@ -3,11 +3,10 @@ import { handlePlayerCreateForm } from './actions'
 import { positions } from '@admin/data'
 import { useFormState } from 'react-dom'
 import { useState } from 'react'
-import ActionCallout from '@/components/ActionCallout'
-import Button from '@/components/Button'
 import formStyles from '@styles/formStyles.module.css'
 import ReactSelect from '@/components/ReactSelect'
 import Required from '@/components/Required'
+import SubmitButton from '@/components/SubmitButton'
 import Switch from '@/components/Switch'
 
 /**
@@ -150,11 +149,11 @@ export default function CreatePlayerForm() {
         </div>
       )}
 
-      <Button type="submit" mode="border" isWide>
-        Create Player
-      </Button>
-
-      <ActionCallout responseObj={formState} isWide />
+      <SubmitButton
+        label="Create Player"
+        actionCondition={true}
+        formState={formState}
+      />
     </form>
   )
 }

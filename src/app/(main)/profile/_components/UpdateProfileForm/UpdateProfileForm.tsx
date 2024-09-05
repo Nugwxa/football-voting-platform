@@ -1,10 +1,9 @@
 'use client'
 import { handleProfileUpdateForm } from '../actions'
-import { useFormState, useFormStatus } from 'react-dom'
-import ActionCallout from '@/components/ActionCallout'
-import Button from '@/components/Button'
+import { useFormState } from 'react-dom'
 import formStyles from '@styles/formStyles.module.css'
 import Required from '@/components/Required'
+import SubmitButton from '@/components/SubmitButton'
 
 interface UpdateProfileFormProps {
   user: {
@@ -58,19 +57,11 @@ export default function UpdateProfileForm(
           required
         />
       </div>
-      <SubmitButton />
-      {formState.type !== 'idle' && (
-        <ActionCallout responseObj={formState} isWide />
-      )}
+      <SubmitButton
+        label="Save Changes"
+        actionCondition={true}
+        formState={formState}
+      />
     </form>
-  )
-}
-
-function SubmitButton() {
-  const { pending } = useFormStatus()
-  return (
-    <Button disabled={pending} type="submit" mode="border" isWide>
-      Save Changes
-    </Button>
   )
 }

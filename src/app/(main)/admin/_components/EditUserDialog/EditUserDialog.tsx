@@ -4,12 +4,11 @@ import { handleUserEditForm } from './action'
 import { useEffect, useState } from 'react'
 import { useFormState } from 'react-dom'
 import { UserDTO } from '@/data/user/types'
-import ActionCallout from '@/components/ActionCallout'
-import Button from '@/components/Button'
 import DialogWindow from '@/components/DialogWindow'
 import formStyles from '@styles/formStyles.module.css'
 import Required from '@/components/Required'
 import styles from './EditUserDialog.module.css'
+import SubmitButton from '@/components/SubmitButton'
 import Switch from '@/components/Switch'
 
 interface EditUserDialogProps {
@@ -104,15 +103,12 @@ export default function EditUserDialog(props: Readonly<EditUserDialogProps>) {
             </div>
           </div>
 
-          <Button type="submit" mode="border" isWide>
-            Save Changes
-          </Button>
+          <SubmitButton
+            label="Save Changes"
+            actionCondition={formState.type === 'error'}
+            formState={formState}
+          />
         </form>
-
-        {/* Error message display */}
-        {formState.type === 'error' && (
-          <ActionCallout responseObj={formState} isWide />
-        )}
       </div>
     </DialogWindow>
   )

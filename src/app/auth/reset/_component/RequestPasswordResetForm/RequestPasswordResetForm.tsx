@@ -1,10 +1,9 @@
 'use client'
 import { sendResetLink } from '../../action'
 import { useFormState } from 'react-dom'
-import ActionCallout from '@/components/ActionCallout'
-import Button from '@/components/Button'
 import formStyles from '@styles/formStyles.module.css'
 import Required from '@/components/Required'
+import SubmitButton from '@/components/SubmitButton'
 
 export default function RequestPasswordResetForm() {
   const initialFormState: ActionResponse = {
@@ -23,16 +22,12 @@ export default function RequestPasswordResetForm() {
           <input id="email" name="email" type="email" required />
         </div>
 
-        <Button
-          disabled={formState.type === 'success'}
-          type="submit"
-          isWide
+        <SubmitButton
+          label="REQUEST PASSWORD RESET"
+          actionCondition={true}
+          formState={formState}
           isBold
-        >
-          REQUEST PASSWORD RESET
-        </Button>
-
-        <ActionCallout responseObj={formState} isWide />
+        />
       </form>
     </>
   )

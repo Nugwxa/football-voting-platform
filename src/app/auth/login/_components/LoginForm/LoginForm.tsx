@@ -1,11 +1,10 @@
 'use client'
 import { handleSignInForm } from '../../action'
 import { useFormState } from 'react-dom'
-import ActionCallout from '@/components/ActionCallout'
-import Button from '@/components/Button'
 import formStyles from '@styles/formStyles.module.css'
 import Link from 'next/link'
 import Required from '@/components/Required'
+import SubmitButton from '@/components/SubmitButton'
 
 interface LoginFormProps {
   redirectTo?: string
@@ -46,16 +45,12 @@ export default function LoginForm(props: Readonly<LoginFormProps>) {
           </Link>
         </div>
 
-        <Button
-          disabled={formState.type === 'success'}
-          type="submit"
-          isWide
+        <SubmitButton
+          label="SIGN IN"
+          actionCondition={true}
+          formState={formState}
           isBold
-        >
-          SIGN IN
-        </Button>
-
-        <ActionCallout responseObj={formState} isWide />
+        />
       </form>
     </>
   )
