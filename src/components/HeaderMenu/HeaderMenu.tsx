@@ -41,7 +41,7 @@ export default async function HeaderMenu() {
               <Image
                 priority
                 sizes="(max-width: 768px) 40px"
-                src={'/img/team9_logo.png'}
+                src={'https://imgur.com/a/ypTI7jo'}
                 alt="Team 9 Logo"
                 fill
               />
