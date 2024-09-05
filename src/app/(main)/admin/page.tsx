@@ -9,7 +9,7 @@ import SearchInput from '@/components/SearchInput'
 import UserTable from './_components/UserTable'
 
 export const metadata: Metadata = {
-  title: 'Users (Admin) | Team 9 Voting',
+  title: 'Users (Admin)',
 }
 
 type SearchParam = {

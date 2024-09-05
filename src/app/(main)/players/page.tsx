@@ -4,7 +4,7 @@ import PageHeader from '@/components/PageHeader'
 import PlayerGroup from './_components/PlayerGroup'
 
 export const metadata: Metadata = {
-  title: 'Players | Team 9 Voting',
+  title: 'Players',
   description: 'View the team',
 }
 

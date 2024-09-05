@@ -5,7 +5,7 @@ import CreatePollForm from './_components/CreatePollForm'
 import PageHeader from '@/components/PageHeader'
 
 export const metadata: Metadata = {
-  title: 'New Poll (Admin) | Team 9 Voting',
+  title: 'New Poll (Admin)',
 }
 export default async function Page() {
   return (

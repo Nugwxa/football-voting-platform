@@ -5,7 +5,7 @@ import CreatePlayerForm from './_components/CreatePlayerForm'
 import PageHeader from '@/components/PageHeader'
 
 export const metadata: Metadata = {
-  title: 'New Player (Admin) | Team 9 Voting',
+  title: 'New Player (Admin)',
 }
 export default async function Page() {
   return (
