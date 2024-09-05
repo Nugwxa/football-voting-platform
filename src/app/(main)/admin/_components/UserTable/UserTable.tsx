@@ -94,10 +94,10 @@ export default async function UserTable(props: Readonly<UserTableProps>) {
 
                   <td>
                     {/* Prevent admins from editing the main accont or their accounts */}
-                    {user.email !== process.env.MAIN_EMAIL ||
-                      (user.id === session.user.id && (
-                        <EditUserDialog user={user} />
-                      ))}
+                    {(user.email !== process.env.MAIN_EMAIL ||
+                      user.id !== session.user.id) && (
+                      <EditUserDialog user={user} />
+                    )}
                   </td>
                 </tr>
               )
