@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Football Voting Platform
+A web app that provides seamless and interactive way for fans to vote for their favorite players suring events.
 
-## Getting Started
+## Tech Stack
 
-First, run the development server:
+- **Framework**: Next.js
+- **Language**: TypeScript
+- **Styling**: CSS Modules
+- **UI Library**: Radix UI
+- **Icons**: Lucide Icons
+- **ORM**: Prisma
+- **Database & Auth**: Supabase
+- **Image Hosting**: Imgur
+- **Hosting**: Vercel
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **User Authentication**:  
+  - Users can register with their name, email, and password.
+  - Secure login and logout functionality.
+  - Users can update their account details (email, password).
+  - Admins can create and manage polls and players.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Player Management (Admins Only)**:
+  - Add, edit, and remove player information.
+  - Set players as active or alumni.
+  - Upload and manage player images, numbers and positions.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+![Player table](https://github.com/user-attachments/assets/514b483e-1590-4e8e-a7a3-f6d9d3e49121)
 
-## Learn More
+- **Poll Management (Admins Only)**:
+  - Create and edit polls with titles, descriptions, and expiry dates.
+  - Add players to polls with unlimited entries.
 
-To learn more about Next.js, take a look at the following resources:
+- **Voting System**:
+  - Users must be logged in to vote.
+  - Poll results are shown to users once a vote is cast.
+  - Poll results are shown to everyone once the poll is closed.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+![Poll result](https://github.com/user-attachments/assets/bb84722e-99a0-47ce-8fdb-53312ebfe1d7)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Installation
 
-## Deploy on Vercel
+To run the project locally, follow these steps:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Clone the repo:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+   ```bash
+   git clone https://github.com/nugwxa/football-voting-platform.git
+   cd football-voting-platform
+2. Install dependencies:
+
+   ```bash
+   npm install
+3. Update your .env file with the values from the .env.example file.
+4. Run the development server :
+
+   ```bash
+   npm run dev
+5. Open [http://localhost:3000](http://localhost:3000) to view the application.
