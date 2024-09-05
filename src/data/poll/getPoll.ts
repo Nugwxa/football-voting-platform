@@ -32,7 +32,11 @@ export async function getPoll(
         closingDate: true,
         img: true,
         title: true,
-        players: true,
+        players: {
+          orderBy: {
+            lastName: 'asc',
+          },
+        },
       },
     })
 

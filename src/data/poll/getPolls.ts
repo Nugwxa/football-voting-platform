@@ -67,7 +67,11 @@ export async function getPolls(
         closingDate: true,
         img: true,
         title: true,
-        players: true,
+        players: {
+          orderBy: {
+            lastName: 'asc',
+          },
+        },
       },
       skip,
       take: validPerPage,
