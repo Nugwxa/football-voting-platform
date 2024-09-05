@@ -25,7 +25,7 @@ export async function generateMetadata({
   const poll = await getPoll({ pollId: params.pollID ?? '' })
 
   // Fallbacks in case poll data is missing
-  const metaTitle = `${poll ? poll.title + ' | ' : ''}Team9 Voting`
+  const metaTitle = `${poll ? poll.title : 'Team 9 Voting'}`
   const metaDescription =
     poll?.description ||
     'Check out this poll and vote for your favorite player.'
