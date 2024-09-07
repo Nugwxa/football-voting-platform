@@ -1,5 +1,5 @@
 # Football Voting Platform
-A web app that provides seamless and interactive way for fans to vote for their favorite players suring events.
+A web app that provides a seamless and interactive way for fans to vote for their favorite players during events.
 
 ## Tech Stack
 
