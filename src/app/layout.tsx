@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     siteName: 'Team 9 Voting',
     images: [
       {
-        url: `${process.env.HOST_URL}/img/team9_logo.png`,
+        url: `https://i.imgur.com/CvH47Tx.png`,
         width: 500,
         height: 500,
         alt: 'Team 9 Logo',
