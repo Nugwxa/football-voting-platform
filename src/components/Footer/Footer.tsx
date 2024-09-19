@@ -35,7 +35,7 @@ export default async function Footer() {
           Built By{' '}
           <Link
             className={style.nameScribble}
-            href={'https://www.linkedin.com/in/ojabba/'}
+            href={'https://nugwxa.vercel.app/'}
             target="_blank"
           >
             OJ Abba
