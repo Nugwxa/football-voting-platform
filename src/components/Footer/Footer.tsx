@@ -1,10 +1,10 @@
 'use server'
 
-import Link from 'next/link'
+import { GlobeIcon, MailIcon } from 'lucide-react'
 import Button from '../Button'
 import ContentWrapper from '../ContentWrapper'
+import Link from 'next/link'
 import style from './Footer.module.css'
-import { GlobeIcon, MailIcon } from 'lucide-react'
 
 export default async function Footer() {
   return (
@@ -14,6 +14,7 @@ export default async function Footer() {
           <Button
             style={{ color: 'inherit' }}
             icon={<GlobeIcon />}
+            aria-label="View The Team Website"
             as={Link}
             mode="transparent"
             href={'#'}
@@ -24,6 +25,7 @@ export default async function Footer() {
           <Button
             style={{ color: 'inherit' }}
             icon={<MailIcon />}
+            aria-label="Send An Email To Us"
             as={Link}
             mode="transparent"
             href={'#'}

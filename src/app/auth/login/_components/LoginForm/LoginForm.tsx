@@ -46,7 +46,7 @@ export default function LoginForm(props: Readonly<LoginFormProps>) {
         </div>
 
         <SubmitButton
-          label="SIGN IN"
+          label="Sign In"
           actionCondition={true}
           formState={formState}
           isBold

@@ -51,7 +51,7 @@ export default function ConfirmPasswordResetForm(
         </div>
 
         <SubmitButton
-          label="CHANGE PASSWORD"
+          label="Change Password"
           actionCondition={true}
           formState={formState}
           isBold

@@ -32,6 +32,8 @@ export default async function HeaderMenu() {
       viewCondition: isAdmin,
     },
   ]
+
+  const logoURL = 'https://i.imgur.com/LvLcYPz.png'
   return (
     <div className={styles.contentWrapper}>
       <div className={styles.contentContainer}>
@@ -41,7 +43,7 @@ export default async function HeaderMenu() {
               <Image
                 priority
                 sizes="(max-width: 768px) 40px"
-                src={'https://i.imgur.com/CvH47Tx.png'}
+                src={logoURL}
                 alt="Team 9 Logo"
                 fill
               />
@@ -55,7 +57,7 @@ export default async function HeaderMenu() {
                 <Image
                   priority
                   sizes="(max-width: 768px) 58px"
-                  src={'https://i.imgur.com/CvH47Tx.png'}
+                  src={logoURL}
                   alt="Team 9 Logo"
                   fill
                 />

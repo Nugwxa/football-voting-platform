@@ -23,7 +23,7 @@ export default function RequestPasswordResetForm() {
         </div>
 
         <SubmitButton
-          label="REQUEST PASSWORD RESET"
+          label="Request Password Reset"
           actionCondition={true}
           formState={formState}
           isBold

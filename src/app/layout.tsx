@@ -47,12 +47,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        data-theme="gold"
+        data-theme="gray"
         className={classNames(fjallaOne.variable, poppins.variable)}
       >
         <Theme
           className="themeWrapper"
-          accentColor="gold"
+          accentColor="gray"
           hasBackground={false}
         >
           {children}

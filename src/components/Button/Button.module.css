@@ -16,8 +16,8 @@
 }
 
 .icon {
-  display: flex;
   align-items: center;
+  display: flex;
   justify-content: center;
 }
 
@@ -30,9 +30,9 @@
 }
 
 .borderButton {
-  background-color: var(--accent-3);
+  background-color: var(--accent-7);
   border: 1px solid var(--accent-5);
-  color: var(--accent-9);
+  color: var(--accent-12);
 }
 
 .transparentButton {
@@ -41,6 +41,6 @@
   padding: var(--space-2);
 }
 .button:disabled {
-  opacity: 0.6;
   cursor: not-allowed;
+  opacity: 0.6;
 }

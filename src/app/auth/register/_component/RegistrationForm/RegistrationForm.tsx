@@ -79,7 +79,7 @@ export default function RegistrationForm(
         </div>
 
         <SubmitButton
-          label="REGISTER"
+          label="Register"
           actionCondition={true}
           formState={formState}
           isBold

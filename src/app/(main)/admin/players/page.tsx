@@ -46,7 +46,7 @@ export default async function Page(props: Readonly<AdminPlayersPageProps>) {
 
           <Button
             icon={<PlusIcon />}
-            className={styles.adminButton}
+            className={adminStyles.adminButton}
             as={Link}
             href={'/admin/players/new'}
             mode="border"

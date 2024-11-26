@@ -12,9 +12,8 @@
 }
 
 .authNavButtonActive {
-  color: var(--orange-5);
-
-  background-color: var(--accent-12);
+  color: var(--blue-2);
+  background-color: var(--blue-12);
 }
 
 @media only screen and (max-width: 550px) {
