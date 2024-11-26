@@ -1,17 +1,16 @@
 .pageHeaderWrapper {
-  background: linear-gradient(rgba(49, 26, 0, 0.2), rgba(49, 26, 0, 0.2)),
-    url('/img/designs/auth_background.png') !important;
+  background: var(--blue-11);
   color: var(--gray-2) !important;
   padding: var(--space-2) 0 !important;
 }
 
 .pageHeaderContainer {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
   align-items: center;
-  gap: var(--space-4);
+  display: flex;
   flex-wrap: wrap;
+  gap: var(--space-4);
+  justify-content: space-between;
+  width: 100%;
 }
 
 .baseLink {
@@ -19,5 +18,6 @@
 }
 
 .activeLink {
-  background-color: var(--accent-9) !important;
+  background-color: var(--accent-1) !important;
+  color: var(--blue-12) !important;
 }
