@@ -14,7 +14,7 @@ export default function AuthLayout({
           <Image
             priority
             sizes="(max-width: 768px) 58px"
-            src={'https://i.imgur.com/CvH47Tx.png'}
+            src={'https://i.imgur.com/LvLcYPz.png'}
             alt="Team 9 Logo"
             fill
           />
