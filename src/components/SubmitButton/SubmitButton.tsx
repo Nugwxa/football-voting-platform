@@ -13,6 +13,7 @@ interface SubmitButtonProps {
   isBold?: boolean
   actionCondition: boolean
   formState: ActionResponse
+  dataTheme?: string
 }
 export default function SubmitButton(props: Readonly<SubmitButtonProps>) {
   const {
@@ -23,11 +24,13 @@ export default function SubmitButton(props: Readonly<SubmitButtonProps>) {
     label,
     actionCondition,
     formState,
+    dataTheme = 'blue',
   } = props
   const { pending } = useFormStatus()
   return (
     <>
       <Button
+        data-theme={dataTheme}
         className={classNames(className)}
         disabled={pending}
         type="submit"
