@@ -43,7 +43,7 @@
 }
 
 .squadNumber {
-  color: var(--accent-7);
+  color: var(--accent-9);
   font-family: var(--font-fjalla-one);
   font-size: 2rem;
   left: var(--space-4);
