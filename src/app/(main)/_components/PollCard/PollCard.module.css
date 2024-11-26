@@ -1,8 +1,8 @@
 .pollCard {
   align-items: center;
   background-color: var(--accent-2);
-  border: 1px solid var(--accent-4);
   border-radius: var(--space-4);
+  border: 1px solid var(--accent-4);
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
@@ -35,24 +35,34 @@
   line-clamp: 3;
   overflow: hidden;
   text-align: center;
+  font-weight: 600;
   text-overflow: ellipsis;
+  text-align: left;
 }
 
 .wrapper {
-  width: 100%;
-  flex-grow: 1;
-  justify-content: space-between;
+  align-items: start;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  flex-grow: 1;
   gap: var(--space-4);
+  justify-content: space-between;
+  width: 100%;
 }
 
 .textWrapper {
+  align-items: start;
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: var(--space-4);
+  text-align: left;
+  width: 100%;
+}
+
+.wrapperBanner {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 @media only screen and (max-width: 500px) {

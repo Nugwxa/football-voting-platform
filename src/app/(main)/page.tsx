@@ -62,6 +62,7 @@ export default async function Page(props: Readonly<PollsPageProps>) {
               imgURL: poll.img?.link,
               closesOn: poll.closesOn,
               title: poll.title,
+              description: poll.description,
             }
             return <PollCard key={poll.id} poll={pollObj} />
           })}
