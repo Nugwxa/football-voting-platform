@@ -22,7 +22,7 @@ export async function loginUser(
   if (!existingUser) {
     return {
       type: 'error',
-      message: 'No account found with the provided email address.',
+      message: 'Invalid login credentials',
     }
   }
 
