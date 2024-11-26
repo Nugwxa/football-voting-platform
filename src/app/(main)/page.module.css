@@ -1,9 +1,9 @@
-.headingAcionWrapper {
+.headingActionWrapper {
   background-color: white;
   border-bottom: 2px solid var(--accent-3);
 }
 
-.headingAcionSection {
+.headingActionSection {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-4);

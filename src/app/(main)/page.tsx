@@ -33,8 +33,8 @@ export default async function Page(props: Readonly<PollsPageProps>) {
     <>
       <PageHeader title="Polls" />
 
-      <ContentWrapper className={styles.headingAcionWrapper}>
-        <section className={styles.headingAcionSection} key={filter}>
+      <ContentWrapper className={styles.headingActionWrapper}>
+        <section className={styles.headingActionSection} key={filter}>
           <Link
             className={classNames({
               [styles.activeFilterLink]: filter !== 'closed',
@@ -67,10 +67,10 @@ export default async function Page(props: Readonly<PollsPageProps>) {
             return <PollCard key={poll.id} poll={pollObj} />
           })}
         </section>
-      </ContentWrapper>
 
-      {/* Pagination component to navigate through pages */}
-      <Pagination totalPages={Math.ceil(pollCount / perPage)} />
+        {/* Pagination component to navigate through pages */}
+        <Pagination totalPages={Math.ceil(pollCount / perPage)} />
+      </ContentWrapper>
     </>
   )
 }
