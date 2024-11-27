@@ -26,7 +26,8 @@ A web app that provides a seamless and interactive way for fans to vote for thei
   - Set players as active or alumni.
   - Upload and manage player images, numbers and positions.
 
-![Player table](https://github.com/user-attachments/assets/514b483e-1590-4e8e-a7a3-f6d9d3e49121)
+![Player table](https://github.com/user-attachments/assets/33077b13-d154-4a76-bc08-f41396f57518)
+
 
 - **Poll Management (Admins Only)**:
   - Create and edit polls with titles, descriptions, and expiry dates.
@@ -37,7 +38,7 @@ A web app that provides a seamless and interactive way for fans to vote for thei
   - Poll results are shown to users once a vote is cast.
   - Poll results are shown to everyone once the poll is closed.
 
-![Poll result](https://github.com/user-attachments/assets/bb84722e-99a0-47ce-8fdb-53312ebfe1d7)
+![Poll result](https://github.com/user-attachments/assets/f7bf1352-a2bc-4bde-99c8-93a402dcfdcc)
 
 ## Installation
 
