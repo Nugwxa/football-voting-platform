@@ -41,7 +41,7 @@ export default async function Page(props: Readonly<AdminPlayersPageProps>) {
           {/* Search input for filtering players */}
           <SearchInput
             className={adminStyles.searchInput}
-            placeholder="Search players ..."
+            placeholder="Search players"
           />
 
           <Button

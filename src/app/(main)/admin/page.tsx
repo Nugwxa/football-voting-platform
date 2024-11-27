@@ -38,7 +38,7 @@ export default async function Page(props: Readonly<AdminUsersPageProps>) {
           {/* Search input for filtering users */}
           <SearchInput
             className={adminStyles.searchInput}
-            placeholder="Search users ..."
+            placeholder="Search users"
           />
         </section>
 
