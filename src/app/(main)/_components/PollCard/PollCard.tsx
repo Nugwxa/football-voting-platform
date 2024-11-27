@@ -39,21 +39,32 @@ export default async function PollCard(
 
       <div className={styles.wrapper}>
         <div className={styles.textWrapper}>
-          {/* Poll title*/}
-          <h3 className={styles.pollTitle} title={poll.title}>
-            <Link href={`/polls/${poll.id}`}>{poll.title}</Link>
-          </h3>
-
+          {/* Countdown/Badge */}
           {/* Display a badge if the poll is closed, otherwise show a
            countdown to the close date */}
-          {poll.closesOn < now ? (
-            <Badge data-theme="red">Closed</Badge>
-          ) : (
-            <Countdown key={poll.id} targetDate={poll.closesOn} />
-          )}
+          <div className={styles.wrapperBanner}>
+            {poll.closesOn < now ? (
+              <Badge data-theme="red">Closed</Badge>
+            ) : (
+              <Countdown key={poll.id} targetDate={poll.closesOn} />
+            )}
+          </div>
+
+          {/* Poll title*/}
+          <div className={styles.pollTitle} title={poll.title}>
+            <Link href={`/polls/${poll.id}`}>{poll.title}</Link>
+          </div>
+
+          <div>{poll.description}</div>
         </div>
 
-        <Button as={Link} href={`/polls/${poll.id}`} isWide isBold>
+        <Button
+          data-theme="blue"
+          as={Link}
+          href={`/polls/${poll.id}`}
+          isWide
+          isBold
+        >
           View Poll
         </Button>
       </div>

@@ -179,6 +179,7 @@ export default function Pagination(props: Readonly<PaginationProps>) {
           onClick={handlePrevious}
           disabled={currentPage === 1}
           icon={<ChevronLeftIcon />}
+          aria-label="Previous Page"
         >
           {null}
         </Button>
@@ -191,6 +192,7 @@ export default function Pagination(props: Readonly<PaginationProps>) {
           mode="border"
           onClick={handleNext}
           disabled={currentPage === totalPages}
+          aria-label="Next Page"
           icon={<ChevronRightIcon />}
         >
           {null}

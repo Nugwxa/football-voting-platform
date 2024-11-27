@@ -3,4 +3,5 @@ export interface PollCardDTO {
   title: string
   imgURL?: string
   closesOn: Date
+  description: string
 }
