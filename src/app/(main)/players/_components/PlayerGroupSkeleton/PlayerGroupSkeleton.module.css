@@ -1,0 +1,5 @@
+.title {
+  height: 60px;
+  background-color: var(--accent-4);
+  width: min(100%, 120px);
+}

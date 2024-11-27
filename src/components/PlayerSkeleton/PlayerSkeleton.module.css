@@ -1,0 +1,6 @@
+.playerSkeleton {
+  width: 100%;
+  aspect-ratio: 2/2.3;
+  background-color: var(--accent-4);
+  border-radius: var(--space-4);
+}
