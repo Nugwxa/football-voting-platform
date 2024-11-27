@@ -1,8 +1,8 @@
 .pollCard {
   align-items: center;
   background-color: var(--accent-2);
-  border-radius: var(--space-4);
   border: 1px solid var(--accent-4);
+  border-radius: var(--space-4);
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
