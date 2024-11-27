@@ -40,7 +40,7 @@ export default async function Page(props: Readonly<AdminPollsPageProps>) {
           {/* Search input for filtering polls */}
           <SearchInput
             className={adminStyles.searchInput}
-            placeholder="Search polls ..."
+            placeholder="Search polls"
           />
 
           <Button

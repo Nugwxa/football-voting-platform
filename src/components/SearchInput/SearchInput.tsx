@@ -62,7 +62,11 @@ export default function SearchInput(props: Readonly<SearchInputProps>) {
   }
   return (
     <div className={classNames(className, styles.searchInputWrapper)} {...rest}>
-      <SearchIcon onClick={handleIconClick} className={styles.inputIcon} />
+      <SearchIcon
+        size={16}
+        onClick={handleIconClick}
+        className={styles.inputIcon}
+      />
       <input
         className={styles.inputField}
         onChange={handleInputChange}

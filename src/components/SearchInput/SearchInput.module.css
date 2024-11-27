@@ -1,22 +1,23 @@
 .searchInputWrapper {
-  display: flex;
   align-items: center;
+  display: flex;
   position: relative;
 }
 .inputIcon {
+  color: var(--accent-7);
   margin-left: var(--space-3);
   position: absolute;
-  color: var(--accent-7);
 }
 
 .inputField {
-  width: 100%;
-  padding: var(--space-2);
-  padding-left: var(--space-7);
-  font: inherit;
+  background-color: var(--accent-1);
   border-radius: var(--space-2);
   color: var(--accent-9);
-  background-color: var(--accent-1);
+  font: inherit;
+  font-size: 1rem;
+  padding: var(--space-2);
+  padding-left: var(--space-6);
+  width: 100%;
 }
 
 .inputField::placeholder {
