@@ -1,11 +1,12 @@
-import { countPolls, getPolls } from '@/data/poll'
-import { PollCardDTO } from './_components/PollCard/types'
+import { countPolls } from '@/data/poll'
+import { Suspense } from 'react'
 import classNames from 'classnames'
 import ContentWrapper from '@/components/ContentWrapper'
 import Link from 'next/link'
 import PageHeader from '@/components/PageHeader'
 import Pagination from '@/components/Pagination'
-import PollCard from './_components/PollCard/'
+import PollCardSkeleton from './_components/PollCardSkeleton'
+import PollsGrid from './_components/PollsGrid'
 import styles from './page.module.css'
 
 type SearchParam = {
@@ -19,12 +20,6 @@ export default async function Page(props: Readonly<PollsPageProps>) {
   const { searchParams } = props
   const page = searchParams.page ?? 1
   const filter = searchParams.filter ?? 'open'
-
-  const polls = await getPolls({
-    page: Number(page),
-    isActive: filter !== 'closed',
-    sortKey: 'close-date-old-new',
-  })
 
   // Count the total number of polls based on the search query
   const pollCount = await countPolls({ isActive: filter !== 'closed' })
@@ -56,19 +51,24 @@ export default async function Page(props: Readonly<PollsPageProps>) {
 
       <ContentWrapper>
         <section className={styles.pollCardsWrapper}>
-          {polls.map((poll) => {
-            const pollObj: PollCardDTO = {
-              id: poll.id,
-              imgURL: poll.img?.link,
-              closesOn: poll.closesOn,
-              title: poll.title,
-              description: poll.description,
+          <Suspense
+            fallback={
+              <>
+                <PollCardSkeleton />
+                <PollCardSkeleton />
+                <PollCardSkeleton />
+                <PollCardSkeleton />
+              </>
             }
-            return <PollCard key={poll.id} poll={pollObj} />
-          })}
+          >
+            <PollsGrid
+              page={page}
+              sortKey={'close-date-old-new'}
+              isActive={filter !== 'closed'}
+            />
+          </Suspense>
         </section>
 
-        {/* Pagination component to navigate through pages */}
         <Pagination totalPages={Math.ceil(pollCount / perPage)} />
       </ContentWrapper>
     </>
